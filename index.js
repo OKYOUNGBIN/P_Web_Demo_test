@@ -18,24 +18,36 @@ const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 1, 1);
 controls.update();
 
-// // Instantiate a exporter
-const exporter = new GltfExporter();
+//다운로드 버튼 생성 후 이벤트 추가
+const btn = document.getElementById('download-glb');
+btn.addEventListener('click', download)
 
-// Parse the input and generate the glTF output
-exporter.parse(
-	scene,
-	// called when the gltf has been generated
-	function ( gltf ) {
+// gltfExporter을 이용해 생성된 버튼
+function download() {
+    const exporter = new GltfExporter();
+    // 배열에 여러가지 gltf변수 넣기[]
+    exporter.parse([scene],
+        // 해당 씬을 저장
+        function (result) {
+            // 저장할 때 이름 
+            saveArrayBuffer(result, 'object.glb');
+        },
+        { binary: true }
+    );
+}
 
-		console.log( gltf );
-		downloadJSON( gltf );
+// 저장하기
+function saveArrayBuffer(json, filename) {
+    save(new Blob([json], { type: 'application/octet-stream' }), filename);
+}
+//링크 생성 a태그
+const link = document.createElement('a');
 
-	},
-	function ( error ) {
-		console.log( 'An error happened' );
-	},
-	options
-);
+function save(blob, filename) {
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+}
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;

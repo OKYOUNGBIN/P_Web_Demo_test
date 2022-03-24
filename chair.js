@@ -1,5 +1,7 @@
 import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
+import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
 import { scene } from './index.js'
+
 function loadModel(url) {
     return new Promise(resolve => {
         new GLTFLoader().load(url, resolve);
@@ -83,3 +85,4 @@ document.getElementById("seat_type4").addEventListener("click", function () {
     tablechair_0202_seat.visible = false;
     tablechair_0203_seat.visible = false;
 });
+

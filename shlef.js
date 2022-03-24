@@ -104,3 +104,38 @@ document.getElementById("seat_type4").addEventListener("click", function () {
     tablechair_0202_seat.visible = false;
     tablechair_0203_seat.visible = false;
 });
+
+
+//다운로드 버튼 생성 후 이벤트 추가
+const btn = document.getElementById('download-glb');
+btn.addEventListener('click', download)
+
+// gltfExporter을 이용해 생성된 버튼
+function download() {
+    const exporter = new GLTFExporter();
+    // 배열에 여러가지 gltf변수 넣기[]
+    exporter.parse([theModel1, theModel2, theModel3],
+        // 해당 씬을 저장
+        function (result) {
+            // 저장할 때 이름 
+            saveArrayBuffer(result, 'Shelf.glb');
+        },
+        { binary: true }
+    );
+}
+
+// 저장하기
+function saveArrayBuffer(buffer, filename) {
+    save(new Blob([buffer], { type: 'application/octet-stream' }), filename);
+}
+//링크 생성 a태그
+const link = document.createElement('a');
+
+// 위에서 생성한 링크 태그 a로 연결
+document.body.appendChild(link);
+
+function save(blob, filename) {
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+}
