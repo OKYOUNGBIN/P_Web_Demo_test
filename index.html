@@ -10,8 +10,16 @@
     <script type="module" src="./chair.js"></script>
     <script type="module" src="./shlef.js"></script>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./model-viewer.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
+    <!-- Web animations for paper-dropdown -->
+    
+    <script src="./model-viewer/beautify-css.js"></script>
+    <script src="./model-viewer/beautify-html.js"></script>
+    <script src="./model-viewer/web-animations-next-lite.min.js"></script>
 </head>
 
 <body>
@@ -22,14 +30,9 @@
     <div class="nav" id="navbar">
         <nav class="nav__container">
             <div>
-                <a href="#" class="nav__link nav__logo">
-                    <i class='bx bxs-disc nav__icon'></i>
-                    <span class="nav__logo-name">Bedimcode</span>
-                </a>
-
                 <div class="nav__list">
                     <div class="nav__items">
-                        <h3 class="nav__subtitle">Profile</h3>
+                        <h3 class="nav__subtitle">Furniture</h3>
 
                         <a href="#" class="nav__link active">
                             <i class='bx bx-home nav__icon'></i>
@@ -47,6 +50,35 @@
                                     <a id="bot_type1" class="nav__dropdown-item">Bottom Type 1</a>
                                     <a id="bot_type2" class="nav__dropdown-item">Bottom Type 2</a>
                                     <a id="bot_type3" class="nav__dropdown-item">Bottom Type 3</a>
+                                </div>
+                            </div>
+                            <div class="nav__dropdown-collapse">
+                                <div class="nav__dropdown-content">
+                                    <a id="top_type1" class="nav__dropdown-item">Top Type 1</a>
+                                    <a id="top_type2" class="nav__dropdown-item">Top Type 2</a>
+                                    <a id="top_type3" class="nav__dropdown-item">Top Type 3</a>
+                                </div>
+                            </div>
+                            <div class="nav__dropdown-collapse">
+                                <div class="nav__dropdown-content">
+                                    <a id="frame_type1" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type2" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type3" class="nav__dropdown-item">Frame Type 3</a>
+                                    <a id="frame_type4" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type5" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type6" class="nav__dropdown-item">Frame Type 3</a>
+                                    <a id="frame_type7" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type8" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type9" class="nav__dropdown-item">Frame Type 3</a>
+                                    <a id="frame_type10" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type12" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type12" class="nav__dropdown-item">Frame Type 3</a>
+                                    <a id="frame_type13" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type14" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type15" class="nav__dropdown-item">Frame Type 3</a>
+                                    <a id="frame_type16" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type17" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type18" class="nav__dropdown-item">Frame Type 3</a>
                                 </div>
                             </div>
                         </div>
@@ -80,13 +112,64 @@
                             </a>
                             <div class="nav__dropdown-collapse">
                                 <div class="nav__dropdown-content">
-                                    <a id="PlaneHideShow" class="nav__dropdown-item">Plane</a>
-                                    <a id="EdgeHideShow" class="nav__dropdown-item">Edge</a>
-                                    <a id="FrameHideShow" class="nav__dropdown-item">Frame</a>
+                                    <a id="top_type1" class="nav__dropdown-item">Plane</a>
+                                    <a id="top_type2" class="nav__dropdown-item">Edge</a>
+                                    <a id="top_type3" class="nav__dropdown-item">Frame</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+                <script>
+                    // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
+                    window.process = {
+                        env: {
+                            NODE_ENV: 'production'
+                        }
+                    };
+                </script>
+                <script type="module" src="./model-viewer/space-opera.js"></script>
+                <script>
+                    window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+                    ga('create', 'UA-169901325-1', { 'storage': 'none' });
+                    ga('set', 'referrer', document.referrer.split('?')[0]);
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+                <script async src='https://www.google-analytics.com/analytics.js'></script>
+            
+                <model-editor>
+                    <div class="app">
+                        <div class="editor-body-root">
+                            <div class="mvContainer">
+                                <model-viewer-preview id="editing_adapter">
+                                </model-viewer-preview>
+                            </div>
+                            <me-tabs>
+                                </me-tabbed-panel>
+                                <me-tabbed-panel icon="create">
+                                    <me-export-panel header></me-export-panel>
+                                    <me-ibl-selector></me-ibl-selector>
+                                    <me-animation-controls></me-animation-controls>
+                                    <me-hotspot-panel></me-hotspot-panel>
+                                </me-tabbed-panel>
+                                <me-tabbed-panel icon="photo_camera">
+                                    <me-export-panel header></me-export-panel>
+                                    <me-camera-settings></me-camera-settings>
+                                </me-tabbed-panel>
+                                <me-tabbed-panel icon="color_lens">
+                                    <me-materials-panel></me-materials-panel>
+                                </me-tabbed-panel>
+                                <me-tabbed-panel icon="search">
+                                    <me-inspector-panel></me-inspector-panel>
+                                </me-tabbed-panel>
+                            </me-tabs>
+                        </div>
+                    </div>
+                </model-editor>
+                    
 </body>
 
 </html>

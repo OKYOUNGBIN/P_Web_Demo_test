@@ -8,7 +8,7 @@ function loadModel(url) {
 }
 
 
-// 선반 테두리
+// 선반
 let bot1, bot2, bot3, top1, top2, top3;
 // 파이프
 let pipe1, pipe2, pipe3, pipe4, pipe5, pipe6, pipe7, pipe8, pipe9, pipe10, pipe11, pipe12, pipe13, pipe14, pipe15, pipe16, pipe17, pipe18;
@@ -52,10 +52,11 @@ Promise.all(
             top1.visible = false;
             top2.visible = false;
             top3.visible = false;
-            
+
             scene.add(bot1);
             scene.add(bot2);
             scene.add(bot3);
+
 
             scene.add(top1);
             scene.add(top2);
@@ -79,17 +80,21 @@ document.getElementById("bot_type3").addEventListener("click", function () {
     bot1.visible = false;
 });
 
-// 선반 파이프 타입
-document.getElementById("seat_type1").addEventListener("click", function () {
-
+// 선반 상판 타입
+document.getElementById("top_type1").addEventListener("click", function () {
+    // top1.visible = !top1.visible;
+    // top2.visible = false;
+    // top3.visible = false;
+    scene.add(top3);
 });
-document.getElementById("seat_type2").addEventListener("click", function () {
-
+document.getElementById("top_type2").addEventListener("click", function () {
+    top2.visible = !top2.visible;
+    top1.visible = false;
+    top3.visible = false;
 });
-document.getElementById("seat_type3").addEventListener("click", function () {
-
-});
-document.getElementById("seat_type4").addEventListener("click", function () {
-
+document.getElementById("top_type3").addEventListener("click", function () {
+    top3.visible = !top3.visible;
+    top1.visible = false;
+    top2.visible = false;
 });
 
