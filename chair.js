@@ -9,80 +9,81 @@ function loadModel(url) {
 }
 
 // 의자 다리 변수 명
-let tablechair_0101_leg, tablechair_0102_leg, tablechair_0103_leg;
+let leg1, leg2, leg3;
+
 // 의자 시트 변수 명
-let tablechair_0201_seat, tablechair_0202_seat, tablechair_0203_seat, tablechair_0204_seat;
+let seat1, seat2, seat3, seat4;
 
-let leg_type1 = loadModel("./models/chair/leg/tablechair_0101_leg.glb").then(result => { tablechair_0101_leg = result.scene; });
-let leg_type2 = loadModel("./models/chair/leg/tablechair_0102_leg.glb").then(result => { tablechair_0102_leg = result.scene; });
-let leg_type3 = loadModel("./models/chair/leg/tablechair_0103_leg.glb").then(result => { tablechair_0103_leg = result.scene; });
+let leg_type1 = loadModel("./models/chair/leg/tablechair_0101_leg.glb").then(result => { leg1 = result.scene; });
+let leg_type2 = loadModel("./models/chair/leg/tablechair_0102_leg.glb").then(result => { leg2 = result.scene; });
+let leg_type3 = loadModel("./models/chair/leg/tablechair_0103_leg.glb").then(result => { leg3 = result.scene; });
 
-let seat_type1 = loadModel("./models/chair/seat/tablechair_0201_seat.glb").then(result => { tablechair_0201_seat = result.scene; });
-let seat_type2 = loadModel("./models/chair/seat/tablechair_0202_seat.glb").then(result => { tablechair_0202_seat = result.scene; });
-let seat_type3 = loadModel("./models/chair/seat/tablechair_0203_seat.glb").then(result => { tablechair_0203_seat = result.scene; });
-let seat_type4 = loadModel("./models/chair/seat/tablechair_0204_seat.glb").then(result => { tablechair_0204_seat = result.scene; });
+let seat_type1 = loadModel("./models/chair/seat/tablechair_0201_seat.glb").then(result => { seat1 = result.scene; });
+let seat_type2 = loadModel("./models/chair/seat/tablechair_0202_seat.glb").then(result => { seat2 = result.scene; });
+let seat_type3 = loadModel("./models/chair/seat/tablechair_0203_seat.glb").then(result => { seat3 = result.scene; });
+let seat_type4 = loadModel("./models/chair/seat/tablechair_0204_seat.glb").then(result => { seat4 = result.scene; });
 
 Promise.all([leg_type1, leg_type2, leg_type3, seat_type1, seat_type2, seat_type3, seat_type4]).then(() => {
 
-    tablechair_0101_leg.visible = false;
-    tablechair_0102_leg.visible = false;
-    tablechair_0103_leg.visible = false;
+    leg1.visible = false;
+    leg2.visible = false;
+    leg3.visible = false;
 
-    tablechair_0201_seat.visible = false;
-    tablechair_0202_seat.visible = false;
-    tablechair_0203_seat.visible = false;
-    tablechair_0204_seat.visible = false;
+    seat1.visible = false;
+    seat2.visible = false;
+    seat3.visible = false;
+    seat4.visible = false;
 
-    scene.add(tablechair_0101_leg);
-    scene.add(tablechair_0102_leg);
-    scene.add(tablechair_0103_leg);
+    scene.add(leg1);
+    scene.add(leg2);
+    scene.add(leg3);
 
-    scene.add(tablechair_0201_seat);
-    scene.add(tablechair_0202_seat);
-    scene.add(tablechair_0203_seat);
-    scene.add(tablechair_0204_seat);
+    scene.add(seat1);
+    scene.add(seat2);
+    scene.add(seat3);
+    scene.add(seat4);
+    console.log(seat4)
 });
-
 // 의자 다리 타입
 document.getElementById("leg_type1").addEventListener("click", function () {
-    tablechair_0101_leg.visible = !tablechair_0101_leg.visible;
-    tablechair_0102_leg.visible = false;
-    tablechair_0103_leg.visible = false;
+    leg1.visible = !leg1.visible;
+    leg2.visible = false;
+    leg3.visible = false;
 });
 document.getElementById("leg_type2").addEventListener("click", function () {
-    tablechair_0102_leg.visible = !tablechair_0102_leg.visible;
-    tablechair_0101_leg.visible = false;
-    tablechair_0103_leg.visible = false;
-}); 
+    leg2.visible = !leg2.visible;
+    leg1.visible = false;
+    leg3.visible = false;
+});
 document.getElementById("leg_type3").addEventListener("click", function () {
-    tablechair_0103_leg.visible = !tablechair_0103_leg.visible;
-    tablechair_0101_leg.visible = false;
-    tablechair_0102_leg.visible = false;
-}); 
+    leg3.visible = !leg3.visible;
+    leg1.visible = false;
+    leg2.visible = false;
+});
 
 // 의자 시트 타입
 document.getElementById("seat_type1").addEventListener("click", function () {
-    tablechair_0201_seat.visible = !tablechair_0201_seat.visible;
-    tablechair_0202_seat.visible = false;
-    tablechair_0203_seat.visible = false;
-    tablechair_0204_seat.visible = false;
+     seat1.visible = ! seat1.visible;
+     seat2.visible = false;
+     seat3.visible = false;
+     seat4.visible = false;
 });
 document.getElementById("seat_type2").addEventListener("click", function () {
-    tablechair_0202_seat.visible = !tablechair_0202_seat.visible;
-    tablechair_0201_seat.visible = false;
-    tablechair_0203_seat.visible = false;
-    tablechair_0204_seat.visible = false;
+     seat2.visible = !seat2.visible;
+     seat1.visible = false;
+     seat3.visible = false;
+     seat4.visible = false;
 });
 document.getElementById("seat_type3").addEventListener("click", function () {
-    tablechair_0203_seat.visible = !tablechair_0203_seat.visible;
-    tablechair_0201_seat.visible = false;
-    tablechair_0202_seat.visible = false;
-    tablechair_0204_seat.visible = false;
+     seat3.visible = ! seat3.visible;
+     seat1.visible = false;
+     seat2.visible = false;
+     seat4.visible = false;
 });
 document.getElementById("seat_type4").addEventListener("click", function () {
-    tablechair_0204_seat.visible = !tablechair_0204_seat.visible;
-    tablechair_0201_seat.visible = false;
-    tablechair_0202_seat.visible = false;
-    tablechair_0203_seat.visible = false;
+     seat4.visible = ! seat4.visible;
+     seat1.visible = false;
+     seat2.visible = false;
+     seat3.visible = false;
 });
 
