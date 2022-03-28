@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "three": "^0.139.0"
+  },
+  "name": "web_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OKYOUNGBIN/P_Web_Demo_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OKYOUNGBIN/P_Web_Demo_test/issues"
+  },
+  "homepage": "https://github.com/OKYOUNGBIN/P_Web_Demo_test#readme",
+  "description": ""
+}

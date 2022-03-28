@@ -38,7 +38,6 @@
                             <i class='bx bx-home nav__icon'></i>
                             <span class="nav__name">Home</span>
                         </a>
-
                         <div class="nav__dropdown">
                             <a href="#" class="nav__link">
                                 <i class='bx bx-user nav__icon'></i>
@@ -142,33 +141,42 @@
             
                 <model-editor>
                     <div class="app">
-                        <div class="editor-body-root">
-                            <div class="mvContainer">
-                                <model-viewer-preview id="editing_adapter">
-                                </model-viewer-preview>
-                            </div>
-                            <me-tabs>
-                                </me-tabbed-panel>
-                                <me-tabbed-panel icon="create">
-                                    <me-export-panel header></me-export-panel>
-                                    <me-ibl-selector></me-ibl-selector>
-                                    <me-animation-controls></me-animation-controls>
-                                    <me-hotspot-panel></me-hotspot-panel>
-                                </me-tabbed-panel>
-                                <me-tabbed-panel icon="photo_camera">
-                                    <me-export-panel header></me-export-panel>
-                                    <me-camera-settings></me-camera-settings>
-                                </me-tabbed-panel>
-                                <me-tabbed-panel icon="color_lens">
-                                    <me-materials-panel></me-materials-panel>
-                                </me-tabbed-panel>
-                                <me-tabbed-panel icon="search">
-                                    <me-inspector-panel></me-inspector-panel>
-                                </me-tabbed-panel>
-                            </me-tabs>
+                      <div class="editor-body-root">
+                        <div class="mvContainer">
+                          <model-viewer-preview id="editing_adapter">
+                          </model-viewer-preview>
                         </div>
+                        <me-tabs>
+                          <me-tabbed-panel icon="import_export">
+                            <me-export-panel></me-export-panel>
+                            <div style="margin-bottom: 70px;"></div>
+                            <div class="privacy">
+                              This &lt;model-viewer&gt; editor does not send any imported content to servers except to deploy to your mobile device:
+                              <a href="https://policies.google.com/privacy" class="privacy-link" target="_blank">
+                                Privacy
+                              </a>
+                            </div>
+                          </me-tabbed-panel>
+                          <me-tabbed-panel icon="create">
+                            <me-export-panel header></me-export-panel>
+                            <me-ibl-selector></me-ibl-selector>
+                            <me-animation-controls></me-animation-controls>
+                            <me-hotspot-panel></me-hotspot-panel>
+                          </me-tabbed-panel>
+                          <me-tabbed-panel icon="photo_camera">
+                            <me-export-panel header></me-export-panel>
+                            <me-camera-settings></me-camera-settings>
+                          </me-tabbed-panel>
+                          <me-tabbed-panel icon="color_lens">
+                            <me-materials-panel></me-materials-panel>
+                          </me-tabbed-panel>
+                          <me-tabbed-panel icon="search">
+                            <me-inspector-panel></me-inspector-panel>
+                          </me-tabbed-panel>
+                        </me-tabs>
+                      </div>
                     </div>
-                </model-editor>
+                  </model-editor>
                     
 </body>
 
