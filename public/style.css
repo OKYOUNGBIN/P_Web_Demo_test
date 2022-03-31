@@ -53,6 +53,10 @@ body {
 a {
   text-decoration: none;
 }
+#imageForm{
+  position: absolute;
+  left: 50%;
+}
 .model-load{
   position:absolute;
   top: 80px;

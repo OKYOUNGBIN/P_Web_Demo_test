@@ -6,23 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="module" src="./src/index.js"></script>
-    <script type="module" src="./src/chair.js"></script>
-    <script type="module" src="./src/shlef.js"></script>
-    <link rel="stylesheet" href="./src/style.css">
-    <link rel="stylesheet" href="./src/model-viewer.css">
+    <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./chair.js"></script>
+    <script type="module" src="./shlef.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./model-viewer.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script src="./store.js" async></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
     <!-- Web animations for paper-dropdown -->
-    <script src="./model-viewer/beautify-css.js"></script>
-    <script src="./model-viewer/beautify-html.js"></script>
-    <script src="./model-viewer/web-animations-next-lite.min.js"></script>
+    <script src="/beautify-css.js"></script>
+    <script src="/beautify-html.js"></script>
+    <script src="/web-animations-next-lite.min.js"></script>
 </head>
 
 <body>
+    <form id="imageForm">
+        <input id="imageInput" type="file" accept="image/*">
+        <button type="submit">Upload</button>
+      </form>
+    
     <canvas id="c"></canvas>
     <div class="download-glb">
         <a href="#" id="download-glb">Save</a>
@@ -134,7 +139,7 @@
                         }
                     };
                 </script>
-                <script type="module" src="../model-viewer/space-opera.js"></script>
+                <script type="module" src="/space-opera.js"></script>
                 <script>
                     window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
                     ga('create', 'UA-169901325-1', { 'storage': 'none' });

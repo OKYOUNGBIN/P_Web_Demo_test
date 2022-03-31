@@ -1,0 +1,35 @@
+{
+  "name": "web_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OKYOUNGBIN/P_Web_Demo_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/OKYOUNGBIN/P_Web_Demo_test/issues"
+  },
+  "homepage": "https://github.com/OKYOUNGBIN/P_Web_Demo_test#readme",
+  "dependencies": {
+    "aws": "^0.0.3-2",
+    "aws-sdk": "^2.1104.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "gulp-imagemin": "^2.4.0",
+    "multer": "^1.4.4",
+    "multer-s3": "^2.10.0",
+    "path": "^0.12.7"
+  },
+  "description": "",
+  "devDependencies": {
+    "common-config-webpack-plugin": "^2.0.3",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
