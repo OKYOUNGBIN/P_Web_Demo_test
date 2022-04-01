@@ -2,35 +2,54 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
 
-const imageForm = document.querySelector("#imageForm")
-const imageInput = document.querySelector("#imageInput")
+//다운로드 버튼 생성 후 이벤트 추가
+const btn = document.getElementById('download-glb');
+btn.addEventListener('click', download)
+//gltfExporter을 이용해 생성된 버튼
+function download(event) {
+    event.preventDefault()
+    const exporter = new GltfExporter();
+    // 배열에 여러가지 gltf변수 넣기[]
+    exporter.parse([scene],
+        // 해당 씬을 저장
+        async function (result) {
+            // 저장할 때 이름 
+            
+            console.log(result)
+            
+            const file = result;
 
-imageForm.addEventListener("submit", async event => {
-  event.preventDefault()
-  const file = imageInput.files[0]
+            // get secure url from our server
+            const { url } = await fetch("/s3Url").then(res => res.json())
+            console.log(url)
+          
+            // post the image direclty to the s3 bucket
+            await fetch(url, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "multipart/form-data"
+              },
+              body: file
+            })
+            const imageUrl = url.split('?')[0]
+            console.log(imageUrl)
+        },
+        { binary: true }
+    );
+    //저장하기
+    // function saveArrayBuffer() {
 
-  // get secure url from our server
-  const { url } = await fetch("/s3Url").then(res => res.json())
-  console.log(url)
+    //     save(new Blob([json], { type: 'application/octet-stream' }), filename);
+    // }
+    //링크 생성 a태그
+    // function save(blob, filename) {
+    //     const link = document.createElement('a');
+    //     link.href = URL.createObjectURL(blob);
+    //     link.download = filename;
+    //     link.click();
+    // }
+}
 
-  // post the image direclty to the s3 bucket
-  await fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "multipart/form-data"
-    },
-    body: file
-  })
-
-  const imageUrl = url.split('?')[0]
-  console.log(imageUrl)
-
-  // post requst to my server to store any extra data
-  
-  const img = document.createElement("img")
-  img.src = imageUrl
-  document.body.appendChild(img)
-})
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -47,39 +66,6 @@ renderer.setPixelRatio(window.devicePixelRatio);
 const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 1, 1);
 controls.update();
-
-//다운로드 버튼 생성 후 이벤트 추가
-const btn = document.getElementById('download-glb');
-btn.addEventListener('click', download)
-
-//gltfExporter을 이용해 생성된 버튼
-function download() {
-    const exporter = new GltfExporter();
-    // 배열에 여러가지 gltf변수 넣기[]
-    exporter.parse([scene],
-        // 해당 씬을 저장
-        function (result) {
-            // 저장할 때 이름 
-            saveArrayBuffer(result, 'object.glb');
-        },
-        { binary: true }
-    );
-}
-
-//저장하기
-function saveArrayBuffer(json, filename) {
-    save(new Blob([json], { type: 'application/octet-stream' }), filename);
-}
-//링크 생성 a태그
-const link = document.createElement('a');
-
-function save(blob, filename) {
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-}
-
-
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;

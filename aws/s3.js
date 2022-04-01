@@ -34,7 +34,7 @@ const randomBytes = promisify(crypto.randomBytes)
 dotenv.config()
 
 const region = "ap-northeast-2"
-const bucketName = "/xr-box/shop_file/XR-SQUARE_test/"
+const bucketName = "xr-box/shop_file/XR-SQUARE_test"
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 

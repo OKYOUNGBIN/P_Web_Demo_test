@@ -1,10 +1,10 @@
-import {generateUploadURL} from './public/index.js'
+import { generateUploadURL } from './aws/s3.js'
 import { createRequire } from "module";
-import { get } from 'https';
 
+const require = createRequire(import.meta.url);
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = 3000;
 
 app.use(express.static('model-viewer'));
 app.use(express.static('models'));
@@ -24,10 +24,10 @@ app.get('/s3Url', async (req, res) =>{
   res.send({url})
 })
 
-app.get("/xr", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html")
-});
+// app.get("/xr", (req, res) => {
+//   res.sendFile(__dirname + "/public/index.html")
+// });
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log("starting server at port 3000..");
 });
