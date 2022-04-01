@@ -24,7 +24,6 @@ let seat_type3 = loadModel("/chair/seat/tablechair_0203_seat.glb").then(result =
 let seat_type4 = loadModel("/chair/seat/tablechair_0204_seat.glb").then(result => { seat4 = result.scene; });
 
 Promise.all([leg_type1, leg_type2, leg_type3, seat_type1, seat_type2, seat_type3, seat_type4]).then(() => {
-
     leg1.visible = false;
     leg2.visible = false;
     leg3.visible = false;
