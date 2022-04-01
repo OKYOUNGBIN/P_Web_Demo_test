@@ -85,5 +85,3 @@ document.getElementById("seat_type4").addEventListener("click", function () {
      seat2.visible = false;
      seat3.visible = false;
 });
-
-console.log({leg_type1})
