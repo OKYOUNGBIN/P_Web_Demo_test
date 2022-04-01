@@ -35,6 +35,14 @@
     --smaller-font-size: .813rem;
   }
 }
+model-viewer{
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #202124;
+  z-index: 99;
+}
+
 
 /*========== BASE ==========*/
 *, ::before, ::after {

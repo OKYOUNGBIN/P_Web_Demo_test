@@ -34,19 +34,25 @@ function download(event) {
             // get secure url from our server
             const { url } = await fetch("/s3Url").then(res => res.json())
             console.log(url)
-          
+            
             // post the image direclty to the s3 bucket
             await fetch(url, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "multipart/form-data"
-              },
-              body: file
+                method: "PUT",
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
+                body: file
             })
+
             const imageUrl = url.split('?')[0]
             console.log(imageUrl)
+
+            // const img = document.getElementById("viewer")
+            // img.src = imageUrl
+            // document.body.appendChild(img)
+            // console.log(img.src)
         },
-        { binary: true }
+        { binary: true },
     );
 }
 
