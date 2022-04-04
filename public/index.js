@@ -44,16 +44,26 @@ function download(event) {
                 body: file
             })
 
-            const imageUrl = url.split('?')[0]
-            console.log(imageUrl)
+            const glbUrl = url.split('?')[0]
+            console.log(glbUrl)
 
-            // const img = document.getElementById("viewer")
-            // img.src = imageUrl
-            // document.body.appendChild(img)
-            // console.log(img.src)
+            const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
+            model.src = glbUrl
         },
         { binary: true },
-    );
+        );
+    }
+
+const glbExportBtn = document.querySelector("#glbExportBtn")
+glbExportBtn.addEventListener('click', gltfExportBtn)
+async function gltfExportBtn(){
+    const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
+    const glTF = await model.exportScene();
+    var file = new File([glTF], "export.glb");
+    var link = document.createElement("a");
+    link.download =file.name;
+    link.href = URL.createObjectURL(file);
+    link.click();
 }
 
 function resizeRendererToDisplaySize(renderer) {

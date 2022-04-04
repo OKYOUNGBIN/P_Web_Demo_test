@@ -7,19 +7,6 @@
     overflow-y:scroll; 
 }
 
-
-/* button{
-    width: 200px;
-    height: 30px;
-    display: block;
-    text-align: left;
-    border-radius: 6px;
-} */
-
-button[value="TopFrameFabric(Navy)"]{
-    background-color: aqua;
-}
-
 :root {
     --expandable-section-background: #2b2d30;
     --expandable-section-text: #EEEEEE;
@@ -61,6 +48,12 @@ body {
     height: 100%;
     position: relative;
     width: 100%;
+}
+
+#glbExportBtn{
+    position: absolute;
+    left: 50%;
+    z-index: 10;
 }
 
 model-viewer-preview {
@@ -134,45 +127,3 @@ me-tabbed-panel {
     border-radius: 10px;
     background-color: #ffffff;
 }
-
-
-
-/* #TopHideShow{
-    position: absolute;
-    left: 20%;
-    top: 25%;
-    border: none;
-    background-color: black;
-    color: white;
-    width: 130px;
-    height: 50px;
-    cursor: pointer;
-    font-size: 20px;
-    text-decoration: none;
-}
-#FrameHideShow{
-    position: absolute;
-    left: 20%;
-    top: 35%;
-    border: none;
-    background-color: dimgray;
-    color: white;
-    width: 130px;
-    height: 50px;
-    cursor: pointer;
-    font-size: 20px;
-    text-decoration: none;
-}
-#BotHideShow{
-    position: absolute;
-    left: 20%;
-    top: 45%;
-    border: none;
-    background-color: gray;
-    color: white;
-    width: 130px;
-    height: 50px;
-    cursor: pointer;
-    font-size: 20px;
-    text-decoration: none;
-} */
