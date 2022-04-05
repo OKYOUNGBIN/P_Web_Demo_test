@@ -33,14 +33,9 @@ Promise.all([leg_type1, leg_type2, leg_type3, seat_type1, seat_type2, seat_type3
     seat3.visible = false;
     seat4.visible = false;
 
-    scene.add(leg1);
-    scene.add(leg2);
-    scene.add(leg3);
+    scene.add(leg1, leg2, leg3);
 
-    scene.add(seat1);
-    scene.add(seat2);
-    scene.add(seat3);
-    scene.add(seat4);
+    scene.add(seat1, seat2, seat3, seat4);
 });
 // 의자 다리 타입
 document.getElementById("leg_type1").addEventListener("click", function () {

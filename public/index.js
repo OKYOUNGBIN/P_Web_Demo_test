@@ -19,24 +19,27 @@ camera.position.set(0, 1, 1);
 controls.update();
 
 //다운로드 버튼 생성 후 이벤트 추가
-const btn = document.getElementById('download-glb');
-btn.addEventListener('click', download)
+const btn = document.querySelector('.download-glb');
+btn.addEventListener('click', uploadTempS3)
 //gltfExporter을 이용해 생성된 버튼
-function download(event) {
+function uploadTempS3(event) {
     event.preventDefault()
+    window.scrollTo({
+        top: 2928,
+        left: 1945,
+        behavior: 'smooth'
+    });
     const exporter = new GltfExporter();
     // 배열에 여러가지 gltf변수 넣기[]
     exporter.parse([scene],
         // 해당 씬을 저장
         async function (result) {
             const file = result;
-
             // get secure url from our server
-            const { url } = await fetch("/s3Url").then(res => res.json())
-            console.log(url)
-            
+            const { tempUrl } = await fetch("/s3Url").then(res => res.json())
+            console.log(tempUrl)
             // post the image direclty to the s3 bucket
-            await fetch(url, {
+            await fetch(tempUrl, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "multipart/form-data"
@@ -44,26 +47,55 @@ function download(event) {
                 body: file
             })
 
-            const glbUrl = url.split('?')[0]
-            console.log(glbUrl)
+            const tempGlbUrl = tempUrl.split('?')[0]
+            console.log(tempGlbUrl)
 
             const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
-            model.src = glbUrl
+            model.src = tempGlbUrl
         },
         { binary: true },
-        );
-    }
+    );
+}
 
-const glbExportBtn = document.querySelector("#glbExportBtn")
-glbExportBtn.addEventListener('click', gltfExportBtn)
-async function gltfExportBtn(){
+const exportGlb = document.querySelector('#glbExportBtn');
+exportGlb.addEventListener('click', exportModelViewer)
+async function exportModelViewer() {
+    const modelViewer = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
+    const glTF = await modelViewer.exportScene();
+    var file = new File([glTF], "");
+    const { savedUrl } = await fetch("/s3Url").then(res => res.json())
+    console.log(savedUrl)
+    // post the image direclty to the s3 bucket
+    await fetch(savedUrl, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+        body: file
+    })
+
+    const savedGlbUrl = savedUrl.split('?')[0]
+    console.log(savedGlbUrl)
+
     const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
-    const glTF = await model.exportScene();
-    var file = new File([glTF], "export.glb");
-    var link = document.createElement("a");
-    link.download =file.name;
-    link.href = URL.createObjectURL(file);
-    link.click();
+    model.src = savedGlbUrl
+    // // get secure url from our server
+    // const { generateUrl } = await fetch("/s3Url").then(res => res.json())
+    // console.log(generateUrl)
+    // // post the image direclty to the s3 bucket
+    // await fetch(generateUrl, {
+    //     method: "PUT",
+    //     headers: {
+    //         "Content-Type": "multipart/form-data"
+    //     },
+    //     body: file
+    // })
+
+    // const savedGlbUrl = generateUrl.split('?')[0]
+    // console.log(savedGlbUrl)
+
+    // const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
+    // model.src = savedGlbUrl
 }
 
 function resizeRendererToDisplaySize(renderer) {

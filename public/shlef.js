@@ -53,14 +53,30 @@ Promise.all(
             top2.visible = false;
             top3.visible = false;
 
-            scene.add(bot1);
-            scene.add(bot2);
-            scene.add(bot3);
+            pipe1.visible = false;
+            pipe2.visible = false;
+            pipe3.visible = false;
+            pipe4.visible = false;
+            pipe5.visible = false;
+            pipe6.visible = false;
+            pipe7.visible = false;
+            pipe8.visible = false;
+            pipe9.visible = false;
+            pipe10.visible = false;
+            pipe11.visible = false;
+            pipe12.visible = false;
+            pipe13.visible = false;
+            pipe14.visible = false;
+            pipe15.visible = false;
+            pipe16.visible = false;
+            pipe17.visible = false;
+            pipe18.visible = false;
+            
+            scene.add(bot1, bot2, bot3);
 
+            scene.add(top1, top2, top3);
 
-            scene.add(top1);
-            scene.add(top2);
-            scene.add(top3);
+            scene.add(pipe1, pipe2, pipe3, pipe4, pipe5, pipe6, pipe7, pipe8, pipe9, pipe10, pipe11, pipe12, pipe13, pipe14, pipe15, pipe16, pipe17, pipe18);
         });
 
 // 선반 바닥 타입
@@ -82,10 +98,9 @@ document.getElementById("bot_type3").addEventListener("click", function () {
 
 // 선반 상판 타입
 document.getElementById("top_type1").addEventListener("click", function () {
-    // top1.visible = !top1.visible;
-    // top2.visible = false;
-    // top3.visible = false;
-    scene.add(top3);
+    top1.visible = !top1.visible;
+    top2.visible = false;
+    top3.visible = false;
 });
 document.getElementById("top_type2").addEventListener("click", function () {
     top2.visible = !top2.visible;
@@ -98,3 +113,381 @@ document.getElementById("top_type3").addEventListener("click", function () {
     top2.visible = false;
 });
 
+// 프레임 타입
+document.getElementById("frame_type01").addEventListener("click", function () {
+    pipe1.visible = !pipe1.visible;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type02").addEventListener("click", function () {
+    pipe2.visible = !pipe2.visible;
+    pipe1.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type03").addEventListener("click", function () {
+    pipe3.visible = !pipe3.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type04").addEventListener("click", function () {
+    pipe4.visible = !pipe4.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type05").addEventListener("click", function () {
+    pipe5.visible = !pipe5.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type06").addEventListener("click", function () {
+    pipe6.visible = !pipe6.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type07").addEventListener("click", function () {
+    pipe7.visible = !pipe7.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type08").addEventListener("click", function () {
+    pipe8.visible = !pipe8.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type09").addEventListener("click", function () {
+    pipe9.visible = !pipe9.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type10").addEventListener("click", function () {
+    pipe10.visible = !pipe10.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type11").addEventListener("click", function () {
+    pipe11.visible = !pipe11.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type12").addEventListener("click", function () {
+    pipe12.visible = !pipe12.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type13").addEventListener("click", function () {
+    pipe13.visible = !pipe13.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type14").addEventListener("click", function () {
+    pipe14.visible = !pipe14.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type15").addEventListener("click", function () {
+    pipe15.visible = !pipe15.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type16").addEventListener("click", function () {
+    pipe16.visible = !pipe16.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type17").addEventListener("click", function () {
+    pipe17.visible = !pipe17.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe18.visible = false;
+});
+
+document.getElementById("frame_type18").addEventListener("click", function () {
+    pipe18.visible = !pipe18.visible;
+    pipe1.visible = false;
+    pipe2.visible = false;
+    pipe3.visible = false;
+    pipe4.visible = false;
+    pipe5.visible = false;
+    pipe6.visible = false;
+    pipe7.visible = false;
+    pipe8.visible = false;
+    pipe9.visible = false;
+    pipe10.visible = false;
+    pipe11.visible = false;
+    pipe12.visible = false;
+    pipe13.visible = false;
+    pipe14.visible = false;
+    pipe15.visible = false;
+    pipe16.visible = false;
+    pipe17.visible = false;
+});

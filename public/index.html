@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,9 +24,14 @@
 
 <body>
     <canvas id="c"></canvas>
-    <div class="download-glb">
-        <a href="#" id="download-glb">Save</a>
-    </div>
+    <a href="#" class="download-glb">Save
+        <div class="mouse">
+            <span></span>
+        </div>
+        <div class="arrow">
+            <span></span>
+        </div>
+    </a>
     <div class="nav" id="navbar">
         <nav class="nav__container">
             <div>
@@ -59,17 +65,17 @@
                             </div>
                             <div class="nav__dropdown-collapse">
                                 <div class="nav__dropdown-content">
-                                    <a id="frame_type1" class="nav__dropdown-item">Frame Type 1</a>
-                                    <a id="frame_type2" class="nav__dropdown-item">Frame Type 2</a>
-                                    <a id="frame_type3" class="nav__dropdown-item">Frame Type 3</a>
-                                    <a id="frame_type4" class="nav__dropdown-item">Frame Type 4</a>
-                                    <a id="frame_type5" class="nav__dropdown-item">Frame Type 5</a>
-                                    <a id="frame_type6" class="nav__dropdown-item">Frame Type 6</a>
-                                    <a id="frame_type7" class="nav__dropdown-item">Frame Type 7</a>
-                                    <a id="frame_type8" class="nav__dropdown-item">Frame Type 8</a>
-                                    <a id="frame_type9" class="nav__dropdown-item">Frame Type 9</a>
+                                    <a id="frame_type01" class="nav__dropdown-item">Frame Type 1</a>
+                                    <a id="frame_type02" class="nav__dropdown-item">Frame Type 2</a>
+                                    <a id="frame_type03" class="nav__dropdown-item">Frame Type 3</a>
+                                    <a id="frame_type04" class="nav__dropdown-item">Frame Type 4</a>
+                                    <a id="frame_type05" class="nav__dropdown-item">Frame Type 5</a>
+                                    <a id="frame_type06" class="nav__dropdown-item">Frame Type 6</a>
+                                    <a id="frame_type07" class="nav__dropdown-item">Frame Type 7</a>
+                                    <a id="frame_type08" class="nav__dropdown-item">Frame Type 8</a>
+                                    <a id="frame_type09" class="nav__dropdown-item">Frame Type 9</a>
                                     <a id="frame_type10" class="nav__dropdown-item">Frame Type 10</a>
-                                    <a id="frame_type12" class="nav__dropdown-item">Frame Type 11</a>
+                                    <a id="frame_type11" class="nav__dropdown-item">Frame Type 11</a>
                                     <a id="frame_type12" class="nav__dropdown-item">Frame Type 12</a>
                                     <a id="frame_type13" class="nav__dropdown-item">Frame Type 13</a>
                                     <a id="frame_type14" class="nav__dropdown-item">Frame Type 14</a>
@@ -119,64 +125,66 @@
                     </div>
                 </div>
             </div>
-        </div>
-                <script>
-                    // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
-                    window.process = {
-                        env: {
-                            NODE_ENV: 'production'
-                        }
-                    };
-                </script>
-                <script type="module" src="/space-opera.js"></script>
-                <script>
-                    window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-                    ga('create', 'UA-169901325-1', { 'storage': 'none' });
-                    ga('set', 'referrer', document.referrer.split('?')[0]);
-                    ga('set', 'anonymizeIp', true);
-                    ga('send', 'pageview');
-                </script>
-                <script async src='https://www.google-analytics.com/analytics.js'></script>
-                <model-editor id="editor">
-                    <div class="app">
-                        <button id="glbExportBtn">파일 저장</button>
-                        <div class="editor-body-root">
-                            <div class="mvContainer">
-                                <model-viewer-preview id="editing_adapter">
-                          </model-viewer-preview>
-                        </div>
-                        <me-tabs>
-                          <me-tabbed-panel icon="import_export">
-                            <me-export-panel></me-export-panel>
-                            <div style="margin-bottom: 70px;"></div>
-                            <div class="privacy">
-                              This &lt;model-viewer&gt; editor does not send any imported content to servers except to deploy to your mobile device:
-                              <a href="https://policies.google.com/privacy" class="privacy-link" target="_blank">
+    </div>
+    <script>
+        // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
+        window.process = {
+            env: {
+                NODE_ENV: 'production'
+            }
+        };
+    </script>
+    <script type="module" src="/space-opera.js"></script>
+    <script>
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-169901325-1', { 'storage': 'none' });
+        ga('set', 'referrer', document.referrer.split('?')[0]);
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <model-editor>
+        <div class="app">
+            <button id="glbExportBtn">파일 저장</button>
+            <div class="editor-body-root">
+                <div class="mvContainer">
+                    <model-viewer-preview id="editing_adapter">
+                    </model-viewer-preview>
+                </div>
+                <me-tabs>
+                    <me-tabbed-panel icon="import_export">
+                        <me-export-panel></me-export-panel>
+                        <div style="margin-bottom: 70px;"></div>
+                        <div class="privacy">
+                            This &lt;model-viewer&gt; editor does not send any imported content to servers except to
+                            deploy to your mobile device:
+                            <a href="https://policies.google.com/privacy" class="privacy-link" target="_blank">
                                 Privacy
-                              </a>
-                            </div>
-                          </me-tabbed-panel>
-                          <me-tabbed-panel icon="create">
-                            <me-export-panel header></me-export-panel>
-                            <me-ibl-selector></me-ibl-selector>
-                            <me-animation-controls></me-animation-controls>
-                            <me-hotspot-panel></me-hotspot-panel>
-                          </me-tabbed-panel>
-                          <me-tabbed-panel icon="photo_camera">
-                            <me-export-panel header></me-export-panel>
-                            <me-camera-settings></me-camera-settings>
-                          </me-tabbed-panel>
-                          <me-tabbed-panel icon="color_lens">
-                            <me-materials-panel></me-materials-panel>
-                          </me-tabbed-panel>
-                          <me-tabbed-panel icon="search">
-                            <me-inspector-panel></me-inspector-panel>
-                          </me-tabbed-panel>
-                        </me-tabs>
-                      </div>
-                    </div>
-                  </model-editor>
-                    
+                            </a>
+                        </div>
+                    </me-tabbed-panel>
+                    <me-tabbed-panel icon="create">
+                        <me-export-panel header></me-export-panel>
+                        <me-ibl-selector></me-ibl-selector>
+                        <me-animation-controls></me-animation-controls>
+                        <me-hotspot-panel></me-hotspot-panel>
+                    </me-tabbed-panel>
+                    <!-- <me-tabbed-panel icon="photo_camera">
+                        <me-export-panel header></me-export-panel>
+                        <me-camera-settings></me-camera-settings>
+                    </me-tabbed-panel> -->
+                    <me-tabbed-panel icon="color_lens">
+                        <me-materials-panel></me-materials-panel>
+                    </me-tabbed-panel>
+                    <!-- <me-tabbed-panel icon="search">
+                        <me-inspector-panel></me-inspector-panel>
+                    </me-tabbed-panel> -->
+                </me-tabs>
+            </div>
+        </div>
+    </model-editor>
+<a id="botPage"></a>
 </body>
 
 </html>
