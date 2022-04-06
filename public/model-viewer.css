@@ -55,6 +55,11 @@ body {
     z-index: 10;
 }
 
+#html{
+    position: absolute;
+    left: 60%;
+    z-index: 10;
+}
 model-viewer-preview {
     height: 100%;
 }

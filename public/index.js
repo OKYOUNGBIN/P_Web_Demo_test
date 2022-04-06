@@ -4,8 +4,23 @@ import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const light = new THREE.DirectionalLight(0xFFFFFF);
-scene.add(light);
+
+var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+hemiLight.color.setHSL( 0.6, 0.75, 0.5 );
+hemiLight.groundColor.setHSL( 0.095, 0.5, 0.5 );
+hemiLight.position.set( 0, 500, 0 );
+scene.add( hemiLight );
+
+var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+dirLight.position.set( -1, 0.75, 1 );
+dirLight.position.multiplyScalar( 50);
+dirLight.name = "dirlight";
+// dirLight.shadowCameraVisible = true;
+
+scene.add( dirLight );
+
+dirLight.castShadow = true;
+dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024*2;
 
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
@@ -36,7 +51,7 @@ function uploadTempS3(event) {
         async function (result) {
             const file = result;
             // get secure url from our server
-            const { tempUrl } = await fetch("/s3Url").then(res => res.json())
+            const { tempUrl } = await fetch("/s3UrlTemp").then(res => res.json())
             console.log(tempUrl)
             // post the image direclty to the s3 bucket
             await fetch(tempUrl, {
@@ -63,7 +78,7 @@ async function exportModelViewer() {
     const modelViewer = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
     const glTF = await modelViewer.exportScene();
     var file = new File([glTF], "");
-    const { savedUrl } = await fetch("/s3Url").then(res => res.json())
+    const { savedUrl } = await fetch("/s3UrlSaved").then(res => res.json())
     console.log(savedUrl)
     // post the image direclty to the s3 bucket
     await fetch(savedUrl, {
@@ -77,26 +92,114 @@ async function exportModelViewer() {
     const savedGlbUrl = savedUrl.split('?')[0]
     console.log(savedGlbUrl)
 
-    const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
-    model.src = savedGlbUrl
-    // // get secure url from our server
-    // const { generateUrl } = await fetch("/s3Url").then(res => res.json())
-    // console.log(generateUrl)
-    // // post the image direclty to the s3 bucket
-    // await fetch(generateUrl, {
-    //     method: "PUT",
-    //     headers: {
-    //         "Content-Type": "multipart/form-data"
-    //     },
-    //     body: file
-    // })
+    const htmlComponent = 
+        `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Model Viewer</title>
+            <link rel="stylesheet" href="./style.css">
+            <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
+            <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        </head>
+        <body>
+        <model-viewer
+        camera-controls
+        ar
+        ar-modes="scene-viewer quick-look webxr"
+        autoplay
+        environment-image="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-viewer/images/photo_studio_01_1k.hdr"
+        exposure="2"
+        alt="B_Shelf"
+        src="${savedGlbUrl}"
+        bounds="tight">
+            <button class="arStart" slot="ar-button">
+                <span class="material-icons">view_in_ar</span>
+                <br>
+                <b>XR 미리보기</b>
+            </button>
+        </model-viewer>
+        </body>
+        </html>`;
+    const newHtmlDoc = document.implementation.createHTMLDocument()
+    newHtmlDoc.innerHTML = htmlComponent;
 
-    // const savedGlbUrl = generateUrl.split('?')[0]
-    // console.log(savedGlbUrl)
+    // console.log("The <!doctype> is a node type of: " + newHtmlDoc.doctype.nodeType,
+    //     "\nWhile the documentElement is a node type of: " + newHtmlDoc.documentElement.nodeType);
+    // console.log(newHtmlDoc.doctype);
+    // alert(newHtmlDoc.innerHTML);
 
-    // const model = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
-    // model.src = savedGlbUrl
+    const { htmlUrl } = await fetch("/s3UrlHtml").then(res => res.json())
+    console.log(htmlUrl)
+    // post the image direclty to the s3 bucket
+    await fetch(htmlUrl, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "text/html"
+        },
+        body: htmlComponent
+    })
+    const htmlViewerUrl = htmlUrl.split('?')[0]
+    console.log(htmlViewerUrl)
 }
+
+// async function uploadHtml() {
+//     const htmlComponent = 
+//         `<!DOCTYPE html>
+//         <html lang="en">
+//         <head>
+//             <meta charset="UTF-8">
+//             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//             <title>Model Viewer</title>
+//             <link rel="stylesheet" href="./style.css">
+//             <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
+//             <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+//             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+//         </head>
+//         <body>
+//         <model-viewer
+//         camera-controls
+//         ar
+//         ar-modes="scene-viewer quick-look webxr"
+//         autoplay
+//         environment-image="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-viewer/images/photo_studio_01_1k.hdr"
+//         exposure="2"
+//         alt="B_Shelf"
+//         src="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-temp/26ccc86e62d48e151966182c7d889218"
+//         bounds="tight">
+//             <button class="arStart" slot="ar-button">
+//                 <span class="material-icons">view_in_ar</span>
+//                 <br>
+//                 <b>XR 미리보기</b>
+//             </button>
+//         </model-viewer>
+//         </body>
+//         </html>`;
+//     const newHtmlDoc = document.implementation.createHTMLDocument()
+//     newHtmlDoc.innerHTML = htmlComponent;
+
+//     // console.log("The <!doctype> is a node type of: " + newHtmlDoc.doctype.nodeType,
+//     //     "\nWhile the documentElement is a node type of: " + newHtmlDoc.documentElement.nodeType);
+//     // console.log(newHtmlDoc.doctype);
+//     // alert(newHtmlDoc.innerHTML);
+
+//     const { htmlUrl } = await fetch("/s3UrlHtml").then(res => res.json())
+//     console.log(htmlUrl)
+//     // post the image direclty to the s3 bucket
+//     await fetch(htmlUrl, {
+//         method: "PUT",
+//         headers: {
+//             "Content-Type": "text/html"
+//         },
+//         body: htmlComponent
+//     })
+//     const htmlViewerUrl = htmlUrl.split('?')[0]
+//     console.log(htmlViewerUrl)
+// }
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
