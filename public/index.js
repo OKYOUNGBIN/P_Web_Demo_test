@@ -1,26 +1,27 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
+//import { chairLegArr, chairSeatArr} from './chair.js'
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
-hemiLight.color.setHSL( 0.6, 0.75, 0.5 );
-hemiLight.groundColor.setHSL( 0.095, 0.5, 0.5 );
-hemiLight.position.set( 0, 500, 0 );
-scene.add( hemiLight );
+var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
+hemiLight.color.setHSL(0.6, 0.75, 0.5);
+hemiLight.groundColor.setHSL(0.095, 0.5, 0.5);
+hemiLight.position.set(0, 500, 0);
+scene.add(hemiLight);
 
-var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-dirLight.position.set( -1, 0.75, 1 );
-dirLight.position.multiplyScalar( 50);
+var dirLight = new THREE.DirectionalLight(0xffffff, 1);
+dirLight.position.set(-1, 0.75, 1);
+dirLight.position.multiplyScalar(50);
 dirLight.name = "dirlight";
-// dirLight.shadowCameraVisible = true;
+dirLight.shadowCameraVisible = true;
 
-scene.add( dirLight );
+scene.add(dirLight);
 
 dirLight.castShadow = true;
-dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024*2;
+dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024 * 2;
 
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
@@ -33,6 +34,9 @@ const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 1, 1);
 controls.update();
 
+const { tempUrl } = await fetch("/s3UrlTemp").then(res => res.json())   // 원본 glb s3 bucket
+const { savedUrl } = await fetch("/s3UrlSaved").then(res => res.json()) // 편집한 glb s3 bucket
+const { htmlUrl } = await fetch("/s3UrlHtml").then(res => res.json())   // scene viewer html 파일 s3 bucket
 //다운로드 버튼 생성 후 이벤트 추가
 const btn = document.querySelector('.download-glb');
 btn.addEventListener('click', uploadTempS3)
@@ -50,9 +54,7 @@ function uploadTempS3(event) {
         // 해당 씬을 저장
         async function (result) {
             const file = result;
-            // get secure url from our server
-            const { tempUrl } = await fetch("/s3UrlTemp").then(res => res.json())
-            console.log(tempUrl)
+
             // post the image direclty to the s3 bucket
             await fetch(tempUrl, {
                 method: "PUT",
@@ -78,8 +80,7 @@ async function exportModelViewer() {
     const modelViewer = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
     const glTF = await modelViewer.exportScene();
     var file = new File([glTF], "");
-    const { savedUrl } = await fetch("/s3UrlSaved").then(res => res.json())
-    console.log(savedUrl)
+
     // post the image direclty to the s3 bucket
     await fetch(savedUrl, {
         method: "PUT",
@@ -92,7 +93,7 @@ async function exportModelViewer() {
     const savedGlbUrl = savedUrl.split('?')[0]
     console.log(savedGlbUrl)
 
-    const htmlComponent = 
+    const htmlComponent =
         `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -127,13 +128,6 @@ async function exportModelViewer() {
     const newHtmlDoc = document.implementation.createHTMLDocument()
     newHtmlDoc.innerHTML = htmlComponent;
 
-    // console.log("The <!doctype> is a node type of: " + newHtmlDoc.doctype.nodeType,
-    //     "\nWhile the documentElement is a node type of: " + newHtmlDoc.documentElement.nodeType);
-    // console.log(newHtmlDoc.doctype);
-    // alert(newHtmlDoc.innerHTML);
-
-    const { htmlUrl } = await fetch("/s3UrlHtml").then(res => res.json())
-    console.log(htmlUrl)
     // post the image direclty to the s3 bucket
     await fetch(htmlUrl, {
         method: "PUT",
@@ -144,62 +138,19 @@ async function exportModelViewer() {
     })
     const htmlViewerUrl = htmlUrl.split('?')[0]
     console.log(htmlViewerUrl)
+
+    document.getElementById('inputUrl').value = htmlViewerUrl
+    let copyText = document.getElementById('urlCopyBtn').addEventListener('click', urlCopy);
+    function urlCopy() {
+        document.querySelector("#inputUrl").select();
+        document.execCommand("copy");
+        getElementById.
+        window.getSelection().removeAllRanges();
+        setTimeout(function(){
+            copyText.classList.remove("active")
+        },2500);
+    }
 }
-
-// async function uploadHtml() {
-//     const htmlComponent = 
-//         `<!DOCTYPE html>
-//         <html lang="en">
-//         <head>
-//             <meta charset="UTF-8">
-//             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//             <title>Model Viewer</title>
-//             <link rel="stylesheet" href="./style.css">
-//             <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-//             <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-//             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-//         </head>
-//         <body>
-//         <model-viewer
-//         camera-controls
-//         ar
-//         ar-modes="scene-viewer quick-look webxr"
-//         autoplay
-//         environment-image="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-viewer/images/photo_studio_01_1k.hdr"
-//         exposure="2"
-//         alt="B_Shelf"
-//         src="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-temp/26ccc86e62d48e151966182c7d889218"
-//         bounds="tight">
-//             <button class="arStart" slot="ar-button">
-//                 <span class="material-icons">view_in_ar</span>
-//                 <br>
-//                 <b>XR 미리보기</b>
-//             </button>
-//         </model-viewer>
-//         </body>
-//         </html>`;
-//     const newHtmlDoc = document.implementation.createHTMLDocument()
-//     newHtmlDoc.innerHTML = htmlComponent;
-
-//     // console.log("The <!doctype> is a node type of: " + newHtmlDoc.doctype.nodeType,
-//     //     "\nWhile the documentElement is a node type of: " + newHtmlDoc.documentElement.nodeType);
-//     // console.log(newHtmlDoc.doctype);
-//     // alert(newHtmlDoc.innerHTML);
-
-//     const { htmlUrl } = await fetch("/s3UrlHtml").then(res => res.json())
-//     console.log(htmlUrl)
-//     // post the image direclty to the s3 bucket
-//     await fetch(htmlUrl, {
-//         method: "PUT",
-//         headers: {
-//             "Content-Type": "text/html"
-//         },
-//         body: htmlComponent
-//     })
-//     const htmlViewerUrl = htmlUrl.split('?')[0]
-//     console.log(htmlViewerUrl)
-// }
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
@@ -218,7 +169,6 @@ function resizeRendererToDisplaySize(renderer) {
 window.addEventListener('resize', onWindowResize, false);
 
 function onWindowResize() {
-
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);

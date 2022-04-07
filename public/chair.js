@@ -27,16 +27,21 @@ Promise.all([leg_type1, leg_type2, leg_type3, seat_type1, seat_type2, seat_type3
     leg1.visible = false;
     leg2.visible = false;
     leg3.visible = false;
-
+    
     seat1.visible = false;
     seat2.visible = false;
     seat3.visible = false;
     seat4.visible = false;
-
+    
     scene.add(leg1, leg2, leg3);
-
+    
     scene.add(seat1, seat2, seat3, seat4);
+    
+    let chairArr = [ leg1, leg2, leg3, seat1, seat2, seat3, seat4];
+    console.log({chairArr})
 });
+
+
 // 의자 다리 타입
 document.getElementById("leg_type1").addEventListener("click", function () {
     leg1.visible = !leg1.visible;
@@ -79,3 +84,4 @@ document.getElementById("seat_type4").addEventListener("click", function () {
      seat2.visible = false;
      seat3.visible = false;
 });
+

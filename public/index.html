@@ -12,8 +12,10 @@
     <script type="module" src="./shlef.js"></script>
     <script type="module" src="./table.js"></script>
     <script type="module" src="./cabinet.js"></script>
+    <!-- <script type="module" src="./visble.js"></script> -->
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./model-viewer.css">
+    <link rel="stylesheet" href="./sidebar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
@@ -26,6 +28,8 @@
 
 <body>
     <canvas id="c"></canvas>
+    <form><input type="button" value="페이지 새로 고침" onClick="window.location.reload()"></form>
+    <button id="resetButtonId">asdasdsadsadadadsad</button>
     <a href="#" class="download-glb">Save
         <div class="mouse">
             <span></span>
@@ -34,7 +38,15 @@
             <span></span>
         </div>
     </a>
-    <div class="nav" id="navbar">
+    <nav>
+        <ul>
+            <li><a href="#">Shelf</a></li>
+            <li><a href="#">Chair</a></li>
+            <li><a href="#">Table</a></li>
+            <li><a href="#">Cabinet</a></li>
+        </ul>
+    </nav>
+    <!-- <div class="nav" id="navbar">
         <nav class="nav__container">
             <div>
                 <div class="nav__list">
@@ -179,7 +191,7 @@
                     </div>
                 </div>
             </div>
-    </div>
+    </div> -->
     <script>
         // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
         window.process = {
@@ -200,7 +212,6 @@
 
     <model-editor>
         <div class="app">
-            <button id="glbExportBtn">파일 저장</button>
             <div class="editor-body-root">
                 <div class="mvContainer">
                     <model-viewer-preview id="editing_adapter">
@@ -224,12 +235,20 @@
                         <me-animation-controls></me-animation-controls>
                         <me-hotspot-panel></me-hotspot-panel>
                     </me-tabbed-panel>
-                    <!-- <me-tabbed-panel icon="photo_camera">
-                        <me-export-panel header></me-export-panel>
-                        <me-camera-settings></me-camera-settings>
-                    </me-tabbed-panel> -->
                     <me-tabbed-panel icon="color_lens">
                         <me-materials-panel></me-materials-panel>
+                    </me-tabbed-panel>
+                    <me-tabbed-panel icon="file_copy">
+                        <me-export-panel header></me-export-panel>
+                        <div class="btnForm">
+                            <button id="glbExportBtn">편집 파일 저장</button>
+                            <br>
+                            <div class="copyForm">
+                                <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />
+                                <a id="urlCopyBtn"><span class="material-icons">content_copy</span></a>
+                            </div>
+                        </div>
+                        <!-- <me-camera-settings></me-camera-settings> -->
                     </me-tabbed-panel>
                     <!-- <me-tabbed-panel icon="search">
                         <me-inspector-panel></me-inspector-panel>
@@ -238,7 +257,7 @@
             </div>
         </div>
     </model-editor>
-<a id="botPage"></a>
+    <a id="botPage"></a>
 </body>
 
 </html>
