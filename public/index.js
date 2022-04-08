@@ -3,6 +3,12 @@ import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/js
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
 //import { chairLegArr, chairSeatArr} from './chair.js'
 
+// const toggleBtn = document.querySelector('.toggle-btn')
+// toggleBtn.addEventListener('click', show)
+// function show() {
+//     document.querySelector('nav').classList.toggle('active')
+// }
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 

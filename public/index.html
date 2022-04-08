@@ -9,13 +9,14 @@
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="./index.js"></script>
     <script type="module" src="./chair.js"></script>
-    <script type="module" src="./shlef.js"></script>
+    <!-- <script type="module" src="./shlef.js"></script>
     <script type="module" src="./table.js"></script>
-    <script type="module" src="./cabinet.js"></script>
+    <script type="module" src="./cabinet.js"></script> -->
     <!-- <script type="module" src="./visble.js"></script> -->
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./model-viewer.css">
-    <link rel="stylesheet" href="./sidebar.css">
+    <!-- <link rel="stylesheet" href="./sidebar.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
@@ -28,6 +29,9 @@
 
 <body>
     <canvas id="c"></canvas>
+    <div class="sidebar">
+        <button class="sidebar-toggle"><i class="fa fa-plus icon"></i></button>
+    </div>
     <form><input type="button" value="페이지 새로 고침" onClick="window.location.reload()"></form>
     <button id="resetButtonId">asdasdsadsadadadsad</button>
     <a href="#" class="download-glb">Save
@@ -38,21 +42,65 @@
             <span></span>
         </div>
     </a>
-    <nav>
+    <!-- <nav>
         <ul>
-            <li><a href="#">Shelf</a></li>
-            <li><a href="#">Chair</a></li>
+            <li class="dropdown"><a href="#">Shelf<span>&rsaquo;</span></a>
+                <ul>
+                    <li class="dropdown_second" id="dropdown_second_1"><a href="#">Top Type<span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a href="#">Top Type 1</a></li>
+                            <li><a href="#">Top Type 2</a></li>
+                            <li><a href="#">Top Type 3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown_second" id="dropdown_second_2"><a href="#">Frame
+                            Type<span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a href="#">link 1</a></li>
+                            <li><a href="#">link 2</a></li>
+                            <li><a href="#">link 3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown_second" id="dropdown_second_3"><a href="#">Bottom
+                            Type<span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a href="#">link 1</a></li>
+                            <li><a href="#">link 2</a></li>
+                            <li><a href="#">link 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown"><a href="#">Chair<span>&rsaquo;</span></a>
+                <ul>
+                    <li class="dropdown_second" id="dropdown_second_1"><a href="#">Leg Type<span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a id="leg_type1">Leg Type 1</a></li>
+                            <li><a id="leg_type2">Leg Type 2</a></li>
+                            <li><a id="leg_type3">Leg Type 3</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown_second" id="dropdown_second_2"><a href="#">Seat
+                            Type<span>&rsaquo;</span></a>
+                        <ul>
+                            <li><a id="seat_type1">Seat Type 1</a></li>
+                            <li><a id="seat_type2">Seat Type 2</a></li>
+                            <li><a id="seat_type3">Seat Type 3</a></li>
+                            <li><a id="seat_type4">Seat Type 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <li><a href="#">Table</a></li>
             <li><a href="#">Cabinet</a></li>
         </ul>
-    </nav>
-    <!-- <div class="nav" id="navbar">
+    </nav> -->
+    <div class="nav" id="navbar">
         <nav class="nav__container">
             <div>
                 <div class="nav__list">
                     <div class="nav__items">
                         <h3 class="nav__subtitle">Furniture</h3>
-
                         <a href="#" class="nav__link active">
                             <i class='bx bx-home nav__icon'></i>
                             <span class="nav__name">Home</span>
@@ -191,7 +239,7 @@
                     </div>
                 </div>
             </div>
-    </div> -->
+    </div>
     <script>
         // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
         window.process = {
@@ -221,13 +269,6 @@
                     <me-tabbed-panel icon="import_export">
                         <me-export-panel></me-export-panel>
                         <div style="margin-bottom: 70px;"></div>
-                        <div class="privacy">
-                            This &lt;model-viewer&gt; editor does not send any imported content to servers except to
-                            deploy to your mobile device:
-                            <a href="https://policies.google.com/privacy" class="privacy-link" target="_blank">
-                                Privacy
-                            </a>
-                        </div>
                     </me-tabbed-panel>
                     <me-tabbed-panel icon="create">
                         <me-export-panel header></me-export-panel>
