@@ -8,32 +8,25 @@
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="./index.js"></script>
-    <script type="module" src="./chair.js"></script>
-    <!-- <script type="module" src="./shlef.js"></script>
-    <script type="module" src="./table.js"></script>
-    <script type="module" src="./cabinet.js"></script> -->
-    <!-- <script type="module" src="./visble.js"></script> -->
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./model-viewer.css">
-    <!-- <link rel="stylesheet" href="./sidebar.css"> -->
+    <script type="module" src="./js/chair.js"></script>
+    <script type="module" src="./js/shlef.js"></script>
+    <script type="module" src="./js/table.js"></script>
+    <script type="module" src="./js/cabinet.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/model-viewer.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
     <!-- Web animations for paper-dropdown -->
-    <script src="/beautify-css.js"></script>
+    <!-- <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
     <script src="/web-animations-next-lite.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
-    <canvas id="c"></canvas>
-    <div class="sidebar">
-        <button class="sidebar-toggle"><i class="fa fa-plus icon"></i></button>
-    </div>
-    <form><input type="button" value="페이지 새로 고침" onClick="window.location.reload()"></form>
-    <button id="resetButtonId">asdasdsadsadadadsad</button>
     <a href="#" class="download-glb">Save
         <div class="mouse">
             <span></span>
@@ -42,263 +35,148 @@
             <span></span>
         </div>
     </a>
-    <!-- <nav>
+    <nav>
         <ul>
-            <li class="dropdown"><a href="#">Shelf<span>&rsaquo;</span></a>
+            <h3 class="nav__subtitle">Furniture</h3>
+            <li class="dropdown"><a href="./shelf.html">Shelf<span>&rsaquo;</span></a>
                 <ul>
-                    <li class="dropdown_second" id="dropdown_second_1"><a href="#">Top Type<span>&rsaquo;</span></a>
-                        <ul>
-                            <li><a href="#">Top Type 1</a></li>
-                            <li><a href="#">Top Type 2</a></li>
-                            <li><a href="#">Top Type 3</a></li>
-                        </ul>
+                    <li>
+                        <a href="#" class="dropdown_menu">Top Type<span class="fas fa-caret-down"></span></a>
                     </li>
-                    <li class="dropdown_second" id="dropdown_second_2"><a href="#">Frame
-                            Type<span>&rsaquo;</span></a>
-                        <ul>
-                            <li><a href="#">link 1</a></li>
-                            <li><a href="#">link 2</a></li>
-                            <li><a href="#">link 3</a></li>
-                        </ul>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="top_type1" href="#">Type 1</a>
+                            <a id="top_type2" href="#">Type 2</a>
+                            <a id="top_type3" href="#">Type 3</a>
+                        </li>
+                    </div>
+                    <li>
+                        <a href="#" class="dropdown_menu">Frame Type<span class="fas fa-caret-down"></span></a>
                     </li>
-                    <li class="dropdown_second" id="dropdown_second_3"><a href="#">Bottom
-                            Type<span>&rsaquo;</span></a>
-                        <ul>
-                            <li><a href="#">link 1</a></li>
-                            <li><a href="#">link 2</a></li>
-                            <li><a href="#">link 3</a></li>
-                        </ul>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="frame_type01">Frame Type 1</a>
+                            <a id="frame_type02">Frame Type 2</a>
+                            <a id="frame_type03">Frame Type 3</a>
+                            <a id="frame_type04">Frame Type 4</a>
+                            <a id="frame_type05">Frame Type 5</a>
+                            <a id="frame_type06">Frame Type 6</a>
+                            <a id="frame_type07">Frame Type 7</a>
+                            <a id="frame_type08">Frame Type 8</a>
+                            <a id="frame_type09">Frame Type 9</a>
+                            <a id="frame_type10">Frame Type 10</a>
+                            <a id="frame_type11">Frame Type 11</a>
+                            <a id="frame_type12">Frame Type 12</a>
+                            <a id="frame_type13">Frame Type 13</a>
+                            <a id="frame_type14">Frame Type 14</a>
+                            <a id="frame_type15">Frame Type 15</a>
+                            <a id="frame_type16">Frame Type 16</a>
+                            <a id="frame_type17">Frame Type 17</a>
+                            <a id="frame_type18">Frame Type 18</a>
+                        </li>
+                    </div>
+                    <li>
+                        <a href="#" class="dropdown_menu">Bottom Type<span class="fas fa-caret-down"></span></a>
                     </li>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="bot_type1" href="#">Type 1</a>
+                            <a id="bot_type2" href="#">Type 2</a>
+                            <a id="bot_type3" href="#">Type 3</a>
+                        </li>
+                    </div>
                 </ul>
             </li>
             <li class="dropdown"><a href="#">Chair<span>&rsaquo;</span></a>
                 <ul>
-                    <li class="dropdown_second" id="dropdown_second_1"><a href="#">Leg Type<span>&rsaquo;</span></a>
-                        <ul>
-                            <li><a id="leg_type1">Leg Type 1</a></li>
-                            <li><a id="leg_type2">Leg Type 2</a></li>
-                            <li><a id="leg_type3">Leg Type 3</a></li>
-                        </ul>
+                    <li>
+                        <a href="#">Seat Type<span class="fas fa-caret-down"></span></a>
                     </li>
-                    <li class="dropdown_second" id="dropdown_second_2"><a href="#">Seat
-                            Type<span>&rsaquo;</span></a>
-                        <ul>
-                            <li><a id="seat_type1">Seat Type 1</a></li>
-                            <li><a id="seat_type2">Seat Type 2</a></li>
-                            <li><a id="seat_type3">Seat Type 3</a></li>
-                            <li><a id="seat_type4">Seat Type 4</a></li>
-                        </ul>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="seat_type1">Seat Type 1</a>
+                            <a id="seat_type2">Seat Type 2</a>
+                            <a id="seat_type3">Seat Type 3</a>
+                            <a id="seat_type4">Seat Type 4</a>
+                        </li>
+                    </div>
+                    <li>
+                        <a href="#">Leg Type<span class="fas fa-caret-down"></span></a>
                     </li>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="leg_type1">Leg Type 1</a>
+                            <a id="leg_type2">Leg Type 2</a>
+                            <a id="leg_type3">Leg Type 3</a>
+                        </li>
+                    </div>
                 </ul>
             </li>
-            <li><a href="#">Table</a></li>
-            <li><a href="#">Cabinet</a></li>
-        </ul>
-    </nav> -->
-    <div class="nav" id="navbar">
-        <nav class="nav__container">
-            <div>
-                <div class="nav__list">
-                    <div class="nav__items">
-                        <h3 class="nav__subtitle">Furniture</h3>
-                        <a href="#" class="nav__link active">
-                            <i class='bx bx-home nav__icon'></i>
-                            <span class="nav__name">Home</span>
-                        </a>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bx-user nav__icon'></i>
-                                <span class="nav__name">Shelf</span>
-                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="bot_type1" class="nav__dropdown-item">Bottom Type 1</a>
-                                    <a id="bot_type2" class="nav__dropdown-item">Bottom Type 2</a>
-                                    <a id="bot_type3" class="nav__dropdown-item">Bottom Type 3</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="top_type1" class="nav__dropdown-item">Top Type 1</a>
-                                    <a id="top_type2" class="nav__dropdown-item">Top Type 2</a>
-                                    <a id="top_type3" class="nav__dropdown-item">Top Type 3</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="frame_type01" class="nav__dropdown-item">Frame Type 1</a>
-                                    <a id="frame_type02" class="nav__dropdown-item">Frame Type 2</a>
-                                    <a id="frame_type03" class="nav__dropdown-item">Frame Type 3</a>
-                                    <a id="frame_type04" class="nav__dropdown-item">Frame Type 4</a>
-                                    <a id="frame_type05" class="nav__dropdown-item">Frame Type 5</a>
-                                    <a id="frame_type06" class="nav__dropdown-item">Frame Type 6</a>
-                                    <a id="frame_type07" class="nav__dropdown-item">Frame Type 7</a>
-                                    <a id="frame_type08" class="nav__dropdown-item">Frame Type 8</a>
-                                    <a id="frame_type09" class="nav__dropdown-item">Frame Type 9</a>
-                                    <a id="frame_type10" class="nav__dropdown-item">Frame Type 10</a>
-                                    <a id="frame_type11" class="nav__dropdown-item">Frame Type 11</a>
-                                    <a id="frame_type12" class="nav__dropdown-item">Frame Type 12</a>
-                                    <a id="frame_type13" class="nav__dropdown-item">Frame Type 13</a>
-                                    <a id="frame_type14" class="nav__dropdown-item">Frame Type 14</a>
-                                    <a id="frame_type15" class="nav__dropdown-item">Frame Type 15</a>
-                                    <a id="frame_type16" class="nav__dropdown-item">Frame Type 16</a>
-                                    <a id="frame_type17" class="nav__dropdown-item">Frame Type 17</a>
-                                    <a id="frame_type18" class="nav__dropdown-item">Frame Type 18</a>
-                                </div>
-                            </div>
+            <li class="dropdown"><a href="#">Table<span>&rsaquo;</span></a>
+                <ul>
+                    <li>
+                        <a href="#">Top Type<span class="fas fa-caret-down"></span></a>
+                    </li>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="semicircle_type1">SemiCircle Type 1</a>
+                            <a id="semicircle_type2">SemiCircle Type 2</a>
+                            <a id="semicircle_type3">SemiCircle Type 3</a>
+                            <a id="semicircle_type4">SemiCircle Type 4</a>
+                            <a id="rectangle_type1">Rectangle Type 1</a>
+                            <a id="rectangle_type2">Rectangle Type 2</a>
+                            <a id="rectangle_type3">Rectangle Type 3</a>
+                            <a id="rectangle_type4">Rectangle Type 4</a>
+                            <a id="circle_type1">Circle Type 1</a>
+                            <a id="circle_type2">Circle Type 2</a>
+                            <a id="circle_type3">Circle Type 3</a>
+                            <a id="circle_type4">Circle Type 4</a>
+                        </li>
+                    </div>
+                    <li>
+                        <a href="#">Leg Type<span class="fas fa-caret-down"></span></a>
+                    </li>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="table_leg_type1">Leg Type 1</a>
+                            <a id="table_leg_type2">Leg Type 2</a>
+                            <a id="table_leg_type3">Leg Type 3</a>
+                            <a id="table_leg_type4">Leg Type 4</a>
+                            <a id="table_leg_type5">Leg Type 5</a>
+                            <a id="table_leg_type6">Leg Type 6</a>
+                            <a id="table_leg_type7">Leg Type 7</a>
+                            <a id="table_leg_type8">Leg Type 8</a>
+                        </li>
+                    </div>
+                </ul>
+            </li>
+
+            <li class="dropdown"><a href="#">Cabinet<span>&rsaquo;</span></a>
+                <ul>
+                    <div id="qwer">
+                        <li>
+                            <a href="#">Door Type<span class="fas fa-caret-down"></span></a>
+                        </li>
+                        <div class="dropdown__two">
+                            <li>
+                                <a id="door_type1">Door Type 1</a>
+                                <a id="door_type2">Door Type 2</a>
+                                <a id="door_type3">Door Type 3</a>
+                            </li>
                         </div>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bx-user nav__icon'></i>
-                                <span class="nav__name">Chair</span>
-                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="leg_type1" class="nav__dropdown-item">Leg Type 1</a>
-                                    <a id="leg_type2" class="nav__dropdown-item">Leg Type 2</a>
-                                    <a id="leg_type3" class="nav__dropdown-item">Leg Type 3</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="seat_type1" class="nav__dropdown-item">Seat Type 1</a>
-                                    <a id="seat_type2" class="nav__dropdown-item">Seat Type 2</a>
-                                    <a id="seat_type3" class="nav__dropdown-item">Seat Type 3</a>
-                                    <a id="seat_type4" class="nav__dropdown-item">Seat Type 4</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bx-user nav__icon'></i>
-                                <span class="nav__name">Table</span>
-                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="semicircle_type1" class="nav__dropdown-item">SemiCircle Type 1</a>
-                                    <a id="semicircle_type2" class="nav__dropdown-item">SemiCircle Type 2</a>
-                                    <a id="semicircle_type3" class="nav__dropdown-item">SemiCircle Type 3</a>
-                                    <a id="semicircle_type4" class="nav__dropdown-item">SemiCircle Type 4</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="rectangle_type1" class="nav__dropdown-item">Rectangle Type 1</a>
-                                    <a id="rectangle_type2" class="nav__dropdown-item">Rectangle Type 2</a>
-                                    <a id="rectangle_type3" class="nav__dropdown-item">Rectangle Type 3</a>
-                                    <a id="rectangle_type4" class="nav__dropdown-item">Rectangle Type 4</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="circle_type1" class="nav__dropdown-item">Circle Type 1</a>
-                                    <a id="circle_type2" class="nav__dropdown-item">Circle Type 2</a>
-                                    <a id="circle_type3" class="nav__dropdown-item">Circle Type 3</a>
-                                    <a id="circle_type4" class="nav__dropdown-item">Circle Type 4</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="table_leg_type1" class="nav__dropdown-item">Leg Type 1</a>
-                                    <a id="table_leg_type2" class="nav__dropdown-item">Leg Type 2</a>
-                                    <a id="table_leg_type3" class="nav__dropdown-item">Leg Type 3</a>
-                                    <a id="table_leg_type4" class="nav__dropdown-item">Leg Type 4</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="table_leg_type5" class="nav__dropdown-item">Leg Type 5</a>
-                                    <a id="table_leg_type6" class="nav__dropdown-item">Leg Type 6</a>
-                                    <a id="table_leg_type7" class="nav__dropdown-item">Leg Type 7</a>
-                                    <a id="table_leg_type8" class="nav__dropdown-item">Leg Type 8</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bx-user nav__icon'></i>
-                                <span class="nav__name">Cabinet</span>
-                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="door_type1" class="nav__dropdown-item">Door Type 1</a>
-                                    <a id="door_type2" class="nav__dropdown-item">Door Type 2</a>
-                                    <a id="door_type3" class="nav__dropdown-item">Door Type 3</a>
-                                </div>
-                            </div>
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a id="body_type1" class="nav__dropdown-item">Body Type 1</a>
-                                </div>
-                            </div>
+                        <li>
+                            <a href="#">Body Type<span class="fas fa-caret-down"></span></a>
+                        </li>
+                        <div class="dropdown__two">
+                            <li>
+                                <a id="body_type1" class="nav__dropdown-item">Body Type 1</a>
+                            </li>
                         </div>
                     </div>
-                </div>
-            </div>
-    </div>
-    <script>
-        // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
-        window.process = {
-            env: {
-                NODE_ENV: 'production'
-            }
-        };
-    </script>
-    <script type="module" src="/space-opera.js"></script>
-    <script>
-        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-        ga('create', 'UA-169901325-1', { 'storage': 'none' });
-        ga('set', 'referrer', document.referrer.split('?')[0]);
-        ga('set', 'anonymizeIp', true);
-        ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-
-    <model-editor>
-        <div class="app">
-            <div class="editor-body-root">
-                <div class="mvContainer">
-                    <model-viewer-preview id="editing_adapter">
-                    </model-viewer-preview>
-                </div>
-                <me-tabs>
-                    <me-tabbed-panel icon="import_export">
-                        <me-export-panel></me-export-panel>
-                        <div style="margin-bottom: 70px;"></div>
-                    </me-tabbed-panel>
-                    <me-tabbed-panel icon="create">
-                        <me-export-panel header></me-export-panel>
-                        <me-ibl-selector></me-ibl-selector>
-                        <me-animation-controls></me-animation-controls>
-                        <me-hotspot-panel></me-hotspot-panel>
-                    </me-tabbed-panel>
-                    <me-tabbed-panel icon="color_lens">
-                        <me-materials-panel></me-materials-panel>
-                    </me-tabbed-panel>
-                    <me-tabbed-panel icon="file_copy">
-                        <me-export-panel header></me-export-panel>
-                        <div class="btnForm">
-                            <button id="glbExportBtn">편집 파일 저장</button>
-                            <br>
-                            <div class="copyForm">
-                                <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />
-                                <a id="urlCopyBtn"><span class="material-icons">content_copy</span></a>
-                            </div>
-                        </div>
-                        <!-- <me-camera-settings></me-camera-settings> -->
-                    </me-tabbed-panel>
-                    <!-- <me-tabbed-panel icon="search">
-                        <me-inspector-panel></me-inspector-panel>
-                    </me-tabbed-panel> -->
-                </me-tabs>
-            </div>
-        </div>
-    </model-editor>
-    <a id="botPage"></a>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 </html>

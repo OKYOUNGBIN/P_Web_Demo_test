@@ -1,6 +1,6 @@
 import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
 import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
-import { scene } from './index.js'
+import { scene } from '../index.js'
 function loadModel(url) {
     return new Promise(resolve => {
         new GLTFLoader().load(url, resolve);

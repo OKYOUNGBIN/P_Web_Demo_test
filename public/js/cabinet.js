@@ -1,6 +1,6 @@
 import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
-import { scene } from './index.js'
+import { scene } from '../index.js'
 
 function loadModel(url) {
     return new Promise(resolve => {

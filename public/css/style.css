@@ -1,1 +1,236 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #c {
+    width:  100%;
+    height: 100%;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+/*========== VARIABLES CSS ==========*/
+:root {
+    --nav-width: 219px;
+  
+    /*========== Colors ==========*/
+    --first-color: #6923D0;
+    --first-color-light: #F4F0FA;
+    --title-color: #19181B;
+    --text-color: #58555E;
+    --text-color-light: #A5A1AA;
+    --body-color: #F9F6FD;
+    --container-color: #FFFFFF;
+  
+    /*========== Font and typography ==========*/
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: .938rem;
+    --small-font-size: .75rem;
+    --smaller-font-size: .75rem;
+  
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+}
+  
+@media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1rem;
+      --small-font-size: .875rem;
+      --smaller-font-size: .813rem;
+    }
+}
+
+body {
+    margin: var(--header-height) 0 0 0;
+    overflow-x: hidden;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+}
+.nav__subtitle {
+    font-size: var(--normal-font-size);
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: var(--text-color-light);
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.download-glb{
+    position:absolute;
+    top: 50px;
+    right: 20px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.mouse{
+    width: 2.5rem;
+    height: 5rem;
+    border: 2px solid gray;
+    border-radius: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+.mouse span{
+    width: 1rem;
+    height: 1rem;
+    background-color: gray;
+    display: block;
+    border-radius: 50%;
+    margin: auto;
+    animation: move-wheel 1s linear infinite;
+}
+  
+.arrow span{
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-right-color: gray;
+    border-bottom-color: gray;
+    transform: rotate(45deg);
+    animation: arrow-down 1s alternate infinite;
+}
+
+@keyframes move-wheel {
+    0%{
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(1rem);
+    }
+}
+  
+@keyframes arrow-down {
+    0%{
+      opacity: 0;
+    }
+    25%{
+      opacity: 0.25;
+    }
+    50%{
+      opacity: 0.5;
+    }
+    75%{
+      opacity: 0.75;
+    }
+    100%{
+      opacity: 1;
+    }
+}
+
+nav {
+    width: 250px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #14213d;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
+}
+
+nav ul{
+    position: relative;
+    list-style-type: none;
+}
+nav ul li a {
+    display: flex;
+    align-items: center;
+    font-family: arial;
+    font-size: 1.15em;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #fca311;
+    padding: 10px 30px;
+    height: 45px;
+    transition: 0.5s ease;
+    border-radius: 0 30px;
+}
+nav ul li a:hover{
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+}
+
+nav ul ul {
+    position: absolute;
+    left: 250px;
+    width: 200px;
+    height: 100vh;
+    top: 0;
+    display: none;
+    background: #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
+}
+nav ul li span{
+    position: absolute;
+    right: 20px;
+    font-size: 1.4em;
+}
+nav ul .dropdown{
+    position: relative;
+    
+}
+nav ul .dropdown ul{
+    position: fixed;
+    top: 0;
+}
+
+nav ul .dropdown:hover > ul{
+    display: initial;
+}
+
+nav ul ul:hover .dropdown__two{
+    display: block;
+    position: relative;
+}
+
+nav ul ul .dropdown__two{
+    display: none;
+    border-radius: 5px;
+    /* border: 2px solid gray; */
+    width: 180px;
+    font-size: 0.8em;
+    margin:0 auto;
+    background-color: #edede9;
+}
+
+#clear{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+}

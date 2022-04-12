@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
+    <link rel="stylesheet" href="/css/model-viewer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <!-- Web animations for paper-dropdown -->
+    <script src="/beautify-css.js"></script>
+    <script src="/beautify-html.js"></script>
+    <script src="/web-animations-next-lite.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="module" src="/space-opera.js"></script>
+</head>
+
+<body>
+ <script>
+        // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
+        window.process = {
+            env: {
+                NODE_ENV: 'production'
+            }
+        };
+    </script>
+    
+    <script>
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-169901325-1', { 'storage': 'none' });
+        ga('set', 'referrer', document.referrer.split('?')[0]);
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <model-editor>
+        <div class="app">
+            <div class="editor-body-root">
+                <div class="mvContainer">
+                    <model-viewer-preview id="editing_adapter">
+                    </model-viewer-preview>
+                </div>
+                <me-tabs>
+                    <me-tabbed-panel icon="import_export">
+                        <me-export-panel></me-export-panel>
+                        <div style="margin-bottom: 70px;"></div>
+                    </me-tabbed-panel>
+                    <me-tabbed-panel icon="create">
+                        <me-export-panel header></me-export-panel>
+                        <me-ibl-selector></me-ibl-selector>
+                        <me-animation-controls></me-animation-controls>
+                        <me-hotspot-panel></me-hotspot-panel>
+                    </me-tabbed-panel>
+                    <me-tabbed-panel icon="color_lens">
+                        <me-materials-panel></me-materials-panel>
+                    </me-tabbed-panel>
+                    <me-tabbed-panel icon="file_copy">
+                        <me-export-panel header></me-export-panel>
+                        <div class="btnForm">
+                            <button id="glbExportBtn">편집 파일 저장</button>
+                            <br>
+                            <div class="copyForm">
+                                <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />
+                                <a id="urlCopyBtn"><span class="material-icons">content_copy</span></a>
+                            </div>
+                        </div>
+                        <!-- <me-camera-settings></me-camera-settings> -->
+                    </me-tabbed-panel>
+                    <!-- <me-tabbed-panel icon="search">
+                        <me-inspector-panel></me-inspector-panel>
+                    </me-tabbed-panel> -->
+                </me-tabs>
+            </div>
+        </div>
+    </model-editor>
+<script>
+    console.log(document.getElementsByTagName("model-viewer-preview"))
+</script>
+</body>
+
+</html>
+
