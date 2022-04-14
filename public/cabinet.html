@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="/index.js" async></script>
-    <script type="module" src="/js/shlef.js" async></script>
+    <script type="module" src="/js/cabinet.js" async></script>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/model-viewer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
@@ -35,59 +35,32 @@
     </a>
     <nav>
         <ul>
-            <h3 class="nav__subtitle">Furniture</h3>
+            <h3 class="nav__subtitle">Cabinet</h3>
             <li class="dropdown">
-                <a href="#">Shelf<span>&rsaquo;</span></a>
                 <ul>
                     <li>
-                        <a href="#" class="dropdown_menu">Top Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Door Type<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="top_type1" href="#">Type 1</a>
-                            <a id="top_type2" href="#">Type 2</a>
-                            <a id="top_type3" href="#">Type 3</a>
+                            <a id="door_type1">Door Type 1</a>
+                            <a id="door_type2">Door Type 2</a>
+                            <a id="door_type3">Door Type 3</a>
                         </li>
                     </div>
                     <li>
-                        <a href="#" class="dropdown_menu">Frame Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Body Type<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="frame_type01">Frame Type 1</a>
-                            <a id="frame_type02">Frame Type 2</a>
-                            <a id="frame_type03">Frame Type 3</a>
-                            <a id="frame_type04">Frame Type 4</a>
-                            <a id="frame_type05">Frame Type 5</a>
-                            <a id="frame_type06">Frame Type 6</a>
-                            <a id="frame_type07">Frame Type 7</a>
-                            <a id="frame_type08">Frame Type 8</a>
-                            <a id="frame_type09">Frame Type 9</a>
-                            <a id="frame_type10">Frame Type 10</a>
-                            <a id="frame_type11">Frame Type 11</a>
-                            <a id="frame_type12">Frame Type 12</a>
-                            <a id="frame_type13">Frame Type 13</a>
-                            <a id="frame_type14">Frame Type 14</a>
-                            <a id="frame_type15">Frame Type 15</a>
-                            <a id="frame_type16">Frame Type 16</a>
-                            <a id="frame_type17">Frame Type 17</a>
-                            <a id="frame_type18">Frame Type 18</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#" class="dropdown_menu">Bottom Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="bot_type1" href="#">Type 1</a>
-                            <a id="bot_type2" href="#">Type 2</a>
-                            <a id="bot_type3" href="#">Type 3</a>
+                            <a id="body_type1" class="nav__dropdown-item">Body Type 1</a>
                         </li>
                     </div>
                 </ul>
             </li>
         </ul>
     </nav>
+
     <script>
         // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
         window.process = {
@@ -145,6 +118,7 @@
             </div>
         </div>
     </model-editor>
+
 </body>
 
 </html>

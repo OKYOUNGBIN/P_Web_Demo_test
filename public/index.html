@@ -7,176 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script type="module" src="./index.js"></script>
-    <script type="module" src="./js/chair.js"></script>
-    <script type="module" src="./js/shlef.js"></script>
-    <script type="module" src="./js/table.js"></script>
-    <script type="module" src="./js/cabinet.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- <link rel="stylesheet" href="./css/model-viewer.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
-    <!-- Web animations for paper-dropdown -->
-    <!-- <script src="/beautify-css.js"></script>
-    <script src="/beautify-html.js"></script>
-    <script src="/web-animations-next-lite.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="/css/index.css">
+
 </head>
 
 <body>
-    <a href="#" class="download-glb">Save
-        <div class="mouse">
-            <span></span>
-        </div>
-        <div class="arrow">
-            <span></span>
-        </div>
-    </a>
-    <nav>
-        <ul>
-            <h3 class="nav__subtitle">Furniture</h3>
-            <li class="dropdown"><a href="./shelf.html">Shelf<span>&rsaquo;</span></a>
-                <ul>
-                    <li>
-                        <a href="#" class="dropdown_menu">Top Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="top_type1" href="#">Type 1</a>
-                            <a id="top_type2" href="#">Type 2</a>
-                            <a id="top_type3" href="#">Type 3</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#" class="dropdown_menu">Frame Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="frame_type01">Frame Type 1</a>
-                            <a id="frame_type02">Frame Type 2</a>
-                            <a id="frame_type03">Frame Type 3</a>
-                            <a id="frame_type04">Frame Type 4</a>
-                            <a id="frame_type05">Frame Type 5</a>
-                            <a id="frame_type06">Frame Type 6</a>
-                            <a id="frame_type07">Frame Type 7</a>
-                            <a id="frame_type08">Frame Type 8</a>
-                            <a id="frame_type09">Frame Type 9</a>
-                            <a id="frame_type10">Frame Type 10</a>
-                            <a id="frame_type11">Frame Type 11</a>
-                            <a id="frame_type12">Frame Type 12</a>
-                            <a id="frame_type13">Frame Type 13</a>
-                            <a id="frame_type14">Frame Type 14</a>
-                            <a id="frame_type15">Frame Type 15</a>
-                            <a id="frame_type16">Frame Type 16</a>
-                            <a id="frame_type17">Frame Type 17</a>
-                            <a id="frame_type18">Frame Type 18</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#" class="dropdown_menu">Bottom Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="bot_type1" href="#">Type 1</a>
-                            <a id="bot_type2" href="#">Type 2</a>
-                            <a id="bot_type3" href="#">Type 3</a>
-                        </li>
-                    </div>
-                </ul>
-            </li>
-            <li class="dropdown"><a href="#">Chair<span>&rsaquo;</span></a>
-                <ul>
-                    <li>
-                        <a href="#">Seat Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="seat_type1">Seat Type 1</a>
-                            <a id="seat_type2">Seat Type 2</a>
-                            <a id="seat_type3">Seat Type 3</a>
-                            <a id="seat_type4">Seat Type 4</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#">Leg Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="leg_type1">Leg Type 1</a>
-                            <a id="leg_type2">Leg Type 2</a>
-                            <a id="leg_type3">Leg Type 3</a>
-                        </li>
-                    </div>
-                </ul>
-            </li>
-            <li class="dropdown"><a href="#">Table<span>&rsaquo;</span></a>
-                <ul>
-                    <li>
-                        <a href="#">Top Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="semicircle_type1">SemiCircle Type 1</a>
-                            <a id="semicircle_type2">SemiCircle Type 2</a>
-                            <a id="semicircle_type3">SemiCircle Type 3</a>
-                            <a id="semicircle_type4">SemiCircle Type 4</a>
-                            <a id="rectangle_type1">Rectangle Type 1</a>
-                            <a id="rectangle_type2">Rectangle Type 2</a>
-                            <a id="rectangle_type3">Rectangle Type 3</a>
-                            <a id="rectangle_type4">Rectangle Type 4</a>
-                            <a id="circle_type1">Circle Type 1</a>
-                            <a id="circle_type2">Circle Type 2</a>
-                            <a id="circle_type3">Circle Type 3</a>
-                            <a id="circle_type4">Circle Type 4</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#">Leg Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="table_leg_type1">Leg Type 1</a>
-                            <a id="table_leg_type2">Leg Type 2</a>
-                            <a id="table_leg_type3">Leg Type 3</a>
-                            <a id="table_leg_type4">Leg Type 4</a>
-                            <a id="table_leg_type5">Leg Type 5</a>
-                            <a id="table_leg_type6">Leg Type 6</a>
-                            <a id="table_leg_type7">Leg Type 7</a>
-                            <a id="table_leg_type8">Leg Type 8</a>
-                        </li>
-                    </div>
-                </ul>
-            </li>
 
-            <li class="dropdown"><a href="#">Cabinet<span>&rsaquo;</span></a>
-                <ul>
-                    <div id="qwer">
-                        <li>
-                            <a href="#">Door Type<span class="fas fa-caret-down"></span></a>
-                        </li>
-                        <div class="dropdown__two">
-                            <li>
-                                <a id="door_type1">Door Type 1</a>
-                                <a id="door_type2">Door Type 2</a>
-                                <a id="door_type3">Door Type 3</a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="#">Body Type<span class="fas fa-caret-down"></span></a>
-                        </li>
-                        <div class="dropdown__two">
-                            <li>
-                                <a id="body_type1" class="nav__dropdown-item">Body Type 1</a>
-                            </li>
-                        </div>
-                    </div>
-                </ul>
+    <h1>3D로 제작할 카테고리를 선택하세요</h1>
+    <div class="container">
+        <ul>
+            <li>
+                <a href="/chair">Chair(의자) <img src="/icon/main/chair.png" alt=""></a>
+                <a href="/table">Table(식탁) <img src="/icon/main/table.png" alt=""></a>
+                <a href="/shelf">Shelf(선반) <img src="/icon/main/shelf.png" alt=""></a>
+                <a href="/cabinet">Cabinet(수납장) <img src="/icon/main/cabinet.png" alt=""></a>
             </li>
         </ul>
-    </nav>
+    </div>
 </body>
+
 
 </html>

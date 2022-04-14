@@ -2,27 +2,68 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <link rel="stylesheet" href="/css/model-viewer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+    <script type="module" src="/index.js" async></script>
+    <script type="module" src="/js/chair.js" async></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/model-viewer.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
     <!-- Web animations for paper-dropdown -->
     <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
     <script src="/web-animations-next-lite.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script type="module" src="/space-opera.js"></script>
 </head>
 
 <body>
- <script>
+    <canvas id="c"></canvas>
+    <a href="#" class="download-glb">Save
+        <div class="mouse">
+            <span></span>
+        </div>
+        <div class="arrow">
+            <span></span>
+        </div>
+    </a>
+    <nav>
+        <ul>
+            <h3 class="nav__subtitle">Chair</h3>
+            <li class="dropdown">
+                <ul>
+                    <li>
+                        <a href="#">Seat Type<span class="fas fa-caret-down"></span></a>
+                    </li>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="seat_type1"><img src="/icon/chair/seat_type_1.png" alt="" /></a>
+                            <a id="seat_type2"><img src="/icon/chair/seat_type_2.png" alt="" /></a>
+                            <a id="seat_type3"><img src="/icon/chair/seat_type_3.png" alt="" /></a>
+                            <a id="seat_type4"><img src="/icon/chair/seat_type_4.png" alt="" /></a>
+                        </li>
+                    </div>
+                    <li>
+                        <a href="#">Leg Type<span class="fas fa-caret-down"></span></a>
+                    </li>
+                    <div class="dropdown__two">
+                        <li>
+                            <a id="leg_type1"><img src="/icon/chair/leg_type_1.png" alt="" /></a>
+                            <a id="leg_type2"><img src="/icon/chair/leg_type_2.png" alt="" /></a>
+                            <a id="leg_type3"><img src="/icon/chair/leg_type_3.png" alt="" /></a>
+                        </li>
+                    </div>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <script>
         // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
         window.process = {
             env: {
@@ -30,7 +71,7 @@
             }
         };
     </script>
-    
+    <script type="module" src="/space-opera.js"></script>
     <script>
         window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
         ga('create', 'UA-169901325-1', { 'storage': 'none' });
@@ -63,7 +104,7 @@
                     <me-tabbed-panel icon="file_copy">
                         <me-export-panel header></me-export-panel>
                         <div class="btnForm">
-                            <button id="glbExportBtn">편집 파일 저장</button>
+                            <button id="glbExportBtn">Save Edit GLB</button>
                             <br>
                             <div class="copyForm">
                                 <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />
@@ -79,10 +120,6 @@
             </div>
         </div>
     </model-editor>
-<script>
-    console.log(document.getElementsByTagName("model-viewer-preview"))
-</script>
 </body>
 
 </html>
-

@@ -23,8 +23,20 @@ app.use(express.static('chair'));
 app.use(express.static('shelf'));
 app.use(express.static('table'));
 
-app.get('/modelviewer', function(req, res) {
-  res.sendFile(path.join(__dirname, '/public/modelViewer.html'));
+app.get('/chair', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/chair.html'));
+});
+
+app.get('/cabinet', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/cabinet.html'));
+});
+
+app.get('/table', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/table.html'));
+});
+
+app.get('/shelf', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/shelf.html'));
 });
 
 app.get('/s3UrlTemp', async (req, res) =>{
