@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script type="module" src="/index.js" async></script>
-    <script type="module" src="/js/shlef.js" async></script>
+    <script type="module" src="/index.js" ></script>
+    <script type="module" src="/js/shlef.js" ></script>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/model-viewer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
@@ -20,12 +20,15 @@
     <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
     <script src="/web-animations-next-lite.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+    <div class="modal">
+        <h1 id="howtouse">만들고자 하는 3D 디자인을 선택해주세요</h1>
+    </div>
     <canvas id="c"></canvas>
-    <a href="#" class="download-glb">Save
+    <a href="#" class="download-glb">다음
         <div class="mouse">
             <span></span>
         </div>
@@ -35,53 +38,27 @@
     </a>
     <nav>
         <ul>
-            <h3 class="nav__subtitle">Furniture</h3>
+            <div class="nav__subtitle">
+                <a href="/" id="homeIcon"><span class="material-icons">home</span></a><p>Shelf</p></div>
             <li class="dropdown">
-                <a href="#">Shelf<span>&rsaquo;</span></a>
                 <ul>
                     <li>
-                        <a href="#" class="dropdown_menu">Top Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#" class="dropdown_menu">Wide(가로) 600mm<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="top_type1" href="#">Type 1</a>
-                            <a id="top_type2" href="#">Type 2</a>
-                            <a id="top_type3" href="#">Type 3</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#" class="dropdown_menu">Frame Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="frame_type01">Frame Type 1</a>
-                            <a id="frame_type02">Frame Type 2</a>
-                            <a id="frame_type03">Frame Type 3</a>
-                            <a id="frame_type04">Frame Type 4</a>
-                            <a id="frame_type05">Frame Type 5</a>
-                            <a id="frame_type06">Frame Type 6</a>
-                            <a id="frame_type07">Frame Type 7</a>
-                            <a id="frame_type08">Frame Type 8</a>
-                            <a id="frame_type09">Frame Type 9</a>
-                            <a id="frame_type10">Frame Type 10</a>
-                            <a id="frame_type11">Frame Type 11</a>
-                            <a id="frame_type12">Frame Type 12</a>
-                            <a id="frame_type13">Frame Type 13</a>
-                            <a id="frame_type14">Frame Type 14</a>
-                            <a id="frame_type15">Frame Type 15</a>
-                            <a id="frame_type16">Frame Type 16</a>
-                            <a id="frame_type17">Frame Type 17</a>
-                            <a id="frame_type18">Frame Type 18</a>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#" class="dropdown_menu">Bottom Type<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="bot_type1" href="#">Type 1</a>
-                            <a id="bot_type2" href="#">Type 2</a>
-                            <a id="bot_type3" href="#">Type 3</a>
+                            <a id="shelf_600_1"><img src="/icon/shelf/600/shelf_600_1.png" alt=""></a>
+                            <a id="shelf_600_2"><img src="/icon/shelf/600/shelf_600_2.png" alt=""></a>
+                            <p id="name">600 1200</p>
+                            <a id="shelf_600_3"><img src="/icon/shelf/600/shelf_600_3.png" alt=""></a>
+                            <a id="shelf_600_4"><img src="/icon/shelf/600/shelf_600_4.png" alt=""></a>
+                            <p id="name">1500 1800</p>
+                            <a id="shelf_600_5"><img src="/icon/shelf/600/shelf_600_5.png" alt=""></a>
+                            <a id="shelf_600_6"><img src="/icon/shelf/600/shelf_600_6.png" alt=""></a>
+                            <p id="name">2100 2400</p>
+                            <!-- <a id="shelf_600_7"><img src="/icon/shelf/600/shelf_600_5.png" alt=""></a>
+                            <a id="shelf_600_8"><img src="/icon/shelf/600/shelf_600_6.png" alt=""></a>
+                            <p id="name">2100 2400</p> -->
                         </li>
                     </div>
                 </ul>
@@ -113,23 +90,23 @@
                     </model-viewer-preview>
                 </div>
                 <me-tabs>
-                    <me-tabbed-panel icon="import_export">
+                    <!-- <me-tabbed-panel icon="import_export">
                         <me-export-panel></me-export-panel>
                         <div style="margin-bottom: 70px;"></div>
-                    </me-tabbed-panel>
-                    <me-tabbed-panel icon="create">
+                    </me-tabbed-panel> -->
+                    <!-- <me-tabbed-panel icon="create">
                         <me-export-panel header></me-export-panel>
                         <me-ibl-selector></me-ibl-selector>
                         <me-animation-controls></me-animation-controls>
                         <me-hotspot-panel></me-hotspot-panel>
-                    </me-tabbed-panel>
+                    </me-tabbed-panel> -->
                     <me-tabbed-panel icon="color_lens">
                         <me-materials-panel></me-materials-panel>
                     </me-tabbed-panel>
                     <me-tabbed-panel icon="file_copy">
                         <me-export-panel header></me-export-panel>
                         <div class="btnForm">
-                            <button id="glbExportBtn">Save Edit GLB</button>
+                            <button id="glbExportBtn">URL 생성</button>
                             <br>
                             <div class="copyForm">
                                 <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />

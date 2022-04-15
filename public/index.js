@@ -6,27 +6,33 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 const canvas = document.querySelector("#c")
-const renderer = new THREE.WebGLRenderer({canvas, alpha: true });
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 document.body.prepend(renderer.domElement);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.setPixelRatio(window.devicePixelRatio);
 
-var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
-hemiLight.color.setHSL(0.6, 0.75, 0.5);
-hemiLight.groundColor.setHSL(0.095, 0.5, 0.5);
-hemiLight.position.set(0, 500, 0);
+// $(window).on('load',function() {
+//     $('.modal').hide();
+// });
+
+setTimeout(function() {
+    document.querySelector(".modal").style.display = "none";
+},1500);
+
+// Add lights
+var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.61);
+hemiLight.position.set(0, 50, 0);
+// Add hemisphere light to scene   
 scene.add(hemiLight);
 
-var dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(-1, 0.75, 1);
-dirLight.position.multiplyScalar(50);
-dirLight.name = "dirlight";
-
-scene.add(dirLight);
-
+var dirLight = new THREE.DirectionalLight(0xffffff, 0.54);
+dirLight.position.set(-8, 12, 8);
 dirLight.castShadow = true;
+dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
+// Add directional Light to scene    
+scene.add(dirLight);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 1, 1);
@@ -142,27 +148,26 @@ async function exportModelViewer() {
         document.querySelector("#inputUrl").select();
         document.execCommand("copy");
         window.getSelection().removeAllRanges();
-        setTimeout(function(){
-        },2500);
+        setTimeout(function () {
+        }, 2500);
     }
 }
-
-
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
     var width = window.innerWidth;
     var height = window.innerHeight;
+
     var canvasPixelWidth = canvas.width / window.devicePixelRatio;
     var canvasPixelHeight = canvas.height / window.devicePixelRatio;
-  
+
     const needResize = canvasPixelWidth !== width || canvasPixelHeight !== height;
     if (needResize) {
-      
-      renderer.setSize(width, height, false);
+
+        renderer.setSize(width, height, false);
     }
     return needResize;
-  }
+}
 
 window.addEventListener('resize', onWindowResize, false);
 

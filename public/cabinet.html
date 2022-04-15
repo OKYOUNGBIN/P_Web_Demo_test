@@ -20,12 +20,15 @@
     <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
     <script src="/web-animations-next-lite.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+    <div class="modal">
+        <h1 id="howtouse">만들고자 하는 3D 디자인을 선택해주세요</h1>
+    </div>
     <canvas id="c"></canvas>
-    <a href="#" class="download-glb">Save
+    <a href="#" class="download-glb">다음
         <div class="mouse">
             <span></span>
         </div>
@@ -35,25 +38,34 @@
     </a>
     <nav>
         <ul>
-            <h3 class="nav__subtitle">Cabinet</h3>
+            <div class="nav__subtitle">
+                <a href="/" id="homeIcon"><span class="material-icons">home</span></a><p>Cabinet</p></div>
             <li class="dropdown">
                 <ul>
                     <li>
-                        <a href="#">Door Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Body(본체)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="door_type1">Door Type 1</a>
-                            <a id="door_type2">Door Type 2</a>
-                            <a id="door_type3">Door Type 3</a>
+                            <a id="body_type1" class="nav__dropdown-item"><img src="/icon/cabinet/body/body_1.png" alt=""></a>
+                            <a id="body_type2" class="nav__dropdown-item"><img src="/icon/cabinet/body/body_2.png" alt=""></a>
+                            <div id="name">1600</div>
                         </li>
                     </div>
+
                     <li>
-                        <a href="#">Body Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Door(문)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="body_type1" class="nav__dropdown-item">Body Type 1</a>
+                            <a id="door_type1"><img src="/icon/cabinet/door/door_1.png" alt=""></a>
+                            <a id="door_type2"><img src="/icon/cabinet/door/door_2.png" alt=""></a>
+                            <a id="door_type3"><img src="/icon/cabinet/door/door_3.png" alt=""></a>
+                            <a id="door_type4"><img src="/icon/cabinet/door/door_4.png" alt=""></a>
+                            <a id="door_type5"><img src="/icon/cabinet/door/door_5.png" alt=""></a>
+                            <a id="door_type6"><img src="/icon/cabinet/door/door_6.png" alt=""></a>
+                            <a id="door_type7"><img src="/icon/cabinet/door/door_7.png" alt=""></a>
+                            <a id="door_type8"><img src="/icon/cabinet/door/door_8.png" alt=""></a>
                         </li>
                     </div>
                 </ul>
@@ -86,23 +98,23 @@
                     </model-viewer-preview>
                 </div>
                 <me-tabs>
-                    <me-tabbed-panel icon="import_export">
+                    <!-- <me-tabbed-panel icon="import_export">
                         <me-export-panel></me-export-panel>
                         <div style="margin-bottom: 70px;"></div>
-                    </me-tabbed-panel>
-                    <me-tabbed-panel icon="create">
+                    </me-tabbed-panel> -->
+                    <!-- <me-tabbed-panel icon="create">
                         <me-export-panel header></me-export-panel>
                         <me-ibl-selector></me-ibl-selector>
                         <me-animation-controls></me-animation-controls>
                         <me-hotspot-panel></me-hotspot-panel>
-                    </me-tabbed-panel>
+                    </me-tabbed-panel> -->
                     <me-tabbed-panel icon="color_lens">
                         <me-materials-panel></me-materials-panel>
                     </me-tabbed-panel>
                     <me-tabbed-panel icon="file_copy">
                         <me-export-panel header></me-export-panel>
                         <div class="btnForm">
-                            <button id="glbExportBtn">Save Edit GLB</button>
+                            <button id="glbExportBtn">URL 생성</button>
                             <br>
                             <div class="copyForm">
                                 <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />

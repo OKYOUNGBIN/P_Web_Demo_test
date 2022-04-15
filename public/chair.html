@@ -16,16 +16,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- Web animations for paper-dropdown -->
     <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
     <script src="/web-animations-next-lite.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+    <div class="modal">
+        <h1 id="howtouse">만들고자 하는 3D 디자인을 선택해주세요</h1>
+    </div>
     <canvas id="c"></canvas>
-    <a href="#" class="download-glb">Save
+    <a href="#" class="download-glb">다음
         <div class="mouse">
             <span></span>
         </div>
@@ -35,11 +39,12 @@
     </a>
     <nav>
         <ul>
-            <h3 class="nav__subtitle">Chair</h3>
+            <div class="nav__subtitle">
+                <a href="/" id="homeIcon"><span class="material-icons">home</span></a><p>Chair</p></div>
             <li class="dropdown">
                 <ul>
                     <li>
-                        <a href="#">Seat Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Seat(등받이)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
@@ -50,7 +55,7 @@
                         </li>
                     </div>
                     <li>
-                        <a href="#">Leg Type<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Legs(다리)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
@@ -88,23 +93,23 @@
                     </model-viewer-preview>
                 </div>
                 <me-tabs>
-                    <me-tabbed-panel icon="import_export">
+                    <!-- <me-tabbed-panel icon="import_export">
                         <me-export-panel></me-export-panel>
                         <div style="margin-bottom: 70px;"></div>
-                    </me-tabbed-panel>
-                    <me-tabbed-panel icon="create">
+                    </me-tabbed-panel> -->
+                    <!-- <me-tabbed-panel icon="create">
                         <me-export-panel header></me-export-panel>
                         <me-ibl-selector></me-ibl-selector>
                         <me-animation-controls></me-animation-controls>
                         <me-hotspot-panel></me-hotspot-panel>
-                    </me-tabbed-panel>
+                    </me-tabbed-panel> -->
                     <me-tabbed-panel icon="color_lens">
                         <me-materials-panel></me-materials-panel>
                     </me-tabbed-panel>
                     <me-tabbed-panel icon="file_copy">
                         <me-export-panel header></me-export-panel>
                         <div class="btnForm">
-                            <button id="glbExportBtn">Save Edit GLB</button>
+                            <button id="glbExportBtn">URL 생성</button>
                             <br>
                             <div class="copyForm">
                                 <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />

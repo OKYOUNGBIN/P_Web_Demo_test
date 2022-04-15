@@ -19,9 +19,9 @@ app.use(express.static('models'));
 app.use(express.static('images'));
 app.use(express.static('public'));
 
-app.use(express.static('chair'));
-app.use(express.static('shelf'));
-app.use(express.static('table'));
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 app.get('/chair', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/chair.html'));
