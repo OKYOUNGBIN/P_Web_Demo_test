@@ -3,7 +3,6 @@ import { savedUploadURL } from './aws/s3_saved.js'
 import { htmlUploadURL } from './aws/s3_html.js'
 import { createRequire } from "module";
 import { fileURLToPath } from 'url';
-//import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const require = createRequire(import.meta.url);
@@ -12,6 +11,9 @@ const app = express();
 const port = 8000;
 const path = require('path');
 const __dirname = path.dirname(__filename);
+
+
+app.use(router.routes());
 
 app.use(express.static('model-viewer'))
 app.use(express.static('aws'));;
