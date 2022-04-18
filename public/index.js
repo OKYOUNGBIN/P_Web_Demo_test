@@ -1,6 +1,7 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
+import * as THREE from 'three'
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -12,10 +13,6 @@ document.body.prepend(renderer.domElement);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.setPixelRatio(window.devicePixelRatio);
-
-// $(window).on('load',function() {
-//     $('.modal').hide();
-// });
 
 setTimeout(function() {
     document.querySelector(".modal").style.display = "none";

@@ -12,9 +12,6 @@ const port = 8000;
 const path = require('path');
 const __dirname = path.dirname(__filename);
 
-
-app.use(router.routes());
-
 app.use(express.static('model-viewer'))
 app.use(express.static('aws'));;
 app.use(express.static('models'));
