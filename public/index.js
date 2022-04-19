@@ -1,7 +1,7 @@
-import * as THREE from 'three'
+import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
-
+//import { USDZExporter } from '/USDZExporter.js'
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -74,6 +74,16 @@ function uploadTempS3(event) {
         { binary: true },
     );
 }
+// btn.addEventListener('click', uploadUzdzTempS3)
+// function uploadUzdzTempS3(event) {
+//     const uzdzExporter = new USDZExporter();
+//     const arraybuffer = await uzdzExporter.parse( result.scene );
+//     const blob = new Blob( [ arraybuffer ], { type: 'application/octet-stream' } );
+
+//     const link = document.getElementById( 'link' );
+//     link.href = URL.createObjectURL( blob );
+// }
+
 const exportGlb = document.querySelector('#glbExportBtn');
 exportGlb.addEventListener('click', exportModelViewer)
 async function exportModelViewer() {
@@ -113,7 +123,7 @@ async function exportModelViewer() {
         ar-modes="scene-viewer quick-look webxr"
         autoplay
         environment-image="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-viewer/images/photo_studio_01_1k.hdr"
-        exposure="2"
+        exposure="0.35"
         alt="B_Shelf"
         src="${savedGlbUrl}"
         bounds="tight">

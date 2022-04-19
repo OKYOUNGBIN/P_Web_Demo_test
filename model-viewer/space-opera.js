@@ -26881,7 +26881,7 @@ warning('You are currently using minified code outside of NODE_ENV === "producti
 *
 */
 /** Default exposure for model-viewer */
-const DEFAULT_EXPOSURE$1 = 1.0;
+const DEFAULT_EXPOSURE$1 = 0.5;
 /** Default shadow intensity for model-viewer */
 const DEFAULT_SHADOW_INTENSITY$1 = 0;
 /** Default shadow softness for model-viewer */
