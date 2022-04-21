@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="/index.js" async></script>
     <script type="module" src="/js/cabinet.js" async></script>
+    <script type="text/javascript" src="/js/qrcode.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/model-viewer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
@@ -112,12 +113,14 @@
                         <me-materials-panel></me-materials-panel>
                     </me-tabbed-panel>
                     <me-tabbed-panel icon="file_copy">
-                        <me-export-panel header></me-export-panel>
+                        <!-- <me-export-panel header></me-export-panel> -->
                         <div class="btnForm">
-                            <button id="glbExportBtn">URL 생성</button>
+                            <button id="glbExportBtn">QR 코드 만들기</button>
+                            <br>
+                            <div id="qrcode"></div>
                             <br>
                             <div class="copyForm">
-                                <input id="inputUrl" type="text" readonly placeholder="복사할 URL을 생성해주세요" />
+                                <input id="inputUrl" type="text" readonly placeholder="URL이 생성되면 복사할 수 있습니다." />
                                 <a id="urlCopyBtn"><span class="material-icons">content_copy</span></a>
                             </div>
                         </div>

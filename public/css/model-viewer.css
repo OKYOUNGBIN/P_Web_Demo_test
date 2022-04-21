@@ -154,6 +154,17 @@ me-tabbed-panel {
     background-color: rgba(32, 33, 36, .75);
 }
 
+/* #qrcode{
+    position: relative;
+    display: flex;
+    background-color: #EEEEEE;
+    justify-content: center;
+    align-items: center;
+    width: 135px;
+    height: 135px;
+    border-radius: 5px;
+} */
+
 @media only screen and (max-height: 600px) {
     .privacy {
         z-index: -1;

@@ -18,8 +18,8 @@ Promise.all(
             shelf_600.children[0].visible = false;
 
             scene.add(shelf_600)
-
-
+            
+            console.log({shelf_600})
         });
         
 document.getElementById("shelf_600_1").addEventListener("click", function () {
@@ -168,3 +168,4 @@ document.getElementById("shelf_600_6").addEventListener("click", function () {
     shelf_600.children[0].children[15].visible = false;
     shelf_600.children[0].children[16].visible = false;
 });
+

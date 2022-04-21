@@ -1,7 +1,7 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
-//import { USDZExporter } from '/USDZExporter.js'
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -74,15 +74,6 @@ function uploadTempS3(event) {
         { binary: true },
     );
 }
-// btn.addEventListener('click', uploadUzdzTempS3)
-// function uploadUzdzTempS3(event) {
-//     const uzdzExporter = new USDZExporter();
-//     const arraybuffer = await uzdzExporter.parse( result.scene );
-//     const blob = new Blob( [ arraybuffer ], { type: 'application/octet-stream' } );
-
-//     const link = document.getElementById( 'link' );
-//     link.href = URL.createObjectURL( blob );
-// }
 
 const exportGlb = document.querySelector('#glbExportBtn');
 exportGlb.addEventListener('click', exportModelViewer)
@@ -158,7 +149,17 @@ async function exportModelViewer() {
         setTimeout(function () {
         }, 2500);
     }
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: `${htmlViewerUrl}`,
+        width: 128,
+        height: 128,
+        colorDark : "#ffffff",
+        colorLight : "#000000",
+        correctLevel : QRCode.CorrectLevel.H
+    });
 }
+
+//document.querySelector("body > model-editor > div > div > me-tabs > me-tabbed-panel:nth-child(2) > me-export-panel").shadowRoot.querySelector("me-expandable-tab").shadowRoot.querySelector("div > me-expandable-section").shadowRoot.querySelector("div").style.display = 'none';
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
