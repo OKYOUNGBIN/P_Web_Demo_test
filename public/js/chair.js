@@ -36,6 +36,7 @@ Promise.all([leg_type1, leg_type2, leg_type3, seat_type1, seat_type2, seat_type3
     scene.add(leg1, leg2, leg3);
     
     scene.add(seat1, seat2, seat3, seat4);
+    
 });
 
 // 의자 다리 타입

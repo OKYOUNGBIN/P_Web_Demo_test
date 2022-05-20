@@ -2,7 +2,6 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
 import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
 
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -73,6 +72,17 @@ function uploadTempS3(event) {
         },
         { binary: true },
     );
+}
+const downloadGlb = document.querySelector('#downloadGlb')
+downloadGlb.addEventListener('click', localDownGlb)
+async function localDownGlb(){
+    const modelViewer = document.querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer")
+    const glTF = await modelViewer.exportScene();
+    var file = new File([glTF], "export.glb");
+    var link = document.createElement("a");
+    link.download =file.name;
+    link.href = URL.createObjectURL(file);
+    link.click();
 }
 
 const exportGlb = document.querySelector('#glbExportBtn');
@@ -159,7 +169,8 @@ async function exportModelViewer() {
     });
 }
 
-//document.querySelector("body > model-editor > div > div > me-tabs > me-tabbed-panel:nth-child(2) > me-export-panel").shadowRoot.querySelector("me-expandable-tab").shadowRoot.querySelector("div > me-expandable-section").shadowRoot.querySelector("div").style.display = 'none';
+
+//document.querySelector("body > model-editor > div > div > me-tabs > me-tabbed-panel:nth-child(1) > me-materials-panel").shadowRoot.querySelector("#material-container2-btn")
 
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;

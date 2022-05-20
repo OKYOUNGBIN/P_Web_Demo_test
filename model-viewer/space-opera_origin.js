@@ -112855,12 +112855,10 @@ let MaterialPanel = class MaterialPanel extends ConnectedLitElement {
       }
       this.requestUpdate();
   }
-
-  // Material Variants 가리기 style='display:none' 삭제하면 다시 생김
   renderVariantsTab() {
       const hasVariants = getModelViewer().availableVariants.length > 1;
       return html$2 `
-  <me-expandable-tab style='display:none' tabName="Variants" .open=${hasVariants}>
+  <me-expandable-tab tabName="Variants" .open=${hasVariants}>
     <div slot="content">
     <div class="EditableSelector" style='display: ${hasVariants ? '' : 'none'}'>
       <me-dropdown
@@ -113343,11 +113341,11 @@ let MaterialPanel = class MaterialPanel extends ConnectedLitElement {
 </me-expandable-tab>
 `;
 
-// 전문가 모드
 }
+
   renderNormalTextureTab() {
       return html$2 `
-<me-expandable-tab tabName="Normal Map" id="normal_map">
+<me-expandable-tab tabName="Normal Map">
   <div slot="content">
     <me-section-row label="Texture">
       <div class="TexturePickerContainer">
@@ -113450,7 +113448,8 @@ let MaterialPanel = class MaterialPanel extends ConnectedLitElement {
       return html$2 `
     <me-expandable-tab tabName="Other">
       <div slot="content">
-      ${this.renderDoubleSidedSection()}      ${this.renderAlphaBlendModeSection()}
+      ${this.renderDoubleSidedSection()}
+      ${this.renderAlphaBlendModeSection()}
       </div>
     </me-expandable-tab>
   `;
@@ -113483,24 +113482,15 @@ let MaterialPanel = class MaterialPanel extends ConnectedLitElement {
   ${this.renderEditMaterialNameDialog()}
   ${this.renderSelectMaterialTab()}
   ${this.renderBaseColorTab()}
-
-    ${this.renderMetallicRoughnessTab()}
-    ${this.renderNormalTextureTab()}
-    ${this.renderEmissiveTextureTab()}
-    ${this.renderOcclusionTextureTab()}
-    ${this.renderOtherTab()}
-  
-  
+  ${this.renderMetallicRoughnessTab()}
+  ${this.renderNormalTextureTab()}
+  ${this.renderEmissiveTextureTab()}
+  ${this.renderOcclusionTextureTab()}
+  ${this.renderOtherTab()}
+  </div>
   `;
-  // const hideButton = document.getElementById('material-container2-btn')
-  // hideButton.addEventListener('click', hideContainer)
-  // function hideContainer() {
-  //   document.getElementById("material-container2").style.visibility = "visible";
-  // }
-// 여기
   }
 };
-
 MaterialPanel.styles = styles$3;
 __decorate$d([
   internalProperty()

@@ -73,11 +73,23 @@ body {
     display: flex;
 }
 
+#downloadGlb{
+    margin-top: 10px;
+    border-radius: 5px;
+    border-style: none;
+    height: 36px;
+    width: 150px;
+    color: #F5F5F5;
+    background: var(--mdc-theme-primary, #6200ee);
+    font-size: 15px;
+}
+
 #inputUrl {
     position: relative;
     width: 15rem;
     height: 30px;
     margin-right: 5px;
+    margin: 0 0 10px 0;
     border-style: none;
     z-index: 30;
 }

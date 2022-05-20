@@ -6,7 +6,6 @@
     box-sizing: border-box;
     background: #c4c4c4;
     font-family: 'Nunito', sans-serif;
-    
 }
 h1{
     text-align: center;
@@ -38,4 +37,10 @@ ul li a{
 
 ul li a:hover{
     background: #EEEEEE;
+}
+
+@media screen and (min-width: 360px) {
+    body {
+        background-color: lightgreen;
+    }
 }
