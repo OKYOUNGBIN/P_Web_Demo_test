@@ -18,39 +18,39 @@ app.use(express.static('models'));
 app.use(express.static('images'));
 app.use(express.static('public'));
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.get('/chair', function(req, res) {
+app.get('/chair', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/chair.html'));
 });
 
-app.get('/cabinet', function(req, res) {
+app.get('/cabinet', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/cabinet.html'));
 });
 
-app.get('/table', function(req, res) {
+app.get('/table', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/table.html'));
 });
 
-app.get('/shelf', function(req, res) {
+app.get('/shelf', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/shelf.html'));
 });
 
-app.get('/s3UrlTemp', async (req, res) =>{
+app.get('/s3UrlTemp', async (req, res) => {
   const tempUrl = await tempUploadURL()
-  res.send({tempUrl})
+  res.send({ tempUrl })
 })
 
-app.get('/s3UrlSaved', async (req, res) =>{
+app.get('/s3UrlSaved', async (req, res) => {
   const savedUrl = await savedUploadURL()
-  res.send({savedUrl})
+  res.send({ savedUrl })
 })
 
 app.get("/s3UrlHtml", async (req, res) => {
   const htmlUrl = await htmlUploadURL()
-  res.send({htmlUrl})
+  res.send({ htmlUrl })
 });
 
 app.listen(port, () => {
