@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script type="module" src="/index.js" async></script>
-    <script type="module" src="/js/table.js" async></script>
-    <script type="text/javascript" src="/js/qrcode.js"></script>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/model-viewer.css" />
+    <script type="module" src="./index.js" async></script>
+    <script type="module" src="./js/table.js" async></script>
+    <script type="text/javascript" src="./js/qrcode.js"></script>
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="../public/css/model-viewer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- Web animations for paper-dropdown -->
-    <script src="/beautify-css.js"></script>
-    <script src="/beautify-html.js"></script>
-    <script src="/web-animations-next-lite.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="../model-viewer/beautify-css.js"></script>
+    <script src="../model-viewer/beautify-html.js"></script>
+    <script src="../model-viewer/web-animations-next-lite.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -41,7 +41,7 @@
     <nav>
         <ul>
             <div class="nav__subtitle">
-                <a href="/" id="homeIcon"><span class="material-icons">home</span></a>
+                <a href="./index.html" id="homeIcon"><span class="material-icons">home</span></a>
                 <p>Table</p>
             </div>
             <li class="dropdown">
@@ -51,23 +51,23 @@
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="semicircle_type1"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
-                            <a id="semicircle_type2"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type1"><img src="../images/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type2"><img src="../images/icon/table/semicircle/semi_circle_1.png" alt=""></a>
                             <p id="name">1200 1400</p>
-                            <a id="semicircle_type3"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
-                            <a id="semicircle_type4"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type3"><img src="../images/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type4"><img src="../images/icon/table/semicircle/semi_circle_1.png" alt=""></a>
                             <p id="name">1600 1800</p>
-                            <a id="rectangle_type1"><img src="/icon/table/rectangle/rectangle_1.png" alt=""></a>
-                            <a id="rectangle_type2"><img src="/icon/table/rectangle/rectangle_2.png" alt=""></a>
+                            <a id="rectangle_type1"><img src="../images/icon/table/rectangle/rectangle_1.png" alt=""></a>
+                            <a id="rectangle_type2"><img src="../images/icon/table/rectangle/rectangle_2.png" alt=""></a>
                             <p id="name">1200 1400</p>
-                            <a id="rectangle_type3"><img src="/icon/table/rectangle/rectangle_3.png" alt=""></a>
-                            <a id="rectangle_type4"><img src="/icon/table/rectangle/rectangle_4.png" alt=""></a>
+                            <a id="rectangle_type3"><img src="../images/icon/table/rectangle/rectangle_3.png" alt=""></a>
+                            <a id="rectangle_type4"><img src="../images/icon/table/rectangle/rectangle_4.png" alt=""></a>
                             <p id="name">1600 1800</p>
-                            <a id="circle_type1"><img src="/icon/table/circle/circle_1.png" alt=""></a>
-                            <a id="circle_type2"><img src="/icon/table/circle/circle_2.png" alt=""></a>
+                            <a id="circle_type1"><img src="../images/icon/table/circle/circle_1.png" alt=""></a>
+                            <a id="circle_type2"><img src="../images/icon/table/circle/circle_2.png" alt=""></a>
                             <p id="name">1200 1400</p>
-                            <a id="circle_type3"><img src="/icon/table/circle/circle_3.png" alt=""></a>
-                            <a id="circle_type4"><img src="/icon/table/circle/circle_4.png" alt=""></a>
+                            <a id="circle_type3"><img src="../images/icon/table/circle/circle_3.png" alt=""></a>
+                            <a id="circle_type4"><img src="../images/icon/table/circle/circle_4.png" alt=""></a>
                             <p id="name">1600 1800</p>
                         </li>
                     </div>
@@ -76,17 +76,17 @@
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="table_leg_type1"><img src="/icon/table/leg/table_leg_1.png" alt=""></a>
-                            <a id="table_leg_type2"><img src="/icon/table/leg/table_leg_2.png" alt=""></a>
+                            <a id="table_leg_type1"><img src="../images/icon/table/leg/table_leg_1.png" alt=""></a>
+                            <a id="table_leg_type2"><img src="../images/icon/table/leg/table_leg_2.png" alt=""></a>
                             <p id="name">1200 1400</p>
-                            <a id="table_leg_type3"><img src="/icon/table/leg/table_leg_3.png" alt=""></a>
-                            <a id="table_leg_type4"><img src="/icon/table/leg/table_leg_4.png" alt=""></a>
+                            <a id="table_leg_type3"><img src="../images/icon/table/leg/table_leg_3.png" alt=""></a>
+                            <a id="table_leg_type4"><img src="../images/icon/table/leg/table_leg_4.png" alt=""></a>
                             <p id="name">1600 1800</p>
-                            <a id="table_leg_type5"><img src="/icon/table/leg/table_leg_5.png" alt=""></a>
-                            <a id="table_leg_type6"><img src="/icon/table/leg/table_leg_6.png" alt=""></a>
+                            <a id="table_leg_type5"><img src="../images/icon/table/leg/table_leg_5.png" alt=""></a>
+                            <a id="table_leg_type6"><img src="../images/icon/table/leg/table_leg_6.png" alt=""></a>
                             <p id="name">1200 1400</p>
-                            <a id="table_leg_type7"><img src="/icon/table/leg/table_leg_7.png" alt=""></a>
-                            <a id="table_leg_type8"><img src="/icon/table/leg/table_leg_8.png" alt=""></a>
+                            <a id="table_leg_type7"><img src="../images/icon/table/leg/table_leg_7.png" alt=""></a>
+                            <a id="table_leg_type8"><img src="../images/icon/table/leg/table_leg_8.png" alt=""></a>
                             <p id="name">1600 1800</p>
                         </li>
                     </div>
@@ -103,7 +103,7 @@
             }
         };
     </script>
-    <script type="module" src="/space-opera.js"></script>
+    <script type="module" src="../model-viewer/space-opera_origin.js"></script>
     <script>
         window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
         ga('create', 'UA-169901325-1', { 'storage': 'none' });

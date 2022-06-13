@@ -1,6 +1,6 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js'
-import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
+import * as THREE from '../../node_modules/three/build/three.module.js'
+import { OrbitControls } from "../../node_modules/three/examples/jsm/controls/OrbitControls.js";
+import {GLTFExporter} from '../../node_modules/three/examples/jsm/exporters/GLTFExporter.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -34,9 +34,15 @@ const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set(0, 1, 1);
 controls.update();
 
-const { tempUrl } = await fetch("/s3UrlTemp").then(res => res.json())   // 원본 glb s3 bucket
-const { savedUrl } = await fetch("/s3UrlSaved").then(res => res.json()) // 편집한 glb s3 bucket
-const { htmlUrl } = await fetch("/s3UrlHtml").then(res => res.json())   // scene viewer html 파일 s3 bucket
+const config = {
+    headers: {
+        'Content-type' : 'application/json'
+    }
+}
+
+const { tempUrl } = await fetch("https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-temp/", config).then(res => res.json())   // 원본 glb s3 bucket
+const { savedUrl } = await fetch("https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-saved/", config).then(res => res.json()) // 편집한 glb s3 bucket
+const { htmlUrl } = await fetch("https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-viewer/", config).then(res => res.json())   // scene viewer html 파일 s3 bucket
 //다운로드 버튼 생성 후 이벤트 추가
 const btn = document.querySelector('.download-glb');
 btn.addEventListener('click', uploadTempS3)
@@ -48,7 +54,7 @@ function uploadTempS3(event) {
         left: 1945,
         behavior: 'smooth'
     });
-    const exporter = new GltfExporter();
+    const exporter = new GLTFExporter();
     // 배열에 여러가지 gltf변수 넣기[]
     exporter.parse([scene],
         // 해당 씬을 저장
@@ -209,4 +215,4 @@ function animate() {
 
 animate();
 
-export { scene }
+export { scene, camera, renderer }

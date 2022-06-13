@@ -12,6 +12,7 @@ const port = 8000;
 const path = require('path');
 const __dirname = path.dirname(__filename);
 
+app.use(express.static("node_modules"));
 app.use(express.static('model-viewer'))
 app.use(express.static('aws'));;
 app.use(express.static('models'));
@@ -38,17 +39,21 @@ app.get('/shelf', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/shelf.html'));
 });
 
-app.get('/s3UrlTemp', async (req, res) => {
+app.get('/objects', function (req, res) {
+  res.sendFile(path.join(__dirname, '/public/objects.html'));
+});
+
+app.get('https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-temp/', async (req, res) => {
   const tempUrl = await tempUploadURL()
   res.send({ tempUrl })
 })
 
-app.get('/s3UrlSaved', async (req, res) => {
+app.get('https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-saved/', async (req, res) => {
   const savedUrl = await savedUploadURL()
   res.send({ savedUrl })
 })
 
-app.get("/s3UrlHtml", async (req, res) => {
+app.get("https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-viewer/", async (req, res) => {
   const htmlUrl = await htmlUploadURL()
   res.send({ htmlUrl })
 });

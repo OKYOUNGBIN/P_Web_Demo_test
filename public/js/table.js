@@ -1,6 +1,6 @@
-import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
-import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
+import { GLTFLoader } from "../../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 import { scene } from '../index.js'
+
 
 function loadModel(url) {
     return new Promise(resolve => {
@@ -17,30 +17,30 @@ let circle1, circle2, circle3, circle4,
 let leg1, leg2, leg3, leg4,
     leg5, leg6, leg7, leg8;
 
-let semicircle_type1 = loadModel("/table/top/semicircle/diningtable_0201_top.glb").then(result => { semicircle1 = result.scene; });
-let semicircle_type2 = loadModel("/table/top/semicircle/diningtable_0202_top.glb").then(result => { semicircle2 = result.scene; });
-let semicircle_type3 = loadModel("/table/top/semicircle/diningtable_0203_top.glb").then(result => { semicircle3 = result.scene; });
-let semicircle_type4 = loadModel("/table/top/semicircle/diningtable_0204_top.glb").then(result => { semicircle4 = result.scene; });
+let semicircle_type1 = loadModel("../../models/table/top/semicircle/diningtable_0201_top.glb").then(result => { semicircle1 = result.scene; });
+let semicircle_type2 = loadModel("../../models/table/top/semicircle/diningtable_0202_top.glb").then(result => { semicircle2 = result.scene; });
+let semicircle_type3 = loadModel("../../models/table/top/semicircle/diningtable_0203_top.glb").then(result => { semicircle3 = result.scene; });
+let semicircle_type4 = loadModel("../../models/table/top/semicircle/diningtable_0204_top.glb").then(result => { semicircle4 = result.scene; });
 
-let rectangle_type1 = loadModel("/table/top/rectangle/diningtable_0205_top.glb").then(result => { rectangle1 = result.scene; });
-let rectangle_type2 = loadModel("/table/top/rectangle/diningtable_0206_top.glb").then(result => { rectangle2 = result.scene; });
-let rectangle_type3 = loadModel("/table/top/rectangle/diningtable_0207_top.glb").then(result => { rectangle3 = result.scene; });
-let rectangle_type4 = loadModel("/table/top/rectangle/diningtable_0208_top.glb").then(result => { rectangle4 = result.scene; });
+let rectangle_type1 = loadModel("../../models/table/top/rectangle/diningtable_0205_top.glb").then(result => { rectangle1 = result.scene; });
+let rectangle_type2 = loadModel("../../models/table/top/rectangle/diningtable_0206_top.glb").then(result => { rectangle2 = result.scene; });
+let rectangle_type3 = loadModel("../../models/table/top/rectangle/diningtable_0207_top.glb").then(result => { rectangle3 = result.scene; });
+let rectangle_type4 = loadModel("../../models/table/top/rectangle/diningtable_0208_top.glb").then(result => { rectangle4 = result.scene; });
 
-let circle_type1 = loadModel("/table/top/circle/diningtable_0209_top.glb").then(result => { circle1 = result.scene; });
-let circle_type2 = loadModel("/table/top/circle/diningtable_0210_top.glb").then(result => { circle2 = result.scene; });
-let circle_type3 = loadModel("/table/top/circle/diningtable_0211_top.glb").then(result => { circle3 = result.scene; });
-let circle_type4 = loadModel("/table/top/circle/diningtable_0212_top.glb").then(result => { circle4 = result.scene; });
+let circle_type1 = loadModel("../../models/table/top/circle/diningtable_0209_top.glb").then(result => { circle1 = result.scene; });
+let circle_type2 = loadModel("../../models/table/top/circle/diningtable_0210_top.glb").then(result => { circle2 = result.scene; });
+let circle_type3 = loadModel("../../models/table/top/circle/diningtable_0211_top.glb").then(result => { circle3 = result.scene; });
+let circle_type4 = loadModel("../../models/table/top/circle/diningtable_0212_top.glb").then(result => { circle4 = result.scene; });
 
-let leg_type1 = loadModel("/table/leg/type1/diningtable_0101_leg.glb").then(result => { leg1 = result.scene; });
-let leg_type2 = loadModel("/table/leg/type1/diningtable_0102_leg.glb").then(result => { leg2 = result.scene; });
-let leg_type3 = loadModel("/table/leg/type1/diningtable_0103_leg.glb").then(result => { leg3 = result.scene; });
-let leg_type4 = loadModel("/table/leg/type1/diningtable_0104_leg.glb").then(result => { leg4 = result.scene; });
+let leg_type1 = loadModel("../../models/table/leg/type1/diningtable_0101_leg.glb").then(result => { leg1 = result.scene; });
+let leg_type2 = loadModel("../../models/table/leg/type1/diningtable_0102_leg.glb").then(result => { leg2 = result.scene; });
+let leg_type3 = loadModel("../../models/table/leg/type1/diningtable_0103_leg.glb").then(result => { leg3 = result.scene; });
+let leg_type4 = loadModel("../../models/table/leg/type1/diningtable_0104_leg.glb").then(result => { leg4 = result.scene; });
 
-let leg_type5 = loadModel("/table/leg/type2/diningtable_0101_leg_rectagle.glb").then(result => { leg5 = result.scene; });
-let leg_type6 = loadModel("/table/leg/type2/diningtable_0102_leg_rectagle.glb").then(result => { leg6 = result.scene; });
-let leg_type7 = loadModel("/table/leg/type2/diningtable_0103_leg_rectagle.glb").then(result => { leg7 = result.scene; });
-let leg_type8 = loadModel("/table/leg/type2/diningtable_0104_leg_rectagle.glb").then(result => { leg8 = result.scene; });
+let leg_type5 = loadModel("../../models/table/leg/type2/diningtable_0101_leg_rectagle.glb").then(result => { leg5 = result.scene; });
+let leg_type6 = loadModel("../../models/table/leg/type2/diningtable_0102_leg_rectagle.glb").then(result => { leg6 = result.scene; });
+let leg_type7 = loadModel("../../models/table/leg/type2/diningtable_0103_leg_rectagle.glb").then(result => { leg7 = result.scene; });
+let leg_type8 = loadModel("../../models/table/leg/type2/diningtable_0104_leg_rectagle.glb").then(result => { leg8 = result.scene; });
 
 Promise.all([semicircle_type1, semicircle_type2, semicircle_type3, semicircle_type4,
     rectangle_type1, rectangle_type2, rectangle_type3, rectangle_type4,

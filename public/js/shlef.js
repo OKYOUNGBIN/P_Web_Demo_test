@@ -1,6 +1,6 @@
-import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
-import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
+import { GLTFLoader } from "/three/examples/jsm/loaders/GLTFLoader.js";
 import { scene } from '../index.js'
+
 function loadModel(url) {
     return new Promise(resolve => {
         new GLTFLoader().load(url, resolve);
@@ -9,7 +9,7 @@ function loadModel(url) {
 
 let shelf_600
 
-let shelf_1 = loadModel("/shelf/sangdo_monsterplus_shelf_600x2400.glb").then(result => { shelf_600 = result.scene; });
+let shelf_1 = loadModel("../../shelf/sangdo_monsterplus_shelf_600x2400.glb").then(result => { shelf_600 = result.scene; });
 
 Promise.all(
     [shelf_1,
@@ -18,8 +18,6 @@ Promise.all(
             shelf_600.children[0].visible = false;
 
             scene.add(shelf_600)
-            
-            console.log({shelf_600})
         });
         
 document.getElementById("shelf_600_1").addEventListener("click", function () {

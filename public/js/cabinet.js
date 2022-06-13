@@ -1,5 +1,4 @@
-import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
-import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
+import { GLTFLoader } from "../../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 import { scene } from '../index.js'
 
 function loadModel(url) {
@@ -12,17 +11,17 @@ function loadModel(url) {
 let door1, door2, door3, door4, door5, door6, door7, door8;
 let body1, body2
 
-let door_type1 = loadModel("/cabinet/door/tvtable_0201_door.glb").then(result => { door1 = result.scene; });
-let door_type2 = loadModel("/cabinet/door/tvtable_0202_door.glb").then(result => { door2 = result.scene; });
-let door_type3 = loadModel("/cabinet/door/tvtable_0203_door.glb").then(result => { door3 = result.scene; });
-let door_type4 = loadModel("/cabinet/door/tvtable_0204_door.glb").then(result => { door4 = result.scene; });
-let door_type5 = loadModel("/cabinet/door/tvtable_0301_door.glb").then(result => { door5 = result.scene; });
-let door_type6 = loadModel("/cabinet/door/tvtable_0302_door.glb").then(result => { door6 = result.scene; });
-let door_type7 = loadModel("/cabinet/door/tvtable_0303_door.glb").then(result => { door7 = result.scene; });
-let door_type8 = loadModel("/cabinet/door/tvtable_0304_door.glb").then(result => { door8 = result.scene; });
+let door_type1 = loadModel("../../models/cabinet/door/tvtable_0201_door.glb").then(result => { door1 = result.scene; });
+let door_type2 = loadModel("../../models/cabinet/door/tvtable_0202_door.glb").then(result => { door2 = result.scene; });
+let door_type3 = loadModel("../../models/cabinet/door/tvtable_0203_door.glb").then(result => { door3 = result.scene; });
+let door_type4 = loadModel("../../models/cabinet/door/tvtable_0204_door.glb").then(result => { door4 = result.scene; });
+let door_type5 = loadModel("../../models/cabinet/door/tvtable_0301_door.glb").then(result => { door5 = result.scene; });
+let door_type6 = loadModel("../../models/cabinet/door/tvtable_0302_door.glb").then(result => { door6 = result.scene; });
+let door_type7 = loadModel("../../models/cabinet/door/tvtable_0303_door.glb").then(result => { door7 = result.scene; });
+let door_type8 = loadModel("../../models/cabinet/door/tvtable_0304_door.glb").then(result => { door8 = result.scene; });
 
-let body_type1 = loadModel("/cabinet/body/tvtable_0101_body.glb").then(result => { body1 = result.scene; });
-let body_type2 = loadModel("/cabinet/body/tvtable_0201_body.glb").then(result => { body2 = result.scene; });
+let body_type1 = loadModel("../../models/cabinet/body/tvtable_0101_body.glb").then(result => { body1 = result.scene; });
+let body_type2 = loadModel("../../models/cabinet/body/tvtable_0201_body.glb").then(result => { body2 = result.scene; });
 
 Promise.all([door_type1, door_type2, door_type3, door_type4,door_type5,door_type6,door_type7, door_type8,
     body_type1, body_type2]).then(() => {

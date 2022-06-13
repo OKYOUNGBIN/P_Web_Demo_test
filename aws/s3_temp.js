@@ -7,7 +7,8 @@ const randomBytes = promisify(crypto.randomBytes)
 dotenv.config()
 
 const region = "ap-northeast-2"
-const tempBucketName = "xr-box/shop_file/xr-temp"
+//const tempBucketName = "xr-box/shop_file/xr-temp"
+const tempBucketName = "https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-temp/"
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 

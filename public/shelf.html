@@ -7,20 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script type="module" src="/index.js" ></script>
-    <script type="module" src="/js/shlef.js" ></script>
-    <script type="text/javascript" src="/js/qrcode.js"></script>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/model-viewer.css" />
+    <script type="module" src="./index.js" async></script>
+    <script type="module" src="./js/cabinet.js" async></script>
+    <script type="text/javascript" src="./js/qrcode.js"></script>
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="../public/css/model-viewer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- Web animations for paper-dropdown -->
-    <script src="/beautify-css.js"></script>
-    <script src="/beautify-html.js"></script>
-    <script src="/web-animations-next-lite.min.js"></script>
+    <script src="../model-viewer/beautify-css.js"></script>
+    <script src="../model-viewer/beautify-html.js"></script>
+    <script src="../model-viewer/web-animations-next-lite.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -40,7 +41,7 @@
     <nav>
         <ul>
             <div class="nav__subtitle">
-                <a href="/" id="homeIcon"><span class="material-icons">home</span></a><p>Shelf</p></div>
+                <a href="./index.html" id="homeIcon"><span class="material-icons">home</span></a><p>Shelf</p></div>
             <li class="dropdown">
                 <ul>
                     <li>
@@ -48,14 +49,14 @@
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="shelf_600_1"><img src="/icon/shelf/600/shelf_600_1.png" alt=""></a>
-                            <a id="shelf_600_2"><img src="/icon/shelf/600/shelf_600_2.png" alt=""></a>
+                            <a id="shelf_600_1"><img src="../images/icon/shelf/600/shelf_600_1.png" alt=""></a>
+                            <a id="shelf_600_2"><img src="../images/icon/shelf/600/shelf_600_2.png" alt=""></a>
                             <p id="name">600 1200</p>
-                            <a id="shelf_600_3"><img src="/icon/shelf/600/shelf_600_3.png" alt=""></a>
-                            <a id="shelf_600_4"><img src="/icon/shelf/600/shelf_600_4.png" alt=""></a>
+                            <a id="shelf_600_3"><img src="../images/icon/shelf/600/shelf_600_3.png" alt=""></a>
+                            <a id="shelf_600_4"><img src="../images/icon/shelf/600/shelf_600_4.png" alt=""></a>
                             <p id="name">1500 1800</p>
-                            <a id="shelf_600_5"><img src="/icon/shelf/600/shelf_600_5.png" alt=""></a>
-                            <a id="shelf_600_6"><img src="/icon/shelf/600/shelf_600_6.png" alt=""></a>
+                            <a id="shelf_600_5"><img src="../images/icon/shelf/600/shelf_600_5.png" alt=""></a>
+                            <a id="shelf_600_6"><img src="../images/icon/shelf/600/shelf_600_6.png" alt=""></a>
                             <p id="name">2100 2400</p>
                             <!-- <a id="shelf_600_7"><img src="/icon/shelf/600/shelf_600_5.png" alt=""></a>
                             <a id="shelf_600_8"><img src="/icon/shelf/600/shelf_600_6.png" alt=""></a>
@@ -74,7 +75,7 @@
             }
         };
     </script>
-    <script type="module" src="/space-opera.js"></script>
+    <script type="module" src="../model-viewer/space-opera.js"></script>
     <script>
         window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
         ga('create', 'UA-169901325-1', { 'storage': 'none' });
