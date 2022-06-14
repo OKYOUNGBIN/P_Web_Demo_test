@@ -1,4 +1,4 @@
-import { GLTFLoader } from "/three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader } from "../../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
 import { scene } from '../index.js'
 
 function loadModel(url) {

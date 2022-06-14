@@ -45,16 +45,19 @@ app.get('/objects', function (req, res) {
 
 app.get('https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-temp/', async (req, res) => {
   const tempUrl = await tempUploadURL()
+  res.header("Access-Control-Allow-Origin", "*");
   res.send({ tempUrl })
 })
 
 app.get('https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-saved/', async (req, res) => {
   const savedUrl = await savedUploadURL()
+  res.header("Access-Control-Allow-Origin", "*");
   res.send({ savedUrl })
 })
 
 app.get("https://d2d3yuaczk15qx.cloudfront.net/shop_file/xr-viewer/", async (req, res) => {
   const htmlUrl = await htmlUploadURL()
+  res.header("Access-Control-Allow-Origin", "*");
   res.send({ htmlUrl })
 });
 
