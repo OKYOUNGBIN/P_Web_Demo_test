@@ -5,11 +5,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chair</title>
+    <title>Pages</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="/index.js" async></script>
-    <script type="module" src="/js/aws.js" async></script>
-    <script type="module" src="/js/chair.js" async></script>
+    <script type="module" src="/js/pages.js" async></script>
     <script type="text/javascript" src="/js/qrcode.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/pages.css"> -->
@@ -127,33 +126,56 @@
             </div>
         </div>
     </div>
-    <nav>
+    <nav id="nav">
         <ul>
             <div class="nav__subtitle">
                 <a href="/" id="homeIcon"><span class="material-icons">home</span></a>
-                <p>Chair</p>
+                <p>Pages</p>
             </div>
             <li class="dropdown">
                 <ul>
                     <li>
-                        <a href="#">Seat(등받이)<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Top(상판)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="seat_type1"><img src="/icon/chair/seat_type_1.png" alt="" /></a>
-                            <a id="seat_type2"><img src="/icon/chair/seat_type_2.png" alt="" /></a>
-                            <a id="seat_type3"><img src="/icon/chair/seat_type_3.png" alt="" /></a>
-                            <a id="seat_type4"><img src="/icon/chair/seat_type_4.png" alt="" /></a>
+                            <a id="semicircle_type1"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type2"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="semicircle_type3"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type4"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <p id="name">1600 1800</p>
+                            <a id="rectangle_type1"><img src="/icon/table/rectangle/rectangle_1.png" alt=""></a>
+                            <a id="rectangle_type2"><img src="/icon/table/rectangle/rectangle_2.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="rectangle_type3"><img src="/icon/table/rectangle/rectangle_3.png" alt=""></a>
+                            <a id="rectangle_type4"><img src="/icon/table/rectangle/rectangle_4.png" alt=""></a>
+                            <p id="name">1600 1800</p>
+                            <a id="circle_type1"><img src="/icon/table/circle/circle_1.png" alt=""></a>
+                            <a id="circle_type2"><img src="/icon/table/circle/circle_2.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="circle_type3"><img src="/icon/table/circle/circle_3.png" alt=""></a>
+                            <a id="circle_type4"><img src="/icon/table/circle/circle_4.png" alt=""></a>
+                            <p id="name">1600 1800</p>
                         </li>
                     </div>
                     <li>
-                        <a href="#">Legs(다리)<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Leg(다리)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="leg_type1"><img src="/icon/chair/leg_type_1.png" alt="" /></a>
-                            <a id="leg_type2"><img src="/icon/chair/leg_type_2.png" alt="" /></a>
-                            <a id="leg_type3"><img src="/icon/chair/leg_type_3.png" alt="" /></a>
+                            <a id="table_leg_type1"><img src="/icon/table/leg/table_leg_1.png" alt=""></a>
+                            <a id="table_leg_type2"><img src="/icon/table/leg/table_leg_2.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="table_leg_type3"><img src="/icon/table/leg/table_leg_3.png" alt=""></a>
+                            <a id="table_leg_type4"><img src="/icon/table/leg/table_leg_4.png" alt=""></a>
+                            <p id="name">1600 1800</p>
+                            <a id="table_leg_type5"><img src="/icon/table/leg/table_leg_5.png" alt=""></a>
+                            <a id="table_leg_type6"><img src="/icon/table/leg/table_leg_6.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="table_leg_type7"><img src="/icon/table/leg/table_leg_7.png" alt=""></a>
+                            <a id="table_leg_type8"><img src="/icon/table/leg/table_leg_8.png" alt=""></a>
+                            <p id="name">1600 1800</p>
                         </li>
                     </div>
                 </ul>
@@ -177,7 +199,6 @@
         ga('send', 'pageview');
     </script>
     <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <div></div>
     <model-editor>
         <div class="app">
             <div class="editor-body-root">

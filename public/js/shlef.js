@@ -1,6 +1,9 @@
-import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
-import * as THREE from 'https://cdn.skypack.dev/three@0.132.2'
-import { scene } from '../index.js'
+import * as THREE from "/three/build/three.module.js";
+import { GLTFLoader } from "/three/examples/jsm/loaders/GLTFLoader.js";
+import { scene, camera, renderer } from "/index.js";
+import { TransformControls } from "/three/examples/jsm/controls/TransformControls.js";
+import { OrbitControls } from "/three/examples/jsm/controls/OrbitControls.js";
+
 function loadModel(url) {
     return new Promise(resolve => {
         new GLTFLoader().load(url, resolve);

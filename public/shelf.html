@@ -5,9 +5,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Shelf</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="/index.js" ></script>
+    <script type="module" src="/js/aws.js" async></script>
     <script type="module" src="/js/shlef.js" ></script>
     <script type="text/javascript" src="/js/qrcode.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
@@ -37,6 +38,92 @@
             <span></span>
         </div>
     </a>
+    <div class="main">
+        <button id="tabHideShow">이거누르면 사라짐</button>
+        <div class="tabs" id="tabs">
+            <div class="tab" data-tab-target="#tab1">
+                <p>의자</p>
+            </div>
+            <div class="tab" data-tab-target="#tab2">
+                <p>테이블</p>
+            </div>
+            <div class="tab" data-tab-target="#tab3">
+                <p>캐비넷</p>
+            </div>
+            <div class="tab" data-tab-target="#tab4">
+                <p>선반</p>
+            </div>
+            <div class="tab" data-tab-target="#tab5">
+                <p>옷장</p>
+            </div>
+            <div class="tab" data-tab-target="#tab6">
+                <p>전등</p>
+            </div>
+            <div class="tab" data-tab-target="#tab7">
+                <p>러그</p>
+            </div>
+            <div class="tab" data-tab-target="#tab8">
+                <p>소파</p>
+            </div>
+            <div class="tab" data-tab-target="#tab9">
+                <p>소품</p>
+            </div>
+            <div class="tab" data-tab-target="#tab10">
+                <p>그 외</p>
+            </div>
+        </div>
+        <div id="bottom_content" class="bottom_content">
+            <div id="tab1" data-tab-content class="items active">
+                <div id="button__Space" class="button__Space">
+                    <a href="/chair" id="button_style">의자종류1</a>
+                    <a href="/chair" id="button_style">의자종류2</a>
+                    <a href="/chair" id="button_style">의자종류3</a>
+                </div>
+            </div>
+            <div id="tab2" data-tab-content class="items">
+                <div id="button__Space" class="button__Space">
+                    <a href="/table" id="button_style">테이블종류1</a>
+                    <a href="/table" id="button_style">테이블종류2</a>
+                    <a href="/table" id="button_style">테이블종류3</a>
+                </div>
+            </div>
+            <div id="tab3" data-tab-content class="items">
+                <div id="button__Space" class="button__Space">
+                    <a href="/cabinet" id="button_style">캐비넷종류1</a>
+                    <a href="/cabinet" id="button_style">캐비넷종류2</a>
+                    <a href="/cabinet" id="button_style">캐비넷종류3</a>
+                </div>
+            </div>
+            <div id="tab4" data-tab-content class="items">
+                <h2>Tab4</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+            <div id="tab5" data-tab-content class="items">
+                <h2>Tab5</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+            <div id="tab6" data-tab-content class="items">
+                <h2>Tab6</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+            <div id="tab7" data-tab-content class="items">
+                <h2>Tab7</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+            <div id="tab8" data-tab-content class="items">
+                <h2>Tab8</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+            <div id="tab9" data-tab-content class="items">
+                <h2>Tab9</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+            <div id="tab10" data-tab-content class="items">
+                <h2>Tab10</h2>
+                <p>탭 3에 들어갈 내용</p>
+            </div>
+        </div>
+    </div>
     <nav>
         <ul>
             <div class="nav__subtitle">

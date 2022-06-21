@@ -5,14 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chair</title>
+    <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
     <script type="module" src="/index.js" async></script>
-    <script type="module" src="/js/aws.js" async></script>
-    <script type="module" src="/js/chair.js" async></script>
+    <script type="module" src="/js/objects.js" async></script>
     <script type="text/javascript" src="/js/qrcode.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
-    <!-- <link rel="stylesheet" href="/css/pages.css"> -->
     <link rel="stylesheet" href="/css/model-viewer.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -25,6 +23,7 @@
     <script src="/web-animations-next-lite.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/object.css">
 </head>
 
 <body>
@@ -40,7 +39,6 @@
             <span></span>
         </div>
     </a>
-
     <div class="main">
         <button id="tabHideShow">이거누르면 사라짐</button>
         <div class="tabs" id="tabs">
@@ -48,7 +46,7 @@
                 <p>의자</p>
             </div>
             <div class="tab" data-tab-target="#tab2">
-                <p>테이블</p>
+                <p>책상</p>
             </div>
             <div class="tab" data-tab-target="#tab3">
                 <p>캐비넷</p>
@@ -78,24 +76,18 @@
         <div id="bottom_content" class="bottom_content">
             <div id="tab1" data-tab-content class="items active">
                 <div id="button__Space" class="button__Space">
-                    <a href="/chair" id="button_style">의자종류1</a>
-                    <a href="/chair" id="button_style">의자종류2</a>
-                    <a href="/chair" id="button_style">의자종류3</a>
-                </div>
+                <button class="button_style">의자종류1</button>
+                <button class="button_style">의자종류2</button>
+                <button class="button_style">의자종류3</button>
+            </div>
             </div>
             <div id="tab2" data-tab-content class="items">
-                <div id="button__Space" class="button__Space">
-                    <a href="/table" id="button_style">테이블종류1</a>
-                    <a href="/table" id="button_style">테이블종류2</a>
-                    <a href="/table" id="button_style">테이블종류3</a>
-                </div>
+                <h2>Tab2</h2>
+                <p>탭 2에 들어갈 내용</p>
             </div>
             <div id="tab3" data-tab-content class="items">
-                <div id="button__Space" class="button__Space">
-                    <a href="/cabinet" id="button_style">캐비넷종류1</a>
-                    <a href="/cabinet" id="button_style">캐비넷종류2</a>
-                    <a href="/cabinet" id="button_style">캐비넷종류3</a>
-                </div>
+                <h2>Tab3</h2>
+                <p>탭 3에 들어갈 내용</p>
             </div>
             <div id="tab4" data-tab-content class="items">
                 <h2>Tab4</h2>
@@ -131,31 +123,55 @@
         <ul>
             <div class="nav__subtitle">
                 <a href="/" id="homeIcon"><span class="material-icons">home</span></a>
-                <p>Chair</p>
+                <p>Table</p>
             </div>
             <li class="dropdown">
                 <ul>
                     <li>
-                        <a href="#">Seat(등받이)<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Top(상판)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="seat_type1"><img src="/icon/chair/seat_type_1.png" alt="" /></a>
-                            <a id="seat_type2"><img src="/icon/chair/seat_type_2.png" alt="" /></a>
-                            <a id="seat_type3"><img src="/icon/chair/seat_type_3.png" alt="" /></a>
-                            <a id="seat_type4"><img src="/icon/chair/seat_type_4.png" alt="" /></a>
+                            <a id="semicircle_type1"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type2"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="semicircle_type3"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <a id="semicircle_type4"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
+                            <p id="name">1600 1800</p>
+                            <a id="rectangle_type1"><img src="/icon/table/rectangle/rectangle_1.png" alt=""></a>
+                            <a id="rectangle_type2"><img src="/icon/table/rectangle/rectangle_2.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="rectangle_type3"><img src="/icon/table/rectangle/rectangle_3.png" alt=""></a>
+                            <a id="rectangle_type4"><img src="/icon/table/rectangle/rectangle_4.png" alt=""></a>
+                            <p id="name">1600 1800</p>
+                            <a id="circle_type1"><img src="/icon/table/circle/circle_1.png" alt=""></a>
+                            <a id="circle_type2"><img src="/icon/table/circle/circle_2.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="circle_type3"><img src="/icon/table/circle/circle_3.png" alt=""></a>
+                            <a id="circle_type4"><img src="/icon/table/circle/circle_4.png" alt=""></a>
+                            <p id="name">1600 1800</p>
                         </li>
                     </div>
                     <li>
-                        <a href="#">Legs(다리)<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Leg(다리)<span class="fas fa-caret-down"></span></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
-                            <a id="leg_type1"><img src="/icon/chair/leg_type_1.png" alt="" /></a>
-                            <a id="leg_type2"><img src="/icon/chair/leg_type_2.png" alt="" /></a>
-                            <a id="leg_type3"><img src="/icon/chair/leg_type_3.png" alt="" /></a>
+                            <a id="table_leg_type1"><img src="/icon/table/leg/table_leg_1.png" alt=""></a>
+                            <a id="table_leg_type2"><img src="/icon/table/leg/table_leg_2.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="table_leg_type3"><img src="/icon/table/leg/table_leg_3.png" alt=""></a>
+                            <a id="table_leg_type4"><img src="/icon/table/leg/table_leg_4.png" alt=""></a>
+                            <p id="name">1600 1800</p>
+                            <a id="table_leg_type5"><img src="/icon/table/leg/table_leg_5.png" alt=""></a>
+                            <a id="table_leg_type6"><img src="/icon/table/leg/table_leg_6.png" alt=""></a>
+                            <p id="name">1200 1400</p>
+                            <a id="table_leg_type7"><img src="/icon/table/leg/table_leg_7.png" alt=""></a>
+                            <a id="table_leg_type8"><img src="/icon/table/leg/table_leg_8.png" alt=""></a>
+                            <p id="name">1600 1800</p>
                         </li>
                     </div>
+
                 </ul>
             </li>
         </ul>
@@ -177,7 +193,6 @@
         ga('send', 'pageview');
     </script>
     <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <div></div>
     <model-editor>
         <div class="app">
             <div class="editor-body-root">

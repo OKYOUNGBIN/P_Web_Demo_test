@@ -1,135 +1,191 @@
-import { GLTFLoader } from 'https://cdn.skypack.dev/qdcz-threejs';
-import GltfExporter from 'https://cdn.skypack.dev/three-gltf-exporter';
-import { scene } from '../index.js'
+import * as THREE from "/three/build/three.module.js";
+import { GLTFLoader } from "/three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFExporter } from "/three/examples/jsm/exporters/GLTFExporter.js";
+import {
+  scene,
+  camera,
+  renderer,
+  oribitControls,
+  transformControl,
+} from "/index.js";
+import { TransformControls } from "/three/examples/jsm/controls/TransformControls.js";
 
-function loadModel(url) {
+function loadModelUsingPromise(url) {
     return new Promise(resolve => {
         new GLTFLoader().load(url, resolve);
     });
 }
 
-// 캐비닛 문
-let door1, door2, door3, door4, door5, door6, door7, door8;
-let body1, body2
+let Group1 = new THREE.Group();
+let Group2 = new THREE.Group();
 
-let door_type1 = loadModel("/cabinet/door/tvtable_0201_door.glb").then(result => { door1 = result.scene; });
-let door_type2 = loadModel("/cabinet/door/tvtable_0202_door.glb").then(result => { door2 = result.scene; });
-let door_type3 = loadModel("/cabinet/door/tvtable_0203_door.glb").then(result => { door3 = result.scene; });
-let door_type4 = loadModel("/cabinet/door/tvtable_0204_door.glb").then(result => { door4 = result.scene; });
-let door_type5 = loadModel("/cabinet/door/tvtable_0301_door.glb").then(result => { door5 = result.scene; });
-let door_type6 = loadModel("/cabinet/door/tvtable_0302_door.glb").then(result => { door6 = result.scene; });
-let door_type7 = loadModel("/cabinet/door/tvtable_0303_door.glb").then(result => { door7 = result.scene; });
-let door_type8 = loadModel("/cabinet/door/tvtable_0304_door.glb").then(result => { door8 = result.scene; });
+Promise.all([
+    loadModelUsingPromise("/cabinet/body/tvtable_0101_body.glb"),
+    loadModelUsingPromise("/cabinet/body/tvtable_0101_body.glb"),
+  ]).then((results) => {
+    for (var j = 0; j < results.length; j++) {
+      Group1.add(results[j].scenes[0]);
+      Group1.children[j].visible = false;
+    }  
+  });
+  scene.add(Group1);
+  transformControl.attach(Group1);
 
-let body_type1 = loadModel("/cabinet/body/tvtable_0101_body.glb").then(result => { body1 = result.scene; });
-let body_type2 = loadModel("/cabinet/body/tvtable_0201_body.glb").then(result => { body2 = result.scene; });
+Promise.all([
+    loadModelUsingPromise("/cabinet/door/tvtable_0201_door.glb"),
+    loadModelUsingPromise("/cabinet/door/tvtable_0202_door.glb"),
+    loadModelUsingPromise("/cabinet/door/tvtable_0203_door.glb"),
+    loadModelUsingPromise("/cabinet/door/tvtable_0204_door.glb"),
 
-Promise.all([door_type1, door_type2, door_type3, door_type4,door_type5,door_type6,door_type7, door_type8,
-    body_type1, body_type2]).then(() => {
+    loadModelUsingPromise("/cabinet/door/tvtable_0301_door.glb"),
+    loadModelUsingPromise("/cabinet/door/tvtable_0302_door.glb"),
+    loadModelUsingPromise("/cabinet/door/tvtable_0303_door.glb"),
+    loadModelUsingPromise("/cabinet/door/tvtable_0304_door.glb"),
+  ]).then((results) => {
+    for (var j = 0; j < results.length; j++) {
+      Group2.add(results[j].scenes[0]);
+      Group2.children[j].visible = false;
+    }
+    //transformControl.attach(Group2);
+    //transformControl.detatch();
+  });
+  scene.add(Group2);
 
-    door1.visible = false;
-    door2.visible = false;
-    door3.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-    door8.visible = false;
+  let objects = [Group1 ,Group2]
 
-    body1.visible = false;
-    body2.visible = false;
+const { tempUrl } = await fetch("/s3UrlTemp").then((res) => res.json()); // 원본 glb s3 bucket
+//다운로드 버튼 생성 후 이벤트 추가
+const btn = document.querySelector(".download-glb");
+btn.addEventListener("click", uploadTempS3);
+//gltfExporter을 이용해 생성된 버튼
+function uploadTempS3(event) {
+  event.preventDefault();
+  window.scrollTo({
+    top: 2928,
+    left: 1945,
+    behavior: "smooth",
+  });
+  
+  const exporter = new GLTFExporter();
+  // 배열에 여러가지 gltf변수 넣기[]
+  exporter.parse(
+    [objects[0], objects[1]],
+    // 해당 씬을 저장
+    async function (result) {
+        
+      await fetch(tempUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: result,
+      });
+      const tempGlbUrl = tempUrl.split("?")[0];
+      console.log(tempGlbUrl);
 
-    scene.add(door1, door2, door3,door4, door5, door6, door7, door8);
-
-    scene.add(body1, body2);
-});
-// 의자 다리 타입
-document.getElementById("door_type1").addEventListener("click", function () {
-    door1.visible = !door1.visible;
-    door2.visible = false;
-    door3.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type2").addEventListener("click", function () {
-    door2.visible = !door2.visible;
-    door1.visible = false;
-    door3.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type3").addEventListener("click", function () {
-    door3.visible = !door3.visible;
-    door1.visible = false;
-    door2.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type4").addEventListener("click", function () {
-    door4.visible = !door4.visible;
-    door1.visible = false;
-    door2.visible = false;
-    door3.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type5").addEventListener("click", function () {
-    door5.visible = !door5.visible;
-    door1.visible = false;
-    door2.visible = false;
-    door3.visible = false;
-    door4.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type6").addEventListener("click", function () {
-    door6.visible = !door6.visible;
-    door1.visible = false;
-    door2.visible = false;
-    door3.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door7.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type7").addEventListener("click", function () {
-    door7.visible = !door7.visible;
-    door1.visible = false;
-    door2.visible = false;
-    door3.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door8.visible = false;
-});
-document.getElementById("door_type8").addEventListener("click", function () {
-    door8.visible = !door8.visible;
-    door1.visible = false;
-    door3.visible = false;
-    door2.visible = false;
-    door4.visible = false;
-    door5.visible = false;
-    door6.visible = false;
-    door7.visible = false;
-});
+      const model = document
+        .querySelector("#editing_adapter")
+        .shadowRoot.querySelector("model-viewer");
+      model.src = tempGlbUrl;
+    },
+    { binary: true }
+  );
+}
 
 document.getElementById("body_type1").addEventListener("click", function () {
-    body1.visible = !body1.visible;
-    body2.visible = false;
+    Group1.children[0].visible = !Group1.children[0].visible;
+    Group1.children[1].visible = false;   
 });
 document.getElementById("body_type2").addEventListener("click", function () {
-    body2.visible = !body2.visible;
-    body1.visible = false;
+    Group1.children[1].visible = !Group1.children[1].visible;
+    Group1.children[0].visible = false;
+    
+});
+
+document.getElementById("door_type1").addEventListener("click", function () {
+    Group2.children[0].visible = !Group2.children[0].visible;
+    Group2.children[1].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type2").addEventListener("click", function () {
+    Group2.children[1].visible = !Group2.children[1].visible;
+    Group2.children[0].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type3").addEventListener("click", function () {
+    Group2.children[2].visible = !Group2.children[2].visible;
+    Group2.children[1].visible = false;
+    Group2.children[0].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type4").addEventListener("click", function () {
+    Group2.children[3].visible = !Group2.children[3].visible;
+    Group2.children[1].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[0].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type5").addEventListener("click", function () {
+    Group2.children[4].visible = !Group2.children[4].visible;
+    Group2.children[1].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[0].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type6").addEventListener("click", function () {
+    Group2.children[5].visible = !Group2.children[5].visible;
+    Group2.children[1].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[0].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type7").addEventListener("click", function () {
+    Group2.children[6].visible = !Group2.children[6].visible;
+    Group2.children[1].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[0].visible = false;
+    Group2.children[7].visible = false;
+});
+
+document.getElementById("door_type7").addEventListener("click", function () {
+    Group2.children[7].visible = !Group2.children[7].visible;
+    Group2.children[1].visible = false;
+    Group2.children[2].visible = false;
+    Group2.children[3].visible = false;
+    Group2.children[4].visible = false;
+    Group2.children[5].visible = false;
+    Group2.children[6].visible = false;
+    Group2.children[0].visible = false;
 });
