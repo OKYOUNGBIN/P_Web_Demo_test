@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as THREE from "/three/build/three.module.js";
 import { GLTFLoader } from "/three/examples/jsm/loaders/GLTFLoader.js";
 import { GLTFExporter } from "/three/examples/jsm/exporters/GLTFExporter.js";
@@ -9,6 +10,10 @@ import {
   transformControl,
 } from "/index.js";
 import { TransformControls } from "/three/examples/jsm/controls/TransformControls.js";
+=======
+import { GLTFLoader } from "../../node_modules/three/examples/jsm/loaders/GLTFLoader.js";
+import { scene } from '../index.js'
+>>>>>>> 2e2ade04e6851dbf1b95b1a0d76cba6a2d63bd1a
 
 function loadModelUsingPromise(url) {
     return new Promise(resolve => {
@@ -19,6 +24,7 @@ function loadModelUsingPromise(url) {
 let Group1 = new THREE.Group();
 let Group2 = new THREE.Group();
 
+<<<<<<< HEAD
 Promise.all([
     loadModelUsingPromise("/cabinet/body/tvtable_0101_body.glb"),
     loadModelUsingPromise("/cabinet/body/tvtable_0101_body.glb"),
@@ -36,6 +42,19 @@ Promise.all([
     loadModelUsingPromise("/cabinet/door/tvtable_0202_door.glb"),
     loadModelUsingPromise("/cabinet/door/tvtable_0203_door.glb"),
     loadModelUsingPromise("/cabinet/door/tvtable_0204_door.glb"),
+=======
+let door_type1 = loadModel("../../models/cabinet/door/tvtable_0201_door.glb").then(result => { door1 = result.scene; });
+let door_type2 = loadModel("../../models/cabinet/door/tvtable_0202_door.glb").then(result => { door2 = result.scene; });
+let door_type3 = loadModel("../../models/cabinet/door/tvtable_0203_door.glb").then(result => { door3 = result.scene; });
+let door_type4 = loadModel("../../models/cabinet/door/tvtable_0204_door.glb").then(result => { door4 = result.scene; });
+let door_type5 = loadModel("../../models/cabinet/door/tvtable_0301_door.glb").then(result => { door5 = result.scene; });
+let door_type6 = loadModel("../../models/cabinet/door/tvtable_0302_door.glb").then(result => { door6 = result.scene; });
+let door_type7 = loadModel("../../models/cabinet/door/tvtable_0303_door.glb").then(result => { door7 = result.scene; });
+let door_type8 = loadModel("../../models/cabinet/door/tvtable_0304_door.glb").then(result => { door8 = result.scene; });
+
+let body_type1 = loadModel("../../models/cabinet/body/tvtable_0101_body.glb").then(result => { body1 = result.scene; });
+let body_type2 = loadModel("../../models/cabinet/body/tvtable_0201_body.glb").then(result => { body2 = result.scene; });
+>>>>>>> 2e2ade04e6851dbf1b95b1a0d76cba6a2d63bd1a
 
     loadModelUsingPromise("/cabinet/door/tvtable_0301_door.glb"),
     loadModelUsingPromise("/cabinet/door/tvtable_0302_door.glb"),
