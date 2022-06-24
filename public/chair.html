@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chair</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script type="module" src="/index.js" async></script>
-    <script type="module" src="/js/aws.js" async></script>
-    <script type="module" src="/js/chair.js" async></script>
+    <script type="module" src="/index.js"></script>
+    <script type="module" src="/js/aws.js"></script>
+    <script type="module" src="/js/chair.js"></script>
     <script type="text/javascript" src="/js/qrcode.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/pages.css"> -->
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="/undo-manager/lib/undomanager.js"></script>
     <!-- Web animations for paper-dropdown -->
     <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
@@ -40,7 +41,6 @@
             <span></span>
         </div>
     </a>
-
     <div class="main">
         <button id="tabHideShow">이거누르면 사라짐</button>
         <div class="tabs" id="tabs">
@@ -136,7 +136,7 @@
             <li class="dropdown">
                 <ul>
                     <li>
-                        <a href="#">Seat(등받이)<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Seat(등받이)<span class="fas fa-caret-down"></span><button class="reset" id="reset2">RESET</button></a>
                     </li>
                     <div class="dropdown__two">
                         <li>
@@ -147,7 +147,7 @@
                         </li>
                     </div>
                     <li>
-                        <a href="#">Legs(다리)<span class="fas fa-caret-down"></span></a>
+                        <a href="#">Legs(다리)<span class="fas fa-caret-down"></span><button class="reset" id="reset1">RESET</button></a>
                     </li>
                     <div class="dropdown__two">
                         <li>

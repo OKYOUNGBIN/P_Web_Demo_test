@@ -233,6 +233,7 @@ nav ul li a {
     height: 40px;
     transition: 0.5s ease;
     padding: 0 16px;
+    
 }
 
 nav ul .dropdown {
@@ -418,4 +419,26 @@ button{
 .items.active{
     padding: 10px 0 0 0 ;
     display: inline-block;
+}
+
+/* .dg {
+    position: fixed;
+    width: 250px;
+    top: 2px;
+    right: 2px;
+} */
+
+.reset{
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 20px;
+    width: 50px;
+}
+
+.reset:hover{
+    background-color: #000000;
+    color: white;
 }

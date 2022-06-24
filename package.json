@@ -31,10 +31,13 @@
     "nodemon": "^2.0.15",
     "path": "^0.12.7",
     "sass": "^1.50.0",
-    "three": "^0.141.0"
+    "three": "^0.141.0",
+    "undo-manager": "^1.0.5"
   },
   "devDependencies": {
+    "@types/dat.gui": "^0.7.7",
     "common-config-webpack-plugin": "^2.0.3",
+    "dat.gui": "^0.7.9",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.9.2"
   },

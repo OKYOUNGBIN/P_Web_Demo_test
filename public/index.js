@@ -58,7 +58,8 @@ transformControl.addEventListener("dragging-changed", function (event) {
   oribitControls.enabled = !event.value;
 });
 
-transformControl.a
+raycaster = new THREE.Raycaster();
+pointer = new THREE.Vector2();
 
 window.addEventListener("keydown", function (event) {
   switch (event.keyCode) {
@@ -116,33 +117,19 @@ function resizeRendererToDisplaySize(renderer) {
 
 window.addEventListener("resize", onWindowResize, false);
 
-raycaster = new THREE.Raycaster();
-pointer = new THREE.Vector2();
-
-function onPointerMove( event ) {
-	// calculate pointer position in normalized device coordinates
-	// (-1 to +1) for both components
-	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-  
-}
-
 function onWindowResize() {
+  
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function render() {
+  renderer.render( scene, camera );
+}
+
 function animate() {
-	raycaster.setFromCamera( pointer, camera );
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( scene.children );
-
-	// for ( let i = 0; i < intersects.length; i ++ ) {
-	// 	intersects[ i ].object.material.color.set( );
-	// }
-
-  renderer.render(scene, camera);
+  renderer.render( scene, camera );
   requestAnimationFrame(animate);
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -152,9 +139,6 @@ function animate() {
   }
 }
 
-window.addEventListener( 'pointermove', onPointerMove );
-window.requestAnimationFrame(animate);
-
 animate();
 
-export { scene, camera, renderer, oribitControls, transformControl , gridHelper};
+export { scene, camera, renderer, oribitControls, transformControl , gridHelper, raycaster, pointer, render};

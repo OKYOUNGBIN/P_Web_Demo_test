@@ -15,11 +15,6 @@ const port = 8000;
 const path = require("path");
 const __dirname = path.dirname(__filename);
 
-const options = {
-  key: fs.readFileSync("/home/bitnami/htdocs/xr-square.com.key"),
-  cert: fs.readFileSync("/home/bitnami/stack/apache/conf/xr-square.com.crt"),
-};
-
 app.use(express.static("node_modules"));
 app.use(express.static("model-viewer"));
 app.use(express.static("aws"));
@@ -66,13 +61,8 @@ app.get("/s3UrlHtml", async (req, res) => {
   res.send( {htmlUrl} );
 });
 
-// app.listen(port, () => {
-//   console.log("starting server at port 8000..");
-// });
+app.listen(port, () => {
+  console.log("starting server at port 8000..");
+});
 
-// Create an HTTP service.
-http.createServer(app).listen(80);
-// Create an HTTPS service identical to the HTTP service.
-https.createServer(options, app).listen(443);
-console.log("Starting server!!")
 

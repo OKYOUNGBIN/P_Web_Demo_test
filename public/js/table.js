@@ -7,6 +7,8 @@ import {
   renderer,
   oribitControls,
   transformControl,
+  raycaster, pointer,
+  render,
 } from "/index.js";
 
 function loadModelUsingPromise(url) {
@@ -37,11 +39,10 @@ Promise.all([
   for (var j = 0; j < results.length; j++) {
     Group1.add(results[j].scenes[0]);
     Group1.children[j].visible = false;
+    Group1.children[j].scale.set(0,0,0)
   }
-  scene.add(Group1);
 });
-scene.add(Group1);
-transformControl.attach(Group1);
+
 
 Promise.all([
   loadModelUsingPromise("/table/leg/type1/diningtable_0101_leg.glb"),
@@ -57,11 +58,10 @@ Promise.all([
   for (var j = 0; j < results.length; j++) {
     Group2.add(results[j].scenes[0]);
     Group2.children[j].visible = false;
+    Group2.children[j].scale.set(0,0,0)
   }
-  scene.add(Group2);
 });
-
-let objects = [Group1, Group2];
+scene.add(Group1,Group2);
 
 const { tempUrl } = await fetch("/s3UrlTemp").then((res) => res.json()); // 원본 glb s3 bucket
 //다운로드 버튼 생성 후 이벤트 추가
@@ -79,7 +79,7 @@ function uploadTempS3(event) {
   const exporter = new GLTFExporter();
   // 배열에 여러가지 gltf변수 넣기[]
   exporter.parse(
-    [objects[0], objects[1]],
+    [Group1, Group2],
     // 해당 씬을 저장
     async function (result) {
       await fetch(tempUrl, {

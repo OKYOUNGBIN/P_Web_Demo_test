@@ -51,8 +51,6 @@ Promise.all([
   });
   scene.add(Group2);
 
-  let objects = [Group1 ,Group2]
-
 const { tempUrl } = await fetch("/s3UrlTemp").then((res) => res.json()); // 원본 glb s3 bucket
 //다운로드 버튼 생성 후 이벤트 추가
 const btn = document.querySelector(".download-glb");
@@ -69,7 +67,7 @@ function uploadTempS3(event) {
   const exporter = new GLTFExporter();
   // 배열에 여러가지 gltf변수 넣기[]
   exporter.parse(
-    [objects[0], objects[1]],
+    [Group1, Group2],
     // 해당 씬을 저장
     async function (result) {
         
