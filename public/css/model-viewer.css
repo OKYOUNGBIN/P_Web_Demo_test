@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     outline: none;
-    overflow-x: hidden;
-    overflow-y: scroll;
+
+    box-sizing: border-box;
 }
 
 :root {
@@ -11,10 +11,6 @@
     --expandable-section-text: #EEEEEE;
     --text-on-expandable-background: #F5F5F5;
     --number-input-background: #212121;
-}
-
-body {
-    margin: 0
 }
 
 .app {
@@ -177,11 +173,6 @@ me-tabbed-panel {
 
 .privacy-link {
     color: #BDBDBD;
-}
-
-*body {
-    padding: 0;
-    margin: 0;
 }
 
 ::-webkit-scrollbar {
