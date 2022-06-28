@@ -45,7 +45,7 @@ camera = new THREE.PerspectiveCamera(
 
 // 1cm -> 0.01m 1m -> 100칸으로 나눔 -> 1cm
 gridHelper = new THREE.GridHelper(10, 100);
-scene.add(gridHelper);
+//scene.add(gridHelper);
 
 canvas = document.querySelector("#c");
 renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
@@ -131,12 +131,12 @@ function render() {
 function animate() {
   renderer.render( scene, camera );
   requestAnimationFrame(animate);
-
   if (resizeRendererToDisplaySize(renderer)) {
     const canvas = renderer.domElement;
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateWorldMatrix();
   }
+  
 }
 
 animate();
