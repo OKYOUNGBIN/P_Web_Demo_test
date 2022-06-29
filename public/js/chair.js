@@ -53,7 +53,6 @@ Promise.all([
 Groups.add(Group1, Group2)
 scene.add(Groups)
 
-//transformControl.object === undefined || transformControl.object !== object
 transformControl.addEventListener( 'change', render );
 renderer.domElement.addEventListener( 'mousedown', clickEvent );
 function clickEvent( e ) {
@@ -64,7 +63,7 @@ function clickEvent( e ) {
       if ( intersects.length > 0 ) {
         let object = intersects[0].object;
         object.nickname = "1"
-          if ( object.nickname === "1"){
+          if ( transformControl.object === undefined || transformControl.object !== object){
             transformControl.attach(object)
           }else if (object === undefined || object !== object){
             
