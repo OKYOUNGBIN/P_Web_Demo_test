@@ -9,7 +9,6 @@ import {
   transformControl,
   raycaster, pointer,
   render,
-
 } from "/index.js";
 
 function loadModelUsingPromise(url) {
@@ -31,7 +30,6 @@ Promise.all([
   loadModelUsingPromise("/chair/leg/tablechair_0101_leg.glb"),
   loadModelUsingPromise("/chair/leg/tablechair_0102_leg.glb"),
   loadModelUsingPromise("/chair/leg/tablechair_0103_leg.glb"),
-  
 ]).then((results) => {
   for (var j = 0; j < results.length; j++) {
     Group1.add(results[j].scenes[0]);
@@ -55,22 +53,26 @@ Promise.all([
 Groups.add(Group1, Group2)
 scene.add(Groups)
 
+//transformControl.object === undefined || transformControl.object !== object
 transformControl.addEventListener( 'change', render );
 renderer.domElement.addEventListener( 'mousedown', clickEvent );
-
 function clickEvent( e ) {
       pointer.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
       pointer.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
       raycaster.setFromCamera( pointer, camera );
-      var intersects = raycaster.intersectObjects( [Groups], true);
+      let intersects = raycaster.intersectObjects( [Groups], true);
       if ( intersects.length > 0 ) {
         let object = intersects[0].object;
-          if ( transformControl.object === undefined || transformControl.object !== object ){
+        object.nickname = "1"
+          if ( object.nickname === "1"){
             transformControl.attach(object)
+          }else if (object === undefined || object !== object){
+            
           }
-        }   
+        }
+        console.log()
 }
-console.log(scene)
+transformControl.detach()
 const sizeXInput = document.getElementById("sizeX")
 const sizeYInput = document.getElementById("sizeY")
 const sizeZInput = document.getElementById("sizeZ")
@@ -83,53 +85,44 @@ const rotXInput = document.getElementById("rotX")
 const rotYInput = document.getElementById("rotY")
 const rotZInput = document.getElementById("rotZ")
 
-function objToggle(index1, index2) {
+function objToggle(index) {
   //const { children } = Group1;
   for (let i = 0; i < Group1.children.length; i++) {
-    if (i !== index1) {
+    if (i !== index) {
       Group1.children[i].visible = false;
       Group1.children[i].scale.set(0,0,0);
-    }else if(i == index1){
-      Group1.children[index1].visible = true;
-      Group1.children[index1].scale.set(1, 1, 1);
+    }else if(i == index){
+      Group1.children[index].visible = true;
+      Group1.children[index].scale.set(1, 1, 1);
       
       box.setFromObject( Group1.children[i], Group1.children[i])
       box.getSize(measure);
+      scene.add( helper );
       sizeXInput.value = measure.x
       sizeYInput.value = measure.y
       sizeZInput.value = measure.z
-      
-      posXInput.value = Group1.children[i].children[0].position.x
-      posYInput.value = Group1.children[i].children[0].position.y
-      posZInput.value = Group1.children[i].children[0].position.z
     }
   }
-
-  for (let i = 0; i < Group2.children.length; i++) {
-    if (i !== index2) {
-      Group2.children[i].visible = false;
-      Group2.children[i].scale.set(0,0,0);
-    }else if(i == index2){
-      Group2.children[index2].visible = true;
-      Group2.children[index2].scale.set(1, 1, 1);
-
-      box.setFromObject( Group2.children[i], Group2.children[i])
-      box.getSize(measure);
-      sizeXInput.value = measure.x
-      sizeYInput.value = measure.y
-      sizeZInput.value = measure.z
-
-      posXInput.value = Group2.children[i].children[0].position.x
-      posYInput.value = Group2.children[i].children[0].position.y
-      posZInput.value = Group2.children[i].children[0].position.z
-    }
-  }
-  scene.add( helper );
 }
 
-posXInput.value = Group2.children[0].position.x
-posYInput.value = Group2.children[0].position.y
-posZInput.value = Group2.children[0].position.z
+function objToggle2(index) {
+  for (let i = 0; i < Group2.children.length; i++) {
+    if (i !== index) {
+      Group2.children[i].visible = false;
+      Group2.children[i].scale.set(0,0,0);
+    }else if(i == index){
+      Group2.children[index].visible = true;
+      Group2.children[index].scale.set(1, 1, 1);
+  
+      box.setFromObject( Group2.children[i], Group2.children[i])
+      box.getSize(measure);
+      scene.add( helper );
+      sizeXInput.value = measure.x
+      sizeYInput.value = measure.y
+      sizeZInput.value = measure.z
+    }
+  }
+}
 
 const { tempUrl } = await fetch("/s3UrlTemp").then((res) => res.json()); // 원본 glb s3 bucket
 //다운로드 버튼 생성 후 이벤트 추가
@@ -166,7 +159,7 @@ function uploadTempS3(event) {
     { binary: true }
   );
 }
-
+console.log(scene)
 document.getElementById("reset1").addEventListener("click", function () {
   for(var i = 0; i < Group1.children.length; i++){
     Group1.children[i].visible = false;
@@ -187,16 +180,44 @@ document.getElementById("reset2").addEventListener("click", function () {
   }
 });
 
-document.getElementById("leg_type1").addEventListener("click", function () { objToggle(0, null);});
+function transformObj2 () {
+  for(let i = 0; i < Group2.children.length; i++){
+    //box.setFromObject( Group2.children[i], Group2.children[i])
+    //box.getSize(measure);
+    //sizeXInput.value = measure.x
+    //sizeYInput.value = measure.y
+    //sizeZInput.value = measure.z
 
-document.getElementById("leg_type2").addEventListener("click", function () { objToggle(1, null);});
+    
+    const worldPosition = new THREE.Vector3();
+    Group2.children[i].children[0].getWorldPosition( worldPosition );
+    //console.log(worldPosition.x)
+    //const worldPosition = new THREE.Quaternion(); 
+    posXInput.value = worldPosition.x
+    posYInput.value = worldPosition.y
+    posZInput.value = worldPosition.z
+    //console.log(worldPosition)
+  }
+}
 
-document.getElementById("leg_type3").addEventListener("click", function () { objToggle(2, null);});
+document.getElementById("leg_type1").addEventListener("click", function () { objToggle(0);});
 
-document.getElementById("seat_type1").addEventListener("click", function () {objToggle(null,0);});
+document.getElementById("leg_type2").addEventListener("click", function () { objToggle(1);});
 
-document.getElementById("seat_type2").addEventListener("click", function () {objToggle(null, 1);});
+document.getElementById("leg_type3").addEventListener("click", function () { objToggle(2);});
 
-document.getElementById("seat_type3").addEventListener("click", function () {objToggle(null, 2);});
+document.getElementById("seat_type1").addEventListener("click", function () {objToggle2(0);});
 
-document.getElementById("seat_type4").addEventListener("click", function () {objToggle(null, 3);});
+document.getElementById("seat_type2").addEventListener("click", function () {objToggle2(1);});
+
+document.getElementById("seat_type3").addEventListener("click", function () {objToggle2(2);});
+
+document.getElementById("seat_type4").addEventListener("click", function () {objToggle2(3);});
+
+function animate2(){
+  //transformObj1();
+  transformObj2();
+  requestAnimationFrame(animate2);
+}
+
+animate2();

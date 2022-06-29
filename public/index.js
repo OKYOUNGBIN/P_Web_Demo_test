@@ -45,7 +45,7 @@ camera = new THREE.PerspectiveCamera(
 
 // 1cm -> 0.01m 1m -> 100칸으로 나눔 -> 1cm
 gridHelper = new THREE.GridHelper(10, 100);
-//scene.add(gridHelper);
+scene.add(gridHelper);
 
 canvas = document.querySelector("#c");
 renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
@@ -62,14 +62,14 @@ raycaster = new THREE.Raycaster();
 pointer = new THREE.Vector2();
 
 window.addEventListener("keydown", function (event) {
-  switch (event.keyCode) {
-    case 87: // W
+  switch (event.key || event.keyCode) {
+    case "w":
       transformControl.setMode("translate");
       break;
-    case 69: // E
+    case "e":
       transformControl.setMode("rotate");
       break;
-    case 82: // R
+    case "r":
       transformControl.setMode("scale");
       break;
   }
@@ -136,7 +136,6 @@ function animate() {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateWorldMatrix();
   }
-  
 }
 
 animate();
