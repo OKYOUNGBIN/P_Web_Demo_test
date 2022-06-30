@@ -53,6 +53,7 @@ Promise.all([
 Groups.add(Group1, Group2)
 scene.add(Groups)
 
+//transformControl.object === undefined || transformControl.object !== object
 transformControl.addEventListener( 'change', render );
 renderer.domElement.addEventListener( 'mousedown', clickEvent );
 function clickEvent( e ) {
@@ -62,16 +63,15 @@ function clickEvent( e ) {
       let intersects = raycaster.intersectObjects( [Groups], true);
       if ( intersects.length > 0 ) {
         let object = intersects[0].object;
-        object.nickname = "1"
-          if ( transformControl.object === undefined || transformControl.object !== object){
-            transformControl.attach(object)
-          }else if (object === undefined || object !== object){
-            
+        for(let i = 0; i < object.parent.parent.children.length; i++){
+          console.log(object.parent.parent.children[i])
+          if (  object.parent.parent.children[i].visible == true || object.parent.parent.children[i].scale == 1,1,1){
+            transformControl.attach(object.parent.parent)
           }
-        }
-        console.log()
+        }    
+      }
 }
-transformControl.detach()
+
 const sizeXInput = document.getElementById("sizeX")
 const sizeYInput = document.getElementById("sizeY")
 const sizeZInput = document.getElementById("sizeZ")
@@ -79,6 +79,10 @@ const sizeZInput = document.getElementById("sizeZ")
 const posXInput = document.getElementById("posX")
 const posYInput = document.getElementById("posY")
 const posZInput = document.getElementById("posZ")
+
+const pos2XInput = document.getElementById("pos2X")
+const pos2YInput = document.getElementById("pos2Y")
+const pos2ZInput = document.getElementById("pos2Z")
 
 const rotXInput = document.getElementById("rotX")
 const rotYInput = document.getElementById("rotY")
@@ -158,7 +162,7 @@ function uploadTempS3(event) {
     { binary: true }
   );
 }
-console.log(scene)
+
 document.getElementById("reset1").addEventListener("click", function () {
   for(var i = 0; i < Group1.children.length; i++){
     Group1.children[i].visible = false;
@@ -166,6 +170,11 @@ document.getElementById("reset1").addEventListener("click", function () {
   for(var i = 0; i < Group1.children.length; i++){
     Group1.children[i].scale.set(0,0,0)
     Group1.children[i].children[0].position.set(0,0,0)
+  }
+  for (let i = 0; i < Group1.children.length; i++) {
+    if(Group1.children[i].visible === false || Group1.children[i].scale === 0,0,0){
+      transformControl.detach(Group1.children[i].children[0])
+    }
   }
 });
 
@@ -177,25 +186,30 @@ document.getElementById("reset2").addEventListener("click", function () {
     Group2.children[i].scale.set(0,0,0)
     Group2.children[i].children[0].position.set(0,0,0)
   }
+  for (let i = 0; i < Group2.children.length; i++) {
+    if(Group2.children[i].visible === false || Group2.children[i].scale === 0,0,0){
+      transformControl.detach(Group2.children[i])
+    }
+  }
 });
 
 function transformObj2 () {
-  for(let i = 0; i < Group2.children.length; i++){
-    //box.setFromObject( Group2.children[i], Group2.children[i])
-    //box.getSize(measure);
-    //sizeXInput.value = measure.x
-    //sizeYInput.value = measure.y
-    //sizeZInput.value = measure.z
-
-    
-    const worldPosition = new THREE.Vector3();
+  for(let i = 0; i < Group2.children.length; i++){    
+    let worldPosition = new THREE.Vector3();
     Group2.children[i].children[0].getWorldPosition( worldPosition );
-    //console.log(worldPosition.x)
-    //const worldPosition = new THREE.Quaternion(); 
     posXInput.value = worldPosition.x
     posYInput.value = worldPosition.y
     posZInput.value = worldPosition.z
-    //console.log(worldPosition)
+
+    var worldRotate = new THREE.Quaternion()
+    Group2.children[i].children[0].getWorldQuaternion( worldRotate );
+    let rotation = new THREE.Euler()
+    rotation.setFromQuaternion(worldRotate)
+    //console.log(rotation )
+
+    //rotXInput.value = worldRotate.x
+    //rotYInput.value = worldRotate.y
+    //rotZInput.value = worldRotate.z
   }
 }
 
@@ -215,7 +229,9 @@ document.getElementById("seat_type4").addEventListener("click", function () {obj
 
 function animate2(){
   //transformObj1();
-  transformObj2();
+  // if(){
+  //   transformObj2();
+  // }
   requestAnimationFrame(animate2);
 }
 
