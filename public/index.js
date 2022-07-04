@@ -62,7 +62,7 @@ raycaster = new THREE.Raycaster();
 pointer = new THREE.Vector2();
 
 window.addEventListener("keydown", function (event) {
-  switch (event.key || event.keyCode) {
+  switch (event.key) {
     case "w":
       transformControl.setMode("translate");
       break;

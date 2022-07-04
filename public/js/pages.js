@@ -9,14 +9,3 @@ tabs.forEach((tab) => {
     target.classList.add("active");
   });
 });
-
-// const sidebar = document.getElementById("nav")
-// const buttonClick = document.getElementById("bottom_content")
-// buttonClick.addEventListener("click", sidebarHideShow)
-// function sidebarHideShow(){
-//   if(sidebar.style.display == "block") {
-//     sidebar.style.display = "none";
-//   }else{
-//     sidebar.style.display = "block";
-//   }
-// }

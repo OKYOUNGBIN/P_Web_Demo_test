@@ -22,9 +22,12 @@ let Group2 = new THREE.Group();
 let Group3 = new THREE.Group();
 let Groups = new THREE.Group();
 
-let box = new THREE.Box3();
-let measure = new THREE.Vector3();
-let helper = new THREE.Box3Helper( box, 0xff0000 );
+let box1 = new THREE.Box3();
+let box2 = new THREE.Box3();
+let measure1 = new THREE.Vector3();
+let measure2 = new THREE.Vector3();
+let helper1 = new THREE.Box3Helper( box1, 0xff0000 );
+let helper2 = new THREE.Box3Helper( box2, 0xff0000 );
 
 Promise.all([
   loadModelUsingPromise("/chair/leg/tablechair_0101_leg.glb"),
@@ -35,6 +38,7 @@ Promise.all([
     Group1.add(results[j].scenes[0]);
     Group1.children[j].visible = false;
     Group1.children[j].scale.set(0,0,0)
+    Group1.name = "Group1"
   }
 });
 
@@ -48,29 +52,11 @@ Promise.all([
     Group2.add(results[j].scenes[0]);
     Group2.children[j].visible = false;
     Group2.children[j].scale.set(0,0,0)
+    Group2.name = "Group2"
   }
 });
 Groups.add(Group1, Group2)
 scene.add(Groups)
-
-//transformControl.object === undefined || transformControl.object !== object
-transformControl.addEventListener( 'change', render );
-renderer.domElement.addEventListener( 'mousedown', clickEvent );
-function clickEvent( e ) {
-      pointer.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-      pointer.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-      raycaster.setFromCamera( pointer, camera );
-      let intersects = raycaster.intersectObjects( [Groups], true);
-      if ( intersects.length > 0 ) {
-        let object = intersects[0].object;
-        for(let i = 0; i < object.parent.parent.children.length; i++){
-          console.log(object.parent.parent.children[i])
-          if (  object.parent.parent.children[i].visible == true || object.parent.parent.children[i].scale == 1,1,1){
-            transformControl.attach(object.parent.parent)
-          }
-        }    
-      }
-}
 
 const sizeXInput = document.getElementById("sizeX")
 const sizeYInput = document.getElementById("sizeY")
@@ -80,16 +66,11 @@ const posXInput = document.getElementById("posX")
 const posYInput = document.getElementById("posY")
 const posZInput = document.getElementById("posZ")
 
-const pos2XInput = document.getElementById("pos2X")
-const pos2YInput = document.getElementById("pos2Y")
-const pos2ZInput = document.getElementById("pos2Z")
-
 const rotXInput = document.getElementById("rotX")
 const rotYInput = document.getElementById("rotY")
 const rotZInput = document.getElementById("rotZ")
 
-function objToggle(index) {
-  //const { children } = Group1;
+function objToggle1(index) {
   for (let i = 0; i < Group1.children.length; i++) {
     if (i !== index) {
       Group1.children[i].visible = false;
@@ -98,12 +79,13 @@ function objToggle(index) {
       Group1.children[index].visible = true;
       Group1.children[index].scale.set(1, 1, 1);
       
-      box.setFromObject( Group1.children[i], Group1.children[i])
-      box.getSize(measure);
-      scene.add( helper );
-      sizeXInput.value = measure.x
-      sizeYInput.value = measure.y
-      sizeZInput.value = measure.z
+      box2.setFromObject( Group1, Group1)
+      box2.getSize(measure1);
+      scene.add( helper1 );
+
+      sizeXInput.value = measure1.x
+      sizeYInput.value = measure1.y
+      sizeZInput.value = measure1.z
     }
   }
 }
@@ -116,13 +98,14 @@ function objToggle2(index) {
     }else if(i == index){
       Group2.children[index].visible = true;
       Group2.children[index].scale.set(1, 1, 1);
-  
-      box.setFromObject( Group2.children[i], Group2.children[i])
-      box.getSize(measure);
-      scene.add( helper );
-      sizeXInput.value = measure.x
-      sizeYInput.value = measure.y
-      sizeZInput.value = measure.z
+      
+      box2.setFromObject( Group2, Group2)
+      box2.getSize(measure2);
+      scene.add( helper2 );
+
+      sizeXInput.value = measure2.x
+      sizeYInput.value = measure2.y
+      sizeZInput.value = measure2.z
     }
   }
 }
@@ -166,32 +149,32 @@ function uploadTempS3(event) {
 document.getElementById("reset1").addEventListener("click", function () {
   for(var i = 0; i < Group1.children.length; i++){
     Group1.children[i].visible = false;
-  }
-  for(var i = 0; i < Group1.children.length; i++){
     Group1.children[i].scale.set(0,0,0)
-    Group1.children[i].children[0].position.set(0,0,0)
-  }
-  for (let i = 0; i < Group1.children.length; i++) {
-    if(Group1.children[i].visible === false || Group1.children[i].scale === 0,0,0){
-      transformControl.detach(Group1.children[i].children[0])
-    }
+    transformControl.detach()
   }
 });
 
 document.getElementById("reset2").addEventListener("click", function () {
   for(var i = 0; i < Group2.children.length; i++){
     Group2.children[i].visible = false;
-  }
-  for(var i = 0; i < Group2.children.length; i++){
     Group2.children[i].scale.set(0,0,0)
-    Group2.children[i].children[0].position.set(0,0,0)
-  }
-  for (let i = 0; i < Group2.children.length; i++) {
-    if(Group2.children[i].visible === false || Group2.children[i].scale === 0,0,0){
-      transformControl.detach(Group2.children[i])
-    }
+    transformControl.detach()
   }
 });
+
+function transformObj1 () {
+  for(let i = 0; i < Group1.children.length; i++){    
+    let worldPosition = new THREE.Vector3();
+    Group1.children[i].children[0].getWorldPosition( worldPosition );
+    posXInput.value = worldPosition.x
+    posYInput.value = worldPosition.y
+    posZInput.value = worldPosition.z
+
+    sizeXInput.value = measure1.x
+    sizeYInput.value = measure1.y
+    sizeZInput.value = measure1.z
+  }
+}
 
 function transformObj2 () {
   for(let i = 0; i < Group2.children.length; i++){    
@@ -201,23 +184,26 @@ function transformObj2 () {
     posYInput.value = worldPosition.y
     posZInput.value = worldPosition.z
 
+    sizeXInput.value = measure2.x
+    sizeYInput.value = measure2.y
+    sizeZInput.value = measure2.z
+
     var worldRotate = new THREE.Quaternion()
     Group2.children[i].children[0].getWorldQuaternion( worldRotate );
-    let rotation = new THREE.Euler()
-    rotation.setFromQuaternion(worldRotate)
-    //console.log(rotation )
-
+    //console.log(worldRotate )
+    
     //rotXInput.value = worldRotate.x
     //rotYInput.value = worldRotate.y
     //rotZInput.value = worldRotate.z
   }
 }
+console.log(Group2)
+console.log(Group1)
+document.getElementById("leg_type1").addEventListener("click", function () { objToggle1(0);});
 
-document.getElementById("leg_type1").addEventListener("click", function () { objToggle(0);});
+document.getElementById("leg_type2").addEventListener("click", function () { objToggle1(1);});
 
-document.getElementById("leg_type2").addEventListener("click", function () { objToggle(1);});
-
-document.getElementById("leg_type3").addEventListener("click", function () { objToggle(2);});
+document.getElementById("leg_type3").addEventListener("click", function () { objToggle1(2);});
 
 document.getElementById("seat_type1").addEventListener("click", function () {objToggle2(0);});
 
@@ -227,11 +213,46 @@ document.getElementById("seat_type3").addEventListener("click", function () {obj
 
 document.getElementById("seat_type4").addEventListener("click", function () {objToggle2(3);});
 
-function animate2(){
-  //transformObj1();
-  // if(){
-  //   transformObj2();
+function clickEvent( e ) {
+  pointer.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+  pointer.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+  // raycaster.setFromCamera( pointer, camera );
+  // let intersects = raycaster.intersectObjects( [Groups], true);
+  // if ( intersects.length > 0 ) {
+  //   let object = intersects[0].object;
+  //   transformControl.attach(object.parent.parent)
+
+  //   if(object.parent.parent.name == "Group2"){
+  //     transformObj2()
+  //   }else if(object.parent.parent.name == "Group2"){
+  //     transformObj1()
+  //   }
   // }
+}
+
+transformControl.addEventListener( 'change', render );
+renderer.domElement.addEventListener( 'mousedown', clickEvent );
+
+function animate2(){
+  box1.setFromObject( Group1, Group1)
+  box1.getSize(measure1);
+
+  box2.setFromObject( Group2, Group2)
+  box2.getSize(measure2); 
+
+  raycaster.setFromCamera( pointer, camera );
+  let intersects = raycaster.intersectObjects( [Groups], true);
+  if ( intersects.length > 0 ) {
+    let object = intersects[0].object;
+    transformControl.attach(object.parent.parent)
+
+    // if(box2){
+    //   transformObj2()
+    // }else if(box1){
+    //   transformObj1()
+    // }
+  }
   requestAnimationFrame(animate2);
 }
 
