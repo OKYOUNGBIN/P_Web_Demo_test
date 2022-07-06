@@ -425,13 +425,6 @@ button{
     display: inline-block;
 }
 
-/* .dg {
-    position: fixed;
-    width: 250px;
-    top: 2px;
-    right: 2px;
-} */
-
 .reset{
     position: absolute;
     right: 0;

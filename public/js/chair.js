@@ -38,7 +38,6 @@ Promise.all([
     Group1.add(results[j].scenes[0]);
     Group1.children[j].visible = false;
     Group1.children[j].scale.set(0,0,0)
-    Group1.name = "Group1"
   }
 });
 
@@ -52,7 +51,6 @@ Promise.all([
     Group2.add(results[j].scenes[0]);
     Group2.children[j].visible = false;
     Group2.children[j].scale.set(0,0,0)
-    Group2.name = "Group2"
   }
 });
 Groups.add(Group1, Group2)
@@ -70,6 +68,10 @@ const rotXInput = document.getElementById("rotX")
 const rotYInput = document.getElementById("rotY")
 const rotZInput = document.getElementById("rotZ")
 
+const scaleXInput = document.getElementById("scaleX")
+const scaleYInput = document.getElementById("scaleY")
+const scaleZInput = document.getElementById("scaleZ")
+
 function objToggle1(index) {
   for (let i = 0; i < Group1.children.length; i++) {
     if (i !== index) {
@@ -83,9 +85,9 @@ function objToggle1(index) {
       box2.getSize(measure1);
       scene.add( helper1 );
 
-      sizeXInput.value = measure1.x
-      sizeYInput.value = measure1.y
-      sizeZInput.value = measure1.z
+      sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
+      sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
+      sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm")
     }
   }
 }
@@ -103,9 +105,9 @@ function objToggle2(index) {
       box2.getSize(measure2);
       scene.add( helper2 );
 
-      sizeXInput.value = measure2.x
-      sizeYInput.value = measure2.y
-      sizeZInput.value = measure2.z
+      sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm")
+      sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm")
+      sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm")
     }
   }
 }
@@ -162,43 +164,48 @@ document.getElementById("reset2").addEventListener("click", function () {
   }
 });
 
+
 function transformObj1 () {
   for(let i = 0; i < Group1.children.length; i++){    
-    let worldPosition = new THREE.Vector3();
-    Group1.children[i].children[0].getWorldPosition( worldPosition );
-    posXInput.value = worldPosition.x
-    posYInput.value = worldPosition.y
-    posZInput.value = worldPosition.z
+    sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
+    sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
+    sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm") 
 
-    sizeXInput.value = measure1.x
-    sizeYInput.value = measure1.y
-    sizeZInput.value = measure1.z
+    let worldPosition = new THREE.Vector3();
+    Group1.children[i].children[0].getWorldPosition(worldPosition);
+    var inputs = document.getElementsByClassName('posInputs');
+    Group1.children[i].children[0].getWorldPosition(worldPosition).x = parseFloat(inputs[0].value) || worldPosition.x;
+    Group1.children[i].children[0].getWorldPosition(worldPosition).y = parseFloat(inputs[1].value) || worldPosition.y;
+    Group1.children[i].children[0].getWorldPosition(worldPosition).z = parseFloat(inputs[2].value) || worldPosition.z;
+    console.log(Group1.children[i].children[0].getWorldPosition(worldPosition).x)
+    //posXInput.value = worldPosition.x
+    //posYInput.value = worldPosition.y
+    //posZInput.value = worldPosition.z
+
   }
 }
 
 function transformObj2 () {
   for(let i = 0; i < Group2.children.length; i++){    
+    sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm")
+    sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm")
+    sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm")
+    
     let worldPosition = new THREE.Vector3();
     Group2.children[i].children[0].getWorldPosition( worldPosition );
     posXInput.value = worldPosition.x
     posYInput.value = worldPosition.y
     posZInput.value = worldPosition.z
-
-    sizeXInput.value = measure2.x
-    sizeYInput.value = measure2.y
-    sizeZInput.value = measure2.z
-
-    var worldRotate = new THREE.Quaternion()
-    Group2.children[i].children[0].getWorldQuaternion( worldRotate );
-    //console.log(worldRotate )
     
-    //rotXInput.value = worldRotate.x
-    //rotYInput.value = worldRotate.y
-    //rotZInput.value = worldRotate.z
+    // var worldRotate = new THREE.Quaternion()
+    // Group2.children[i].children[0].getWorldQuaternion( worldRotate );
+    // console.log(worldPosition )
+    // rotXInput.value = worldRotate.x
+    // rotYInput.value = worldRotate.y
+    // rotZInput.value = worldRotate.z
   }
 }
-console.log(Group2)
-console.log(Group1)
+
 document.getElementById("leg_type1").addEventListener("click", function () { objToggle1(0);});
 
 document.getElementById("leg_type2").addEventListener("click", function () { objToggle1(1);});
@@ -217,42 +224,30 @@ function clickEvent( e ) {
   pointer.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
   pointer.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
 
-  // raycaster.setFromCamera( pointer, camera );
-  // let intersects = raycaster.intersectObjects( [Groups], true);
-  // if ( intersects.length > 0 ) {
-  //   let object = intersects[0].object;
-  //   transformControl.attach(object.parent.parent)
-
-  //   if(object.parent.parent.name == "Group2"){
-  //     transformObj2()
-  //   }else if(object.parent.parent.name == "Group2"){
-  //     transformObj1()
-  //   }
-  // }
-}
-
-transformControl.addEventListener( 'change', render );
-renderer.domElement.addEventListener( 'mousedown', clickEvent );
-
-function animate2(){
-  box1.setFromObject( Group1, Group1)
-  box1.getSize(measure1);
-
-  box2.setFromObject( Group2, Group2)
-  box2.getSize(measure2); 
-
   raycaster.setFromCamera( pointer, camera );
   let intersects = raycaster.intersectObjects( [Groups], true);
   if ( intersects.length > 0 ) {
     let object = intersects[0].object;
     transformControl.attach(object.parent.parent)
-
-    // if(box2){
-    //   transformObj2()
-    // }else if(box1){
-    //   transformObj1()
-    // }
   }
+  if(transformControl.object == Group2){
+    transformObj2();
+  }else if(transformControl.object == Group1){
+    transformObj1();
+  }
+}
+
+transformControl.addEventListener( 'change', render );
+renderer.domElement.addEventListener( 'click', clickEvent );
+
+function animate2(){
+  box1.setFromObject( Group1, Group1)
+  box1.getSize(measure1);
+  
+  box2.setFromObject( Group2, Group2)
+  box2.getSize(measure2);
+
+  console.log()
   requestAnimationFrame(animate2);
 }
 
