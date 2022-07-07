@@ -56,21 +56,21 @@ Promise.all([
 Groups.add(Group1, Group2)
 scene.add(Groups)
 
-const sizeXInput = document.getElementById("sizeX")
-const sizeYInput = document.getElementById("sizeY")
-const sizeZInput = document.getElementById("sizeZ")
+let sizeXInput = document.getElementById("sizeX")
+let sizeYInput = document.getElementById("sizeY")
+let sizeZInput = document.getElementById("sizeZ")
 
-const posXInput = document.getElementById("posX")
-const posYInput = document.getElementById("posY")
-const posZInput = document.getElementById("posZ")
+let posXInput = document.getElementById("posX")
+let posYInput = document.getElementById("posY")
+let posZInput = document.getElementById("posZ")
 
-const rotXInput = document.getElementById("rotX")
-const rotYInput = document.getElementById("rotY")
-const rotZInput = document.getElementById("rotZ")
+let rotXInput = document.getElementById("rotX")
+let rotYInput = document.getElementById("rotY")
+let rotZInput = document.getElementById("rotZ")
 
-const scaleXInput = document.getElementById("scaleX")
-const scaleYInput = document.getElementById("scaleY")
-const scaleZInput = document.getElementById("scaleZ")
+let scaleXInput = document.getElementById("scaleX")
+let scaleYInput = document.getElementById("scaleY")
+let scaleZInput = document.getElementById("scaleZ")
 
 function objToggle1(index) {
   for (let i = 0; i < Group1.children.length; i++) {
@@ -164,25 +164,21 @@ document.getElementById("reset2").addEventListener("click", function () {
   }
 });
 
-
 function transformObj1 () {
   for(let i = 0; i < Group1.children.length; i++){    
-    sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
-    sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
-    sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm") 
-
-    let worldPosition = new THREE.Vector3();
-    Group1.children[i].children[0].getWorldPosition(worldPosition);
-    var inputs = document.getElementsByClassName('posInputs');
-    Group1.children[i].children[0].getWorldPosition(worldPosition).x = parseFloat(inputs[0].value) || worldPosition.x;
-    Group1.children[i].children[0].getWorldPosition(worldPosition).y = parseFloat(inputs[1].value) || worldPosition.y;
-    Group1.children[i].children[0].getWorldPosition(worldPosition).z = parseFloat(inputs[2].value) || worldPosition.z;
-    console.log(Group1.children[i].children[0].getWorldPosition(worldPosition).x)
-    //posXInput.value = worldPosition.x
-    //posYInput.value = worldPosition.y
-    //posZInput.value = worldPosition.z
-
   }
+  sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
+  sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
+  sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm") 
+
+  // Group1.position.x = posXInput.value || Group1.position.x;
+  // Group1.position.y = posYInput.value || Group1.position.y;
+  // Group1.position.z = posZInput.value || Group1.position.z;
+
+
+  //Group1.rotation.x = rotXInput.value || Group1.rotation.x * Math.PI;
+  //Group1.rotation.y = rotXInput.value || Group1.rotation.y * Math.PI;
+  //Group1.rotation.z = rotXInput.value || Group1.rotation.z * Math.PI;
 }
 
 function transformObj2 () {
@@ -190,20 +186,12 @@ function transformObj2 () {
     sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm")
     sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm")
     sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm")
-    
-    let worldPosition = new THREE.Vector3();
-    Group2.children[i].children[0].getWorldPosition( worldPosition );
-    posXInput.value = worldPosition.x
-    posYInput.value = worldPosition.y
-    posZInput.value = worldPosition.z
-    
-    // var worldRotate = new THREE.Quaternion()
-    // Group2.children[i].children[0].getWorldQuaternion( worldRotate );
-    // console.log(worldPosition )
-    // rotXInput.value = worldRotate.x
-    // rotYInput.value = worldRotate.y
-    // rotZInput.value = worldRotate.z
   }
+
+    
+
+
+  console.log(Group2.position)
 }
 
 document.getElementById("leg_type1").addEventListener("click", function () { objToggle1(0);});
@@ -237,7 +225,7 @@ function clickEvent( e ) {
   }
 }
 
-transformControl.addEventListener( 'change', render );
+//transformControl.addEventListener( 'dragged-changed', render );
 renderer.domElement.addEventListener( 'click', clickEvent );
 
 function animate2(){
@@ -247,7 +235,14 @@ function animate2(){
   box2.setFromObject( Group2, Group2)
   box2.getSize(measure2);
 
-  console.log()
+  // Group2.position.x = posXInput.value || Group2.position.x;
+  // Group2.position.y = posYInput.value || Group2.position.y;
+  // Group2.position.z = posZInput.value || Group2.position.z;
+  
+  // Group2.rotation.x = rotXInput.value || Group2.rotation.x;
+  // Group2.rotation.y = rotYInput.value || Group2.rotation.y;
+  // Group2.rotation.z = rotZInput.value || Group2.rotation.z;
+
   requestAnimationFrame(animate2);
 }
 
