@@ -84,12 +84,9 @@ function objToggle1(index) {
       box2.setFromObject( Group1, Group1)
       box2.getSize(measure1);
       scene.add( helper1 );
-
-      sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
-      sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
-      sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm")
     }
   }
+  Group1Transform();
 }
 
 function objToggle2(index) {
@@ -104,12 +101,9 @@ function objToggle2(index) {
       box2.setFromObject( Group2, Group2)
       box2.getSize(measure2);
       scene.add( helper2 );
-
-      sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm")
-      sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm")
-      sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm")
     }
   }
+  Group2Transform()
 }
 
 const { tempUrl } = await fetch("/s3UrlTemp").then((res) => res.json()); // 원본 glb s3 bucket
@@ -164,35 +158,6 @@ document.getElementById("reset2").addEventListener("click", function () {
   }
 });
 
-function transformObj1 () {
-  for(let i = 0; i < Group1.children.length; i++){    
-  }
-  sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
-  sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
-  sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm") 
-
-  // Group1.position.x = posXInput.value || Group1.position.x;
-  // Group1.position.y = posYInput.value || Group1.position.y;
-  // Group1.position.z = posZInput.value || Group1.position.z;
-
-
-  //Group1.rotation.x = rotXInput.value || Group1.rotation.x * Math.PI;
-  //Group1.rotation.y = rotXInput.value || Group1.rotation.y * Math.PI;
-  //Group1.rotation.z = rotXInput.value || Group1.rotation.z * Math.PI;
-}
-
-function transformObj2 () {
-  for(let i = 0; i < Group2.children.length; i++){    
-    sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm")
-    sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm")
-    sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm")
-  }
-
-    
-
-
-  console.log(Group2.position)
-}
 
 document.getElementById("leg_type1").addEventListener("click", function () { objToggle1(0);});
 
@@ -219,30 +184,75 @@ function clickEvent( e ) {
     transformControl.attach(object.parent.parent)
   }
   if(transformControl.object == Group2){
-    transformObj2();
+    Group2Transform();
   }else if(transformControl.object == Group1){
-    transformObj1();
+    Group1Transform();
   }
 }
 
-//transformControl.addEventListener( 'dragged-changed', render );
-renderer.domElement.addEventListener( 'click', clickEvent );
+function Group1Transform(){
+  transformControl.addEventListener("change", function () {
+    sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
+    sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm")
+    sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm") 
 
-function animate2(){
+    posXInput.value = Group1.position.x
+    posYInput.value = Group1.position.y
+    posZInput.value = Group1.position.z
+
+    rotXInput.value = Group1.rotation.x
+    rotYInput.value = Group1.rotation.y
+    rotZInput.value = Group1.rotation.z
+  });
+}
+
+function Group2Transform(){
+  transformControl.addEventListener("change", function () {
+    sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm")
+    sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm")
+    sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm")
+
+    posXInput.value = Group2.position.x
+    posYInput.value = Group2.position.y
+    posZInput.value = Group2.position.z
+
+    rotXInput.value = Group2.rotation.x
+    rotYInput.value = Group2.rotation.y
+    rotZInput.value = Group2.rotation.z
+  });
+}
+
+function Group1UpdateTransform(){
   box1.setFromObject( Group1, Group1)
   box1.getSize(measure1);
-  
+
+  Group1.position.x = parseFloat(posXInput.value) || Group1.position.x
+  Group1.position.y = parseFloat(posYInput.value) || Group1.position.y
+  Group1.position.z = parseFloat(posZInput.value) || Group1.position.z
+
+  Group1.rotation.x = parseFloat(rotXInput.value) || Group1.rotation.x
+  Group1.rotation.y = parseFloat(rotYInput.value) || Group1.rotation.y
+  Group1.rotation.z = parseFloat(rotZInput.value) || Group1.rotation.z
+}
+
+function Group2UpdateTransform(){
   box2.setFromObject( Group2, Group2)
   box2.getSize(measure2);
 
-  // Group2.position.x = posXInput.value || Group2.position.x;
-  // Group2.position.y = posYInput.value || Group2.position.y;
-  // Group2.position.z = posZInput.value || Group2.position.z;
-  
-  // Group2.rotation.x = rotXInput.value || Group2.rotation.x;
-  // Group2.rotation.y = rotYInput.value || Group2.rotation.y;
-  // Group2.rotation.z = rotZInput.value || Group2.rotation.z;
+  Group2.position.x = parseFloat(posXInput.value) || Group2.position.x
+  Group2.position.y = parseFloat(posYInput.value) || Group2.position.y
+  Group2.position.z = parseFloat(posZInput.value) || Group2.position.z
 
+  Group2.rotation.x = parseFloat(rotXInput.value) || Group2.rotation.x
+  Group2.rotation.y = parseFloat(rotYInput.value) || Group2.rotation.y
+  Group2.rotation.z = parseFloat(rotZInput.value) || Group2.rotation.z
+}
+
+renderer.domElement.addEventListener( 'click', clickEvent );
+
+function animate2(){
+  Group2UpdateTransform();
+  Group1UpdateTransform();
   requestAnimationFrame(animate2);
 }
 
