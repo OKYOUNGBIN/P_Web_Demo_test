@@ -80,13 +80,9 @@ function objToggle1(index) {
     }else if(i == index){
       Group1.children[index].visible = true;
       Group1.children[index].scale.set(1, 1, 1);
-      
-      box2.setFromObject( Group1, Group1)
-      box2.getSize(measure1);
-      scene.add( helper1 );
     }
   }
-  Group1Transform();
+
 }
 
 function objToggle2(index) {
@@ -97,13 +93,9 @@ function objToggle2(index) {
     }else if(i == index){
       Group2.children[index].visible = true;
       Group2.children[index].scale.set(1, 1, 1);
-      
-      box2.setFromObject( Group2, Group2)
-      box2.getSize(measure2);
-      scene.add( helper2 );
     }
   }
-  Group2Transform()
+
 }
 
 const { tempUrl } = await fetch("/s3UrlTemp").then((res) => res.json()); // 원본 glb s3 bucket
@@ -143,7 +135,7 @@ function uploadTempS3(event) {
 }
 
 document.getElementById("reset1").addEventListener("click", function () {
-  for(var i = 0; i < Group1.children.length; i++){
+  for(let i = 0; i < Group1.children.length; i++){
     Group1.children[i].visible = false;
     Group1.children[i].scale.set(0,0,0)
     transformControl.detach()
@@ -151,13 +143,12 @@ document.getElementById("reset1").addEventListener("click", function () {
 });
 
 document.getElementById("reset2").addEventListener("click", function () {
-  for(var i = 0; i < Group2.children.length; i++){
+  for(let i = 0; i < Group2.children.length; i++){
     Group2.children[i].visible = false;
     Group2.children[i].scale.set(0,0,0)
     transformControl.detach()
   }
 });
-
 
 document.getElementById("leg_type1").addEventListener("click", function () { objToggle1(0);});
 
@@ -173,23 +164,29 @@ document.getElementById("seat_type3").addEventListener("click", function () {obj
 
 document.getElementById("seat_type4").addEventListener("click", function () {objToggle2(3);});
 
+renderer.domElement.addEventListener( 'click', clickEvent );
+
 function clickEvent( e ) {
   pointer.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
   pointer.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-
   raycaster.setFromCamera( pointer, camera );
   let intersects = raycaster.intersectObjects( [Groups], true);
   if ( intersects.length > 0 ) {
     let object = intersects[0].object;
     transformControl.attach(object.parent.parent)
-  }
-  if(transformControl.object == Group2){
-    Group2Transform();
-  }else if(transformControl.object == Group1){
-    Group1Transform();
+    if(transformControl.object == Group1){
+      transformControl.detach()
+      Group1Transform();
+      transformControl.attach(object.parent.parent)
+    }else if(transformControl.object == Group2){
+      transformControl.detach()
+      Group2Transform();
+      transformControl.attach(object.parent.parent)
+    }
   }
 }
 
+// 클릭 되었을 때
 function Group1Transform(){
   transformControl.addEventListener("change", function () {
     sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm")
@@ -229,7 +226,7 @@ function Group1UpdateTransform(){
   Group1.position.x = parseFloat(posXInput.value) || Group1.position.x
   Group1.position.y = parseFloat(posYInput.value) || Group1.position.y
   Group1.position.z = parseFloat(posZInput.value) || Group1.position.z
-
+  
   Group1.rotation.x = parseFloat(rotXInput.value) || Group1.rotation.x
   Group1.rotation.y = parseFloat(rotYInput.value) || Group1.rotation.y
   Group1.rotation.z = parseFloat(rotZInput.value) || Group1.rotation.z
@@ -242,18 +239,18 @@ function Group2UpdateTransform(){
   Group2.position.x = parseFloat(posXInput.value) || Group2.position.x
   Group2.position.y = parseFloat(posYInput.value) || Group2.position.y
   Group2.position.z = parseFloat(posZInput.value) || Group2.position.z
-
+  
   Group2.rotation.x = parseFloat(rotXInput.value) || Group2.rotation.x
   Group2.rotation.y = parseFloat(rotYInput.value) || Group2.rotation.y
   Group2.rotation.z = parseFloat(rotZInput.value) || Group2.rotation.z
 }
 
-renderer.domElement.addEventListener( 'click', clickEvent );
-
 function animate2(){
-  Group2UpdateTransform();
-  Group1UpdateTransform();
+  if(transformControl.object == Group1){
+    Group1UpdateTransform();
+  }else if(transformControl.object == Group2){
+    Group2UpdateTransform();
+  }
   requestAnimationFrame(animate2);
 }
-
 animate2();
