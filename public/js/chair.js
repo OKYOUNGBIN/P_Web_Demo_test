@@ -7,10 +7,11 @@ import {
   renderer,
   oribitControls,
   transformControl,
-  raycaster, pointer,
+  raycaster,
+  pointer,
   render,
+  canvas,
 } from "/index.js";
-
 
 function loadModelUsingPromise(url) {
   return new Promise((resolve) => {
@@ -27,9 +28,9 @@ let box1 = new THREE.Box3();
 let box2 = new THREE.Box3();
 let measure1 = new THREE.Vector3();
 let measure2 = new THREE.Vector3();
-let worldPosition = new THREE.Vector3()
-let helper1 = new THREE.Box3Helper( box1, 0xff0000 );
-let helper2 = new THREE.Box3Helper( box2, 0xff0000 );
+let worldPosition = new THREE.Vector3();
+let helper1 = new THREE.Box3Helper(box1, 0xff0000);
+let helper2 = new THREE.Box3Helper(box2, 0xff0000);
 
 Promise.all([
   loadModelUsingPromise("/chair/leg/tablechair_0101_leg.glb"),
@@ -39,7 +40,7 @@ Promise.all([
   for (var j = 0; j < results.length; j++) {
     Group1.add(results[j].scenes[0]);
     Group1.children[j].visible = false;
-    Group1.children[j].scale.set(0,0,0)
+    Group1.children[j].scale.set(0, 0, 0);
   }
 });
 
@@ -52,34 +53,34 @@ Promise.all([
   for (var j = 0; j < results.length; j++) {
     Group2.add(results[j].scenes[0]);
     Group2.children[j].visible = false;
-    Group2.children[j].scale.set(0,0,0)
+    Group2.children[j].scale.set(0, 0, 0);
   }
 });
-Groups.add(Group1, Group2)
-scene.add(Groups)
+Groups.add(Group1, Group2);
+scene.add(Groups);
 
-let sizeXInput = document.getElementById("sizeX")
-let sizeYInput = document.getElementById("sizeY")
-let sizeZInput = document.getElementById("sizeZ")
+let sizeXInput = document.getElementById("sizeX");
+let sizeYInput = document.getElementById("sizeY");
+let sizeZInput = document.getElementById("sizeZ");
 
-let posXInput = document.getElementById("posX")
-let posYInput = document.getElementById("posY")
-let posZInput = document.getElementById("posZ")
+let posXInput = document.getElementById("posX");
+let posYInput = document.getElementById("posY");
+let posZInput = document.getElementById("posZ");
 
-let rotXInput = document.getElementById("rotX")
-let rotYInput = document.getElementById("rotY")
-let rotZInput = document.getElementById("rotZ")
+let rotXInput = document.getElementById("rotX");
+let rotYInput = document.getElementById("rotY");
+let rotZInput = document.getElementById("rotZ");
 
-let scaleXInput = document.getElementById("scaleX")
-let scaleYInput = document.getElementById("scaleY")
-let scaleZInput = document.getElementById("scaleZ")
+let scaleXInput = document.getElementById("scaleX");
+let scaleYInput = document.getElementById("scaleY");
+let scaleZInput = document.getElementById("scaleZ");
 
 function objToggle1(index) {
   for (let i = 0; i < Group1.children.length; i++) {
     if (i !== index) {
       Group1.children[i].visible = false;
-      Group1.children[i].scale.set(0,0,0);
-    }else if(i == index){
+      Group1.children[i].scale.set(0, 0, 0);
+    } else if (i == index) {
       Group1.children[index].visible = true;
       Group1.children[index].scale.set(1, 1, 1);
     }
@@ -90,8 +91,8 @@ function objToggle2(index) {
   for (let i = 0; i < Group2.children.length; i++) {
     if (i !== index) {
       Group2.children[i].visible = false;
-      Group2.children[i].scale.set(0,0,0);
-    }else if(i == index){
+      Group2.children[i].scale.set(0, 0, 0);
+    } else if (i == index) {
       Group2.children[index].visible = true;
       Group2.children[index].scale.set(1, 1, 1);
     }
@@ -135,151 +136,294 @@ function uploadTempS3(event) {
 }
 
 document.getElementById("reset1").addEventListener("click", function () {
-  for(let i = 0; i < Group1.children.length; i++){
+  for (let i = 0; i < Group1.children.length; i++) {
     Group1.children[i].visible = false;
-    Group1.children[i].scale.set(0,0,0)
-    Group1.position.set(0,0,0)
-    scene.remove(helper1)
-    transformControl.detach()
+    Group1.children[i].scale.set(0, 0, 0);
+    Group1.position.set(0, 0, 0);
+    scene.remove(helper1);
+    transformControl.detach();
   }
 });
 
 document.getElementById("reset2").addEventListener("click", function () {
-  for(let i = 0; i < Group2.children.length; i++){
+  for (let i = 0; i < Group2.children.length; i++) {
     Group2.children[i].visible = false;
-    Group2.children[i].scale.set(0,0,0)
-    Group1.position.set(0,0,0)
-    scene.remove(helper2)
-    transformControl.detach()
+    Group2.children[i].scale.set(0, 0, 0);
+    Group2.position.set(0, 0, 0);
+    scene.remove(helper2);
+    transformControl.detach();
   }
 });
 
-document.getElementById("leg_type1").addEventListener("click", function () { objToggle1(0);});
+document.getElementById("leg_type1").addEventListener("click", function () {  objToggle1(0);});
 
 document.getElementById("leg_type2").addEventListener("click", function () { objToggle1(1);});
 
-document.getElementById("leg_type3").addEventListener("click", function () { objToggle1(2);});
+document.getElementById("leg_type3").addEventListener("click", function () {  objToggle1(2);});
 
-document.getElementById("seat_type1").addEventListener("click", function () {objToggle2(0);});
+document.getElementById("seat_type1").addEventListener("click", function () {  objToggle2(0);});
 
-document.getElementById("seat_type2").addEventListener("click", function () {objToggle2(1);});
+document.getElementById("seat_type2").addEventListener("click", function () {  objToggle2(1);});
 
-document.getElementById("seat_type3").addEventListener("click", function () {objToggle2(2);});
+document.getElementById("seat_type3").addEventListener("click", function () {  objToggle2(2);});
 
-document.getElementById("seat_type4").addEventListener("click", function () {objToggle2(3);});
+document.getElementById("seat_type4").addEventListener("click", function () {  objToggle2(3);});
 
-renderer.domElement.addEventListener( 'click', clickEvent );
+renderer.domElement.addEventListener("click", clickEvent);
 
-function clickEvent( e ) {
-  pointer.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-  pointer.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-  raycaster.setFromCamera( pointer, camera );
-  let intersects = raycaster.intersectObjects( [Groups], true);
-  if ( intersects.length > 0 ) {
-    let object = intersects[0].object;
-    transformControl.attach(object.parent.parent)
-    if(transformControl.object == Group1){
-      transformControl.detach()
+let editorHistory = new UndoManager(),
+  data
+let oldObjData = null;
+let newObjData = null;
+
+
+function clickEvent(e) {
+  pointer.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
+  pointer.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  
+   raycaster.setFromCamera(pointer, camera);
+   let intersects = raycaster.intersectObjects([Groups], true);
+   if (intersects.length > 0) {
+   let object = intersects[0].object;
+   let objParent = object.parent.parent
+
+    transformControl.attach(objParent);
+    if (transformControl.object == Group1) {
+      transformControl.detach();
       Group1Transform();
-      transformControl.attach(object.parent.parent)
-    }else if(transformControl.object == Group2){
-      transformControl.detach()
+      transformControl.attach(objParent);
+    } else if (transformControl.object == Group2) {
+      transformControl.detach();
       Group2Transform();
-      transformControl.attach(object.parent.parent)
+      transformControl.attach(objParent);
     }
+
+    // 마우스 누를 때 oldobj
+    transformControl.addEventListener("mouseDown", function (e) {
+      oldObjData = getObjectData(objParent);  
+      console.log("1",oldObjData)
+    });
+    // 마우스 올라올 때 newobj
+    transformControl.addEventListener("mouseUp", function (e) {
+      newObjData = getObjectData(objParent);
+      console.log("2",newObjData);
+    });
+
+    transformControl.addEventListener("dragging-changed", function (e) {
+      if (e.value === false) {
+        // End dragging
+        addHistory(oldObjData, newObjData); // Store undo/redo
+      }
+      //console.log(e)
+    });
+
+    function getObjectData() {
+      data = {
+        uuid: objParent.uuid, // Important, used in addHistory.
+        position: objParent.position.copy({
+          x: objParent.position.x,
+          y: objParent.position.y,
+          z: objParent.position.z,
+        }),
+        //rotation: object.rotation.copy({x: object.rotation.x, y: object.rotation.y, z: object.rotation.z}),
+        scale: objParent.scale.copy({
+          x: objParent.scale.x,
+          y: objParent.scale.y,
+          z: objParent.scale.z,
+        }),
+      };
+      return data;
+    }
+
+    function addHistory(oldObjData, newObjData) {
+      if (oldObjData && newObjData && oldObjData.uuid == newObjData.uuid) {
+        editorHistory.add({
+          undo: function () {
+            resetObject(oldObjData);
+          },
+          redo: function () {
+            resetObject(newObjData);
+          },
+        });
+      }
+    }
+    
+    // function resetObject(){
+    //   var nowObj = newObjData// you can find object by data.uuid.
+    //   nowObj.position.x = data.position.x;
+    //   nowObj.position.y = data.position.y;
+    //   nowObj.position.z = data.position.z;
+    //   // nowObj.rotation.x = data.rotation.x;
+    //   // nowObj.rotation.y = data.rotation.y;
+    //   // nowObj.rotation.z = data.rotation.z;
+    //   nowObj.scale.x = data.scale.x;
+    //   nowObj.scale.y = data.scale.y;
+    //   nowObj.scale.z = data.scale.z;
+    //   console.log("resetObject", data)
+    // }
+    
+    // function resetObject(){
+
+    // }
   }
 }
 
+document.getElementById("undo").addEventListener("click", function(){
+  editorHistory.undo()
+})
+
 
 // 클릭 되었을 때
-function Group1Transform(){
+function Group1Transform() {
   transformControl.addEventListener("change", function () {
+    box1.setFromObject(Group1, Group1);
+    box1.getSize(measure1);
+
     sizeXInput.value = (measure1.x * 100).toFixed(2).concat(" cm");
     sizeYInput.value = (measure1.y * 100).toFixed(2).concat(" cm");
     sizeZInput.value = (measure1.z * 100).toFixed(2).concat(" cm");
-    
-    Group1.getWorldPosition(worldPosition)
+
+    Group1.getWorldPosition(worldPosition);
     posXInput.value = (worldPosition.x * 100).toFixed(2).concat(" cm");
     posYInput.value = (worldPosition.y * 100).toFixed(2).concat(" cm");
     posZInput.value = (worldPosition.z * 100).toFixed(2).concat(" cm");
-    
-    let group1X = (THREE.MathUtils.radToDeg( Group1.rotation.x )).toFixed(2).concat(" °");
-    let group1Y = (THREE.MathUtils.radToDeg( Group1.rotation.y )).toFixed(2).concat(" °");
-    let group1Z = (THREE.MathUtils.radToDeg( Group1.rotation.z )).toFixed(2).concat(" °");
 
-    rotXInput.value = group1X
-    rotYInput.value = group1Y
-    rotZInput.value = group1Z
+    let group1X = THREE.MathUtils.radToDeg(Group1.rotation.x)
+      .toFixed(2)
+      .concat(" °");
+    let group1Y = THREE.MathUtils.radToDeg(Group1.rotation.y)
+      .toFixed(2)
+      .concat(" °");
+    let group1Z = THREE.MathUtils.radToDeg(Group1.rotation.z)
+      .toFixed(2)
+      .concat(" °");
 
-    scaleXInput.value = (Group1.scale.x).toFixed(2)
-    scaleYInput.value = (Group1.scale.y).toFixed(2)
-    scaleZInput.value = (Group1.scale.z).toFixed(2)
+    rotXInput.value = group1X;
+    rotYInput.value = group1Y;
+    rotZInput.value = group1Z;
+
+    scaleXInput.value = Group1.scale.x.toFixed(2);
+    scaleYInput.value = Group1.scale.y.toFixed(2);
+    scaleZInput.value = Group1.scale.z.toFixed(2);
   });
 }
 
-function Group2Transform(){
+function Group2Transform() {
   transformControl.addEventListener("change", function () {
     sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm");
     sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm");
     sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm");
 
-    Group2.getWorldPosition(worldPosition)
+    Group2.getWorldPosition(worldPosition);
     posXInput.value = (worldPosition.x * 100).toFixed(2).concat(" cm");
     posYInput.value = (worldPosition.y * 100).toFixed(2).concat(" cm");
     posZInput.value = (worldPosition.z * 100).toFixed(2).concat(" cm");
 
-    let group2X = (THREE.MathUtils.radToDeg( Group2.rotation.x )).toFixed(2).concat(" °");
-    let group2Y = (THREE.MathUtils.radToDeg( Group2.rotation.y )).toFixed(2).concat(" °");
-    let group2Z = (THREE.MathUtils.radToDeg( Group2.rotation.z )).toFixed(2).concat(" °");
+    let group2X = THREE.MathUtils.radToDeg(Group2.rotation.x)
+      .toFixed(2)
+      .concat(" °");
+    let group2Y = THREE.MathUtils.radToDeg(Group2.rotation.y)
+      .toFixed(2)
+      .concat(" °");
+    let group2Z = THREE.MathUtils.radToDeg(Group2.rotation.z)
+      .toFixed(2)
+      .concat(" °");
 
     rotXInput.value = group2X;
     rotYInput.value = group2Y;
     rotZInput.value = group2Z;
 
-    scaleXInput.value = (Group2.scale.x).toFixed(2)
-    scaleYInput.value = (Group2.scale.y).toFixed(2)
-    scaleZInput.value = (Group2.scale.z).toFixed(2)
+    scaleXInput.value = Group2.scale.x.toFixed(2);
+    scaleYInput.value = Group2.scale.y.toFixed(2);
+    scaleZInput.value = Group2.scale.z.toFixed(2);
   });
 }
 
-function Group1UpdateTransform(){
-  box1.setFromObject( Group1, Group1)
+function Group1UpdateTransform() {
+  box1.setFromObject(Group1, Group1);
   box1.getSize(measure1);
-  scene.add(helper1)
-  Group1.position.x = (parseFloat(posXInput.value) / 100) || Group1.position.x;
-  Group1.position.y = (parseFloat(posYInput.value) / 100) || Group1.position.y;
-  Group1.position.z = (parseFloat(posZInput.value) / 100) || Group1.position.z;
-  
-  Group1.rotation.x = (parseFloat(rotXInput.value) * Math.PI / 180) || Group1.rotation.x;
-  Group1.rotation.y = (parseFloat(rotYInput.value) * Math.PI / 180) || Group1.rotation.y;
-  Group1.rotation.z = (parseFloat(rotZInput.value) * Math.PI / 180) || Group1.rotation.z;
+  scene.add(helper1);
+
+  Group1.position.x = parseFloat(posXInput.value) / 100 || Group1.position.x;
+  Group1.position.y = parseFloat(posYInput.value) / 100 || Group1.position.y;
+  Group1.position.z = parseFloat(posZInput.value) / 100 || Group1.position.z;
+
+  if (posXInput.value == "0") {
+    Group1.position.x = "0";
+  }
+  if (posYInput.value == "0") {
+    Group1.position.y = "0";
+  }
+  if (posZInput.value == "0") {
+    Group1.position.z = "0";
+  }
+
+  Group1.rotation.x =
+    (parseFloat(rotXInput.value) * Math.PI) / 180 || Group1.rotation.x;
+  Group1.rotation.y =
+    (parseFloat(rotYInput.value) * Math.PI) / 180 || Group1.rotation.y;
+  Group1.rotation.z =
+    (parseFloat(rotZInput.value) * Math.PI) / 180 || Group1.rotation.z;
+
+  if (rotXInput.value == "0") {
+    Group1.rotation.x = "0";
+  }
+  if (rotYInput.value == "0") {
+    Group1.rotation.y = "0";
+  }
+  if (rotZInput.value == "0") {
+    Group1.rotation.z = "0";
+  }
 
   Group1.scale.x = parseFloat(scaleXInput.value) || Group1.scale.x;
   Group1.scale.y = parseFloat(scaleYInput.value) || Group1.scale.y;
   Group1.scale.z = parseFloat(scaleZInput.value) || Group1.scale.z;
 }
 
-function Group2UpdateTransform(){
-  box2.setFromObject( Group2, Group2)
+function Group2UpdateTransform() {
+  box2.setFromObject(Group2, Group2);
   box2.getSize(measure2);
-  scene.add(helper2)
-  Group2.position.x = (parseFloat(posXInput.value) / 100) || Group2.position.x;
-  Group2.position.y = (parseFloat(posYInput.value) / 100) || Group2.position.y;
-  Group2.position.z = (parseFloat(posZInput.value) / 100) || Group2.position.z;
+  scene.add(helper2);
+  Group2.position.x = parseFloat(posXInput.value) / 100 || Group2.position.x;
+  Group2.position.y = parseFloat(posYInput.value) / 100 || Group2.position.y;
+  Group2.position.z = parseFloat(posZInput.value) / 100 || Group2.position.z;
 
-  Group2.rotation.x = (parseFloat(rotXInput.value) * Math.PI / 180) || Group2.rotation.x;
-  Group2.rotation.y = (parseFloat(rotYInput.value) * Math.PI / 180) || Group2.rotation.y;
-  Group2.rotation.z = (parseFloat(rotZInput.value) * Math.PI / 180) || Group2.rotation.z;
+  if (posXInput.value == "0") {
+    Group2.position.x = "0";
+  }
+  if (posYInput.value == "0") {
+    Group2.position.y = "0";
+  }
+  if (posZInput.value == "0") {
+    Group2.position.z = "0";
+  }
+
+  Group2.rotation.x =
+    (parseFloat(rotXInput.value) * Math.PI) / 180 || Group2.rotation.x;
+  Group2.rotation.y =
+    (parseFloat(rotYInput.value) * Math.PI) / 180 || Group2.rotation.y;
+  Group2.rotation.z =
+    (parseFloat(rotZInput.value) * Math.PI) / 180 || Group2.rotation.z;
+
+  if (rotXInput.value == "0") {
+    Group2.rotation.x = "0";
+  }
+  if (rotYInput.value == "0") {
+    Group2.rotation.y = "0";
+  }
+  if (rotZInput.value == "0") {
+    Group2.rotation.z = "0";
+  }
 
   Group2.scale.x = parseFloat(scaleXInput.value) || Group2.scale.x;
   Group2.scale.y = parseFloat(scaleYInput.value) || Group2.scale.y;
   Group2.scale.z = parseFloat(scaleZInput.value) || Group2.scale.z;
 }
 
-function animate2(){
-  if(transformControl.object == Group1){
+function animate2() {
+  if (transformControl.object == Group1) {
     Group1UpdateTransform();
-  }else if(transformControl.object == Group2){
+  } else if (transformControl.object == Group2) {
     Group2UpdateTransform();
   }
   requestAnimationFrame(animate2);

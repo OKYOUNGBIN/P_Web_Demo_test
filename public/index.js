@@ -140,4 +140,4 @@ function animate() {
 
 animate();
 
-export { scene, camera, renderer, oribitControls, transformControl , gridHelper, raycaster, pointer, render};
+export { scene, camera, renderer, oribitControls, transformControl ,canvas, gridHelper, raycaster, pointer, render};
