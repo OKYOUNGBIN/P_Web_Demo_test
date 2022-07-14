@@ -37,7 +37,7 @@ Promise.all([
   loadModelUsingPromise("/chair/leg/tablechair_0102_leg.glb"),
   loadModelUsingPromise("/chair/leg/tablechair_0103_leg.glb"),
 ]).then((results) => {
-  for (var j = 0; j < results.length; j++) {
+  for (let j = 0; j < results.length; j++) {
     Group1.add(results[j].scenes[0]);
     Group1.children[j].visible = false;
     Group1.children[j].scale.set(0, 0, 0);
@@ -50,7 +50,7 @@ Promise.all([
   loadModelUsingPromise("/chair/seat/tablechair_0203_seat.glb"),
   loadModelUsingPromise("/chair/seat/tablechair_0204_seat.glb"),
 ]).then((results) => {
-  for (var j = 0; j < results.length; j++) {
+  for (let j = 0; j < results.length; j++) {
     Group2.add(results[j].scenes[0]);
     Group2.children[j].visible = false;
     Group2.children[j].scale.set(0, 0, 0);
@@ -127,8 +127,7 @@ function uploadTempS3(event) {
       console.log(tempGlbUrl);
 
       const model = document
-        .querySelector("#editing_adapter")
-        .shadowRoot.querySelector("model-viewer");
+        .querySelector("#editing_adapter").shadowRoot.querySelector("model-viewer");
       model.src = tempGlbUrl;
     },
     { binary: true }
@@ -157,7 +156,7 @@ document.getElementById("reset2").addEventListener("click", function () {
 
 document.getElementById("leg_type1").addEventListener("click", function () {  objToggle1(0);});
 
-document.getElementById("leg_type2").addEventListener("click", function () { objToggle1(1);});
+document.getElementById("leg_type2").addEventListener("click", function () {  objToggle1(1);});
 
 document.getElementById("leg_type3").addEventListener("click", function () {  objToggle1(2);});
 
@@ -171,22 +170,18 @@ document.getElementById("seat_type4").addEventListener("click", function () {  o
 
 renderer.domElement.addEventListener("click", clickEvent);
 
-let editorHistory = new UndoManager(),
-  data
-let oldObjData = null;
-let newObjData = null;
-
+let oldObjData = [];
+let newObjData = [];
 
 function clickEvent(e) {
   pointer.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
   pointer.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
-  
-   raycaster.setFromCamera(pointer, camera);
-   let intersects = raycaster.intersectObjects([Groups], true);
-   if (intersects.length > 0) {
-   let object = intersects[0].object;
-   let objParent = object.parent.parent
 
+  raycaster.setFromCamera(pointer, camera);
+  let intersects = raycaster.intersectObjects([Groups], true);
+  if (intersects.length > 0) {
+    let object = intersects[0].object;
+    let objParent = object.parent.parent;
     transformControl.attach(objParent);
     if (transformControl.object == Group1) {
       transformControl.detach();
@@ -198,79 +193,102 @@ function clickEvent(e) {
       transformControl.attach(objParent);
     }
 
-    // 마우스 누를 때 oldobj
-    transformControl.addEventListener("mouseDown", function (e) {
-      oldObjData = getObjectData(objParent);  
-      console.log("1",oldObjData)
-    });
-    // 마우스 올라올 때 newobj
-    transformControl.addEventListener("mouseUp", function (e) {
-      newObjData = getObjectData(objParent);
-      console.log("2",newObjData);
-    });
+    transformControl.addEventListener("mouseDown", function (){
+      oldObjData.push(posXInput.value)
+      console.log("down", oldObjData)
+    })
+    // transformControl.addEventListener("mouseUp", function (){
+    //   newObjData.push(objParent.position)
+    //   console.log("up",newObjData)
+    // })
 
-    transformControl.addEventListener("dragging-changed", function (e) {
-      if (e.value === false) {
-        // End dragging
-        addHistory(oldObjData, newObjData); // Store undo/redo
-      }
-      //console.log(e)
+    document.getElementById("undo").addEventListener("click", function() {
+      let newObjData = oldObjData.pop()
+         
+      posXInput.value = newObjData ? newObjData : posXInput.value
     });
 
-    function getObjectData() {
-      data = {
-        uuid: objParent.uuid, // Important, used in addHistory.
-        position: objParent.position.copy({
-          x: objParent.position.x,
-          y: objParent.position.y,
-          z: objParent.position.z,
-        }),
-        //rotation: object.rotation.copy({x: object.rotation.x, y: object.rotation.y, z: object.rotation.z}),
-        scale: objParent.scale.copy({
-          x: objParent.scale.x,
-          y: objParent.scale.y,
-          z: objParent.scale.z,
-        }),
-      };
-      return data;
-    }
-
-    function addHistory(oldObjData, newObjData) {
-      if (oldObjData && newObjData && oldObjData.uuid == newObjData.uuid) {
-        editorHistory.add({
-          undo: function () {
-            resetObject(oldObjData);
-          },
-          redo: function () {
-            resetObject(newObjData);
-          },
-        });
-      }
-    }
-    
-    // function resetObject(){
-    //   var nowObj = newObjData// you can find object by data.uuid.
-    //   nowObj.position.x = data.position.x;
-    //   nowObj.position.y = data.position.y;
-    //   nowObj.position.z = data.position.z;
-    //   // nowObj.rotation.x = data.rotation.x;
-    //   // nowObj.rotation.y = data.rotation.y;
-    //   // nowObj.rotation.z = data.rotation.z;
-    //   nowObj.scale.x = data.scale.x;
-    //   nowObj.scale.y = data.scale.y;
-    //   nowObj.scale.z = data.scale.z;
-    //   console.log("resetObject", data)
-    // }
-    
-    // function resetObject(){
-
-    // }
   }
 }
 
-document.getElementById("undo").addEventListener("click", function(){
-  editorHistory.undo()
-})
+// var fousedObject = null;
+// canvas.onmousedown = function (e) {
+//   // container is html element includes canvas.
+//   e.preventDefault();
+//   var mouse = new THREE.Vector2();
+//   mouse.x = 2 * (e.offsetX / canvas.clientWidth) - 1;
+//   mouse.y = 1 - 2 * (e.offsetY / canvas.clientHeight);
+
+//   raycaster.setFromCamera(pointer, camera);
+//   let intersects = raycaster.intersectObjects([Groups], true);
+//   if (intersects.length > 0) {
+
+//     var obj = intersects[0].object;
+//     if(obj.parent.type != 'Scene') { // It is model or group...
+//         obj = obj.parent;
+//     }
+//     if( fousedObject  != obj) {
+//         fousedObject  = obj;
+//         transformControl.attach(fousedObject  ); // Add transformController, so, now we can capture any event about from focusedObject.
+//     }
+//     } else {
+//     return;
+//   }
+
+//     var oldObjData = null;
+//     var newObjData = null;
+//     transformControl.addEventListener("mouseDown", function (e) {
+//       oldObjData = getObjectData(fousedObject);
+//       console.log(oldObjData)
+//     });
+//     transformControl.addEventListener("mouseUp", function (e) {
+//       newObjData = getObjectData(fousedObject);
+//       console.log(newObjData)
+//     });
+//     transformControl.addEventListener("dragging-changed", function (e) {
+//       if (e.value === false) {
+//         // End dragging
+//         addHistory(oldObjData, newObjData); // Store undo/redo
+//       }
+//     });
+
+//     function getObjectData(object) {
+//       let data = {
+//         uuid: object.uuid, // Important, used in addHistory.
+//         position: object.position.copy({x: object.position.x, y: object.position.y, z: object.position.z }),
+//         //rotation: objParent.rotation.copy({x: objParent.rotation.x, y: objParent.rotation.y, z: objParent.rotation.z}),
+//         scale: obj.scale.copy({ x: obj.scale.x, y: obj.scale.y, z: obj.scale.z }),
+//       };
+//       return data;
+//     }
+
+//     function addHistory(oldObjData, newObjData) {
+//       if (oldObjData && newObjData && oldObjData.uuid == newObjData.uuid) {
+//         editorHistory.add({
+//           undo: function () {
+//             resetObject(oldObjData);
+//           },
+//           redo: function () {
+//             resetObject(newObjData);
+//           },
+//         });
+//       }
+//     }
+
+//     function resetObject(oldObjData) {
+//       var nowObj = fousedObject// you can find object by data.uuid.
+//       nowObj.position.x = oldObjData.position.x;
+//       nowObj.position.y = oldObjData.position.y;
+//       nowObj.position.z = oldObjData.position.z;
+//       // nowObj.rotation.x = data.rotation.x;
+//       // nowObj.rotation.y = data.rotation.y;
+//       // nowObj.rotation.z = data.rotation.z;
+//       nowObj.scale.x = oldObjData.scale.x;
+//       nowObj.scale.y = oldObjData.scale.y;
+//       nowObj.scale.z = oldObjData.scale.z;
+//       console.log(resetObject(oldObjData))
+//   }
+// };
 
 
 // 클릭 되었을 때
@@ -288,15 +306,9 @@ function Group1Transform() {
     posYInput.value = (worldPosition.y * 100).toFixed(2).concat(" cm");
     posZInput.value = (worldPosition.z * 100).toFixed(2).concat(" cm");
 
-    let group1X = THREE.MathUtils.radToDeg(Group1.rotation.x)
-      .toFixed(2)
-      .concat(" °");
-    let group1Y = THREE.MathUtils.radToDeg(Group1.rotation.y)
-      .toFixed(2)
-      .concat(" °");
-    let group1Z = THREE.MathUtils.radToDeg(Group1.rotation.z)
-      .toFixed(2)
-      .concat(" °");
+    let group1X = THREE.MathUtils.radToDeg(Group1.rotation.x).toFixed(2).concat(" °");
+    let group1Y = THREE.MathUtils.radToDeg(Group1.rotation.y).toFixed(2).concat(" °");
+    let group1Z = THREE.MathUtils.radToDeg(Group1.rotation.z).toFixed(2).concat(" °");
 
     rotXInput.value = group1X;
     rotYInput.value = group1Y;
@@ -310,6 +322,9 @@ function Group1Transform() {
 
 function Group2Transform() {
   transformControl.addEventListener("change", function () {
+    box2.setFromObject(Group2, Group2);
+    box2.getSize(measure2);
+
     sizeXInput.value = (measure2.x * 100).toFixed(2).concat(" cm");
     sizeYInput.value = (measure2.y * 100).toFixed(2).concat(" cm");
     sizeZInput.value = (measure2.z * 100).toFixed(2).concat(" cm");
@@ -319,15 +334,9 @@ function Group2Transform() {
     posYInput.value = (worldPosition.y * 100).toFixed(2).concat(" cm");
     posZInput.value = (worldPosition.z * 100).toFixed(2).concat(" cm");
 
-    let group2X = THREE.MathUtils.radToDeg(Group2.rotation.x)
-      .toFixed(2)
-      .concat(" °");
-    let group2Y = THREE.MathUtils.radToDeg(Group2.rotation.y)
-      .toFixed(2)
-      .concat(" °");
-    let group2Z = THREE.MathUtils.radToDeg(Group2.rotation.z)
-      .toFixed(2)
-      .concat(" °");
+    let group2X = THREE.MathUtils.radToDeg(Group1.rotation.x).toFixed(2).concat(" °");
+    let group2Y = THREE.MathUtils.radToDeg(Group1.rotation.y).toFixed(2).concat(" °");
+    let group2Z = THREE.MathUtils.radToDeg(Group1.rotation.z).toFixed(2).concat(" °");
 
     rotXInput.value = group2X;
     rotYInput.value = group2Y;
@@ -358,12 +367,9 @@ function Group1UpdateTransform() {
     Group1.position.z = "0";
   }
 
-  Group1.rotation.x =
-    (parseFloat(rotXInput.value) * Math.PI) / 180 || Group1.rotation.x;
-  Group1.rotation.y =
-    (parseFloat(rotYInput.value) * Math.PI) / 180 || Group1.rotation.y;
-  Group1.rotation.z =
-    (parseFloat(rotZInput.value) * Math.PI) / 180 || Group1.rotation.z;
+  Group1.rotation.x = (parseFloat(rotXInput.value) * Math.PI) / 180 || Group1.rotation.x;
+  Group1.rotation.y = (parseFloat(rotYInput.value) * Math.PI) / 180 || Group1.rotation.y;
+  Group1.rotation.z = (parseFloat(rotZInput.value) * Math.PI) / 180 || Group1.rotation.z;
 
   if (rotXInput.value == "0") {
     Group1.rotation.x = "0";
@@ -384,6 +390,7 @@ function Group2UpdateTransform() {
   box2.setFromObject(Group2, Group2);
   box2.getSize(measure2);
   scene.add(helper2);
+
   Group2.position.x = parseFloat(posXInput.value) / 100 || Group2.position.x;
   Group2.position.y = parseFloat(posYInput.value) / 100 || Group2.position.y;
   Group2.position.z = parseFloat(posZInput.value) / 100 || Group2.position.z;
@@ -398,12 +405,9 @@ function Group2UpdateTransform() {
     Group2.position.z = "0";
   }
 
-  Group2.rotation.x =
-    (parseFloat(rotXInput.value) * Math.PI) / 180 || Group2.rotation.x;
-  Group2.rotation.y =
-    (parseFloat(rotYInput.value) * Math.PI) / 180 || Group2.rotation.y;
-  Group2.rotation.z =
-    (parseFloat(rotZInput.value) * Math.PI) / 180 || Group2.rotation.z;
+  Group2.rotation.x = (parseFloat(rotXInput.value) * Math.PI) / 180 || Group2.rotation.x;
+  Group2.rotation.y = (parseFloat(rotYInput.value) * Math.PI) / 180 || Group2.rotation.y;
+  Group2.rotation.z = (parseFloat(rotZInput.value) * Math.PI) / 180 || Group2.rotation.z;
 
   if (rotXInput.value == "0") {
     Group2.rotation.x = "0";
