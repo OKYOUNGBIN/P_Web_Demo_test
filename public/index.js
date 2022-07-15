@@ -132,7 +132,7 @@ function animate() {
   renderer.render( scene, camera );
   requestAnimationFrame(animate);
   if (resizeRendererToDisplaySize(renderer)) {
-    const canvas = renderer.domElement;
+    canvas = renderer.domElement;
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateWorldMatrix();
   }
