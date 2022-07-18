@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="shortcut icon" type="image/png" href="../../shared-assets/icons/favicon.png" />
-    <script type="module" src="/index.js" async></script>
     <script type="module" src="/js/objects.js" async></script>
     <script type="text/javascript" src="/js/qrcode.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
@@ -20,162 +19,9 @@
     <!-- Web animations for paper-dropdown -->
     <script src="/beautify-css.js"></script>
     <script src="/beautify-html.js"></script>
-    <script src="/web-animations-next-lite.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/object.css">
 </head>
 
 <body>
-    <div class="modal">
-        <h1 id="howtouse">만들고자 하는 3D 디자인을 선택해주세요</h1>
-    </div>
-    <canvas id="c"></canvas>
-    <a href="#" class="download-glb">다음
-        <div class="mouse">
-            <span></span>
-        </div>
-        <div class="arrow">
-            <span></span>
-        </div>
-    </a>
-    <div class="main">
-        <button id="tabHideShow">이거누르면 사라짐</button>
-        <div class="tabs" id="tabs">
-            <div class="tab" data-tab-target="#tab1">
-                <p>의자</p>
-            </div>
-            <div class="tab" data-tab-target="#tab2">
-                <p>책상</p>
-            </div>
-            <div class="tab" data-tab-target="#tab3">
-                <p>캐비넷</p>
-            </div>
-            <div class="tab" data-tab-target="#tab4">
-                <p>선반</p>
-            </div>
-            <div class="tab" data-tab-target="#tab5">
-                <p>옷장</p>
-            </div>
-            <div class="tab" data-tab-target="#tab6">
-                <p>전등</p>
-            </div>
-            <div class="tab" data-tab-target="#tab7">
-                <p>러그</p>
-            </div>
-            <div class="tab" data-tab-target="#tab8">
-                <p>소파</p>
-            </div>
-            <div class="tab" data-tab-target="#tab9">
-                <p>소품</p>
-            </div>
-            <div class="tab" data-tab-target="#tab10">
-                <p>그 외</p>
-            </div>
-        </div>
-        <div id="bottom_content" class="bottom_content">
-            <div id="tab1" data-tab-content class="items active">
-                <div id="button__Space" class="button__Space">
-                <button class="button_style">의자종류1</button>
-                <button class="button_style">의자종류2</button>
-                <button class="button_style">의자종류3</button>
-            </div>
-            </div>
-            <div id="tab2" data-tab-content class="items">
-                <h2>Tab2</h2>
-                <p>탭 2에 들어갈 내용</p>
-            </div>
-            <div id="tab3" data-tab-content class="items">
-                <h2>Tab3</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab4" data-tab-content class="items">
-                <h2>Tab4</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab5" data-tab-content class="items">
-                <h2>Tab5</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab6" data-tab-content class="items">
-                <h2>Tab6</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab7" data-tab-content class="items">
-                <h2>Tab7</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab8" data-tab-content class="items">
-                <h2>Tab8</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab9" data-tab-content class="items">
-                <h2>Tab9</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-            <div id="tab10" data-tab-content class="items">
-                <h2>Tab10</h2>
-                <p>탭 3에 들어갈 내용</p>
-            </div>
-        </div>
-    </div>
-    <nav>
-        <ul>
-            <div class="nav__subtitle">
-                <a href="/" id="homeIcon"><span class="material-icons">home</span></a>
-                <p>Table</p>
-            </div>
-            <li class="dropdown">
-                <ul>
-                    <li>
-                        <a href="#">Top(상판)<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="semicircle_type1"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
-                            <a id="semicircle_type2"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
-                            <p id="name">1200 1400</p>
-                            <a id="semicircle_type3"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
-                            <a id="semicircle_type4"><img src="/icon/table/semicircle/semi_circle_1.png" alt=""></a>
-                            <p id="name">1600 1800</p>
-                            <a id="rectangle_type1"><img src="/icon/table/rectangle/rectangle_1.png" alt=""></a>
-                            <a id="rectangle_type2"><img src="/icon/table/rectangle/rectangle_2.png" alt=""></a>
-                            <p id="name">1200 1400</p>
-                            <a id="rectangle_type3"><img src="/icon/table/rectangle/rectangle_3.png" alt=""></a>
-                            <a id="rectangle_type4"><img src="/icon/table/rectangle/rectangle_4.png" alt=""></a>
-                            <p id="name">1600 1800</p>
-                            <a id="circle_type1"><img src="/icon/table/circle/circle_1.png" alt=""></a>
-                            <a id="circle_type2"><img src="/icon/table/circle/circle_2.png" alt=""></a>
-                            <p id="name">1200 1400</p>
-                            <a id="circle_type3"><img src="/icon/table/circle/circle_3.png" alt=""></a>
-                            <a id="circle_type4"><img src="/icon/table/circle/circle_4.png" alt=""></a>
-                            <p id="name">1600 1800</p>
-                        </li>
-                    </div>
-                    <li>
-                        <a href="#">Leg(다리)<span class="fas fa-caret-down"></span></a>
-                    </li>
-                    <div class="dropdown__two">
-                        <li>
-                            <a id="table_leg_type1"><img src="/icon/table/leg/table_leg_1.png" alt=""></a>
-                            <a id="table_leg_type2"><img src="/icon/table/leg/table_leg_2.png" alt=""></a>
-                            <p id="name">1200 1400</p>
-                            <a id="table_leg_type3"><img src="/icon/table/leg/table_leg_3.png" alt=""></a>
-                            <a id="table_leg_type4"><img src="/icon/table/leg/table_leg_4.png" alt=""></a>
-                            <p id="name">1600 1800</p>
-                            <a id="table_leg_type5"><img src="/icon/table/leg/table_leg_5.png" alt=""></a>
-                            <a id="table_leg_type6"><img src="/icon/table/leg/table_leg_6.png" alt=""></a>
-                            <p id="name">1200 1400</p>
-                            <a id="table_leg_type7"><img src="/icon/table/leg/table_leg_7.png" alt=""></a>
-                            <a id="table_leg_type8"><img src="/icon/table/leg/table_leg_8.png" alt=""></a>
-                            <p id="name">1600 1800</p>
-                        </li>
-                    </div>
-
-                </ul>
-            </li>
-        </ul>
-    </nav>
     <script>
         // Necessary hack for Redux. See: https://github.com/reduxjs/redux/pull/2910
         window.process = {
@@ -184,7 +30,7 @@
             }
         };
     </script>
-    <script type="module" src="/space-opera.js"></script>
+    <script type="module" src="/space-opera_kor.js"></script>
     <script>
         window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
         ga('create', 'UA-169901325-1', { 'storage': 'none' });

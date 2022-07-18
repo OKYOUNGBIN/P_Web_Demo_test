@@ -170,8 +170,9 @@ document.getElementById("seat_type4").addEventListener("click", function () {  o
 
 renderer.domElement.addEventListener("click", clickEvent);
 
-let oldObjData = [];
-//let newObjData = [];
+let xObjData = [];
+let yObjData = [];
+let zObjData = [];
 
 function clickEvent(e) {
   pointer.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
@@ -194,105 +195,27 @@ function clickEvent(e) {
     }
   }
 }
+
 transformControl.addEventListener("mouseDown", function (){
-  oldObjData.push(posXInput.value, posYInput.value, posZInput.value)
-  console.log("down", oldObjData)
+  xObjData.push(posXInput.value)
+  yObjData.push(posYInput.value)
+  zObjData.push(posZInput.value)
+  console.log("down", xObjData)
 })
 
 document.getElementById("undo").addEventListener("click", function() {
-  let newObjData = oldObjData.pop()
+  let newObjData = xObjData.pop()
   posXInput.value = newObjData ? newObjData : posXInput.value,
   console.log(newObjData)
 });
 document.getElementById("undo").addEventListener("click", function() {
-  let newObjData = oldObjData.pop()
+  let newObjData = yObjData.pop()
   posYInput.value = newObjData ? newObjData : posYInput.value
 });
 document.getElementById("undo").addEventListener("click", function() {
-  let newObjData = oldObjData.pop()
+  let newObjData = zObjData.pop()
   posZInput.value = newObjData ? newObjData : posZInput.value
 });
-
-// document.getElementById("undo").addEventListener("click", function() {
-
-// })
-
-// var fousedObject = null;
-// //var raycaster = new THREE.Raycaster();
-// canvas.onmousedown = function(e) { // container is html element includes canvas.
-// e.preventDefault();
-// var mouse = new THREE.Vector2();
-// mouse.x = 2 * (e.offsetX / canvas.clientWidth) - 1;
-// mouse.y = 1 - 2 * ( e.offsetY / canvas.clientHeight );
-// raycaster.setFromCamera( mouse, camera );
-// var intersects = raycaster.intersectObjects( [Groups], true); // true: for picking group object like fbx, obj.
-// if ( intersects.length > 0 ) {
-// var obj = intersects[0].object;
-// if(obj.parent.type != "Scene") { // It is model or group…
-// obj = obj.parent;
-// }
-// if( fousedObject != obj) {
-// fousedObject = obj;
-// transformControl.attach(fousedObject ); // Add transformController, so, now we can capture any event about from focusedObject.
-// }
-// } else {
-// return;
-// }
-// //var transControl = new THREE.TransformControls( camera, renderer.domElement );
-// var focusedObj = null;
-// var oldObjData = null;
-// var newObjData = null;
-// transformControl.addEventListener( "mouseDown", function(e) {
-// oldObjData =getObjectData(focusedObj);
-// } );
-// transformControl.addEventListener( "mouseUp", function(e) {
-// newObjData = getObjectData(focusedObj);
-// } );
-// transformControl.addEventListener( "dragging-changed", function ( e ) {
-// if(e.value === false) { // End dragging
-// addHistory(oldObjData, newObjData); // Store undo/redo
-// }
-// } );
-
-// console.log(obj)
-// function getObjectData(obj) {
-// var data = {
-// //uuid: obj.uuid, 
-// position: obj.position.copy({x: obj.position.x, y: obj.position.y, z: obj.position.z}),
-// rotation: obj.rotation.copy({x: obj.rotation.x, y: obj.rotation.y, z: obj.rotation.z}),
-// scale: obj.scale.copy({x: obj.scale.x, y: obj.scale.y, z: obj.scale.z}),
-
-// };
-// return data;
-// }
-
-// function addHistory(oldObjData , newObjData ) {
-// if(oldObjData && newObjData && oldObjData.uuid == newObjData.uuid) {
-// editorHistory.add({
-// undo: function() {
-// resetObject(oldObjData);
-// },
-// redo: function() {
-// resetObject(newObjData);
-// }
-// });
-// }
-// }
-
-// function resetObject(data) {
-// var nowObj = fousedObject// you can find object by data.uuid.
-// nowObj.position.x = data.position.x;
-// nowObj.position.y = data.position.y;
-// nowObj.position.z = data.position.z;
-// nowObj.rotation.x = data.rotation.x;
-// nowObj.rotation.y = data.rotation.y;
-// nowObj.rotation.z = data.rotation.z;
-// nowObj.scale.x = data.scale.x;
-// nowObj.scale.y = data.scale.y;
-// nowObj.scale.z = data.scale.z;
-// }
-// };
-
 
 
 // 클릭 되었을 때

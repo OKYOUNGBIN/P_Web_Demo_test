@@ -151,7 +151,7 @@ me-tabs a {
 
 me-tabbed-panel {
     max-height: calc(100vh - 105px);
-    overflow-y: auto;
+    /* overflow-y: auto; */
     display: block;
 }
 
