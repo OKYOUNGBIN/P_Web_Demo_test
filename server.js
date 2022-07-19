@@ -21,7 +21,6 @@ const __dirname = path.dirname(__filename);
 //    cert: fs.readFileSync('/opt/bitnami/letsencrypt/certificates/xr-square.com.crt')
 //  };
  
-
 app.use(express.static("node_modules"));
 app.use(express.static("model-viewer"));
 app.use(express.static("aws"));

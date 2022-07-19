@@ -174,6 +174,14 @@ let xObjData = [];
 let yObjData = [];
 let zObjData = [];
 
+let xObjslice, yObjslice, zObjslice
+
+let xObjData2 = [];
+let yObjData2 = [];
+let zObjData2 = [];
+
+let newXObjData, newYObjData, newZObjData
+
 function clickEvent(e) {
   pointer.x = (e.clientX / renderer.domElement.clientWidth) * 2 - 1;
   pointer.y = -(e.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -197,26 +205,24 @@ function clickEvent(e) {
 }
 
 transformControl.addEventListener("mouseDown", function (){
-  xObjData.push(posXInput.value)
-  yObjData.push(posYInput.value)
-  zObjData.push(posZInput.value)
-  console.log("down", xObjData)
+  xObjData.push(posXInput.value);
+  yObjData.push(posYInput.value);
+  zObjData.push(posZInput.value);
+  xObjslice = xObjData.slice(Math.max(0, xObjData.length - 10));
+  yObjslice = yObjData.slice(Math.max(0, yObjData.length - 10));
+  zObjslice = zObjData.slice(Math.max(0, zObjData.length - 10));
+  console.log("down", xObjslice, yObjslice, zObjslice)
 })
 
-document.getElementById("undo").addEventListener("click", function() {
-  let newObjData = xObjData.pop()
-  posXInput.value = newObjData ? newObjData : posXInput.value,
-  console.log(newObjData)
-});
-document.getElementById("undo").addEventListener("click", function() {
-  let newObjData = yObjData.pop()
-  posYInput.value = newObjData ? newObjData : posYInput.value
-});
-document.getElementById("undo").addEventListener("click", function() {
-  let newObjData = zObjData.pop()
-  posZInput.value = newObjData ? newObjData : posZInput.value
-});
 
+document.getElementById("undo").addEventListener("click", function(){
+  newXObjData = xObjslice.pop();
+  posXInput.value = newXObjData ? newXObjData : posXInput.value
+  newYObjData = yObjslice.pop();
+  posYInput.value = newYObjData ? newYObjData : posYInput.value
+  newZObjData = zObjslice.pop();
+  posZInput.value = newZObjData ? newZObjData : posZInput.value
+});
 
 // 클릭 되었을 때
 function Group1Transform() {
@@ -357,6 +363,12 @@ function animate2() {
   } else if (transformControl.object == Group2) {
     Group2UpdateTransform();
   }
+  // if(newXObjData == undefined && newYObjData == undefined && newZObjData == undefined){
+  //   document.getElementById("undo").disabled = true;
+  // }else if(newXObjData != undefined || newYObjData != undefined || newZObjData != undefined){
+  //   document.getElementById("undo").disabled = false;
+  // }  
+
   requestAnimationFrame(animate2);
 }
 animate2();
