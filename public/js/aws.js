@@ -1,11 +1,11 @@
 const { savedUrl } = await fetch("/s3UrlSaved").then((res) => res.json()); // 편집한 glb s3 bucket
 const { htmlUrl } = await fetch("/s3UrlHtml").then((res) => res.json()); // scene viewer html 파일 s3 bucket
 
-const downloadGlb = document.querySelector("#downloadGlb");
+const downloadGlb = document.getElementById("downloadGlb");
 downloadGlb.addEventListener("click", localDownGlb);
 async function localDownGlb() {
   const modelViewer = document
-    .querySelector("#editing_adapter")
+    .getElementById("editing_adapter")
     .shadowRoot.querySelector("model-viewer");
   const glTF = await modelViewer.exportScene();
   var file = new File([glTF], "export.glb");

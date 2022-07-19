@@ -62,6 +62,7 @@
     background: var(--mdc-theme-primary, #6200ee);
     color: #F5F5F5;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .copyForm{
@@ -78,6 +79,7 @@
     color: #F5F5F5;
     background: var(--mdc-theme-primary, #6200ee);
     font-size: 15px;
+    cursor: pointer;
 }
 
 #inputUrl {

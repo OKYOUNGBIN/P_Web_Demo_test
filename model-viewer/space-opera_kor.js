@@ -128257,7 +128257,10 @@ overflow: auto;
 padding: 10px;
 white-space: nowrap;
 }
-
+.outer-container img{
+  width: 340px;
+  height: 40px;
+}
 .inner-container {
 align-items: center;
 display: flex;
@@ -128319,14 +128322,13 @@ var __decorate$4 = (undefined && undefined.__decorate) || function (decorators, 
 /**
 * Link to modelviewer.dev site.
 */
+
 let MVLink = class MVLink extends LitElement$1 {
   render() {
       return html$2 `
 <div class="outer-container">
-<a href="https://modelviewer.dev/" target="_blank" class="inner-container">
-  <div class="icon-button"></div>
-  <div class="attribute">&lt;model-viewer&gt;</div>
-</a>
+  <img src="/icon/main/perspective_logo.png" alt="">
+  
 </div>
   `;
   }
