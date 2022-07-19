@@ -15,6 +15,13 @@ const port = 8000;
 const path = require("path");
 const __dirname = path.dirname(__filename);
 
+// 키 위치
+// const options = {
+//   key: fs.readFileSync('/opt/bitnami/letsencrypt/certificates/xr-square.com.key'),
+//    cert: fs.readFileSync('/opt/bitnami/letsencrypt/certificates/xr-square.com.crt')
+//  };
+ 
+
 app.use(express.static("node_modules"));
 app.use(express.static("model-viewer"));
 app.use(express.static("aws"));
@@ -65,4 +72,8 @@ app.listen(port, () => {
   console.log("starting server at port 8000..");
 });
 
-
+// 호스팅할 때
+// // Create an HTTP service.
+// http.createServer(app).listen(80);
+// // Create an HTTPS service identical to the HTTP service.
+// https.createServer(options, app).listen(443);
