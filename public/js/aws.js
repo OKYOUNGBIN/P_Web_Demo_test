@@ -39,7 +39,7 @@ async function exportModelViewer() {
         camera-controls
         ar
         ar-modes="scene-viewer quick-look webxr"
-        autoplay
+        autoplay        
         environment-image="https://xr-box.s3.ap-northeast-2.amazonaws.com/shop_file/xr-viewer/images/photo_studio_01_1k.hdr"
         exposure="0.35"
         alt="B_Shelf"
@@ -51,6 +51,8 @@ async function exportModelViewer() {
                 <b>XR 미리보기</b>
             </button>
         </model-viewer>
+        <script>
+        </script>
         </body>
         </html>`;
   const newHtmlDoc = document.implementation.createHTMLDocument();

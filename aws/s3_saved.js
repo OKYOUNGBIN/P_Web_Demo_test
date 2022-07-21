@@ -24,7 +24,7 @@ export async function savedUploadURL() {
 
   const params = ({
     Bucket: savedBucketName,
-    Key: glbName,
+    Key: glbName + ".glb",
   })
   
   const savedUploadURL = await s3.getSignedUrlPromise('putObject', params)
